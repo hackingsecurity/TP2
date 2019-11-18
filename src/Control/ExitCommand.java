@@ -1,4 +1,4 @@
-package tp.p2;
+package Control;
 
 public class ExitCommand extends Command{
 

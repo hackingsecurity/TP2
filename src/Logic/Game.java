@@ -1,6 +1,19 @@
 package tp.p1;
 import java.util.Random;
 
+
+/*
+ * La clase Game solo tendrá un
+	atributo de tipo GameObjectBoard y otro de tipo UCMShip. Con estos dos atributos se
+	gestionarán todos los elementos del juego, incluidos el Ovni, los disparos del jugador y las
+	bombas lanzadas por las naves enemigas.
+	
+	El nuevo game mantiene una referencia al player y al board donde se almacenan los
+	objetos de juego. Cuando tiene que hacer alguna acción, la delega a la clase correspon-
+	diente. Podríamos decir que el Game no hace absolutamente nada salvo delegar.
+ */
+
+
 public class Game {
 	
 	//atributos
