@@ -1,56 +1,76 @@
-package tp.p1;
+package Logic;
 
 public enum Level {
 
-	EASY ("EASY", 4, 2, 0.9, 3, 0.5),
-	HARD ("HARD", 8, 2, 0.3, 2, 0.2),
-	INSANE ("INSANE", 8, 4, 0.5, 1, 0.1);
-	
-	String level;
-	int nRegShip, nDesShip, speed;
-	double frecShoot, probaOvni;
-	
-	private Level (String level, int nRegShip, int nDesShip, double frecShoot, int speed, double probaOvni) {
+	EASY(4, 2, 0.2, 3, 0.5, 1),
+	HARD(8, 4, 0.3, 2, 0.2, 2),
+	INSANE(12, 4, 0.5, 1, 0.1, 3);
+	private int numRegularAliens;
+	private int numDestroyerAliens;
+	private int numCyclesToMoveOneCell;
+	private double ovniFrequency;
+	private double shootFrequency;
+	private int numRowsOfRegularAliens;
+	//ERRATA AL COPIAR CAMBIO INT POR DOUBLE
+	private double  turnExplodeFrequency = 0.05; // actualmente no depende del nivel
 		
-		this.level = level;
-		this.nRegShip = nRegShip;
-		this.nDesShip = nDesShip;
-		this.speed = speed;
-		this.frecShoot  = frecShoot;
-		this.probaOvni = probaOvni;
+	private Level(
+		int numRegularAliens,
+		int numDestroyerAliens,
+		double shootFrequency,
+		int numCyclesToMoveOneCell,  
+		double ovniFrequency,
+		int numRowsOfRegularAliens)
+	{	
+		this. numRegularAliens = numRegularAliens;
+		this. numDestroyerAliens = numDestroyerAliens;
+		this. shootFrequency = shootFrequency;
+		this. numCyclesToMoveOneCell = numCyclesToMoveOneCell;
+		this. ovniFrequency = ovniFrequency;
+		this. numRowsOfRegularAliens = numRowsOfRegularAliens;
 	}
-
-	public String getLevel() {
+	
+	public int getNumRegularAliens() {
+		return numRegularAliens;
+	}
+	
+	public int getNumDestroyerAliens() {
+		return numDestroyerAliens;
+	}
+	
+	public double getShootFrequency() {
+		return shootFrequency;
+	}
+	
+	public int getNumCyclesToMoveOneCell() {
+			return numCyclesToMoveOneCell;
+	}
+	
+	public double getOvniFrequency() {
+		return ovniFrequency;
+	}
+	
+	public int getNumRowsOfRegularAliens() {
+		return numRowsOfRegularAliens;
+	}
+	
+	public int getNumRegularAliensPerRow() {
+		return numRegularAliens / numRowsOfRegularAliens;
+	}
+	
+	public int getNumDestroyerAliensPerRow() {
+		return getNumDestroyerAliens();
+	}
+	
+	public static Level parse(String cadenaEntrada) {
+		for (Level level : Level. values() )
+		if (level . name().equalsIgnoreCase(cadenaEntrada))
 		return level;
-	}
-
-	public int getnRegShip() {
-		return nRegShip;
-	}
-
-	public int getnDesShip() {
-		return nDesShip;
-	}
-
-	public int getSpeed() {
-		return speed;
-	}
-
-	public double getFrecShoot() {
-		return frecShoot;
-	}
-
-	public double getProbaOvni() {
-		return probaOvni;
+		return EASY;
 	}
 	
-	
-	public static Level  stringTolevel(String parametro) {
-		for (Level nivel : Level.values()) {
-			if (nivel.level.equals(parametro))
-				return nivel;
-		}
-		return null;
-	}
+	public double getTurnExplodeFrequency(){
+		return turnExplodeFrequency;
+	}	
 
 }

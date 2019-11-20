@@ -2,6 +2,8 @@ package Logic;
 import java.util.Random;
 
 
+//FALTA IMPORTAR CLASES QUE USA GAME
+
 /*
  * La clase Game solo tendrá un
 	atributo de tipo GameObjectBoard y otro de tipo UCMShip. Con estos dos atributos se
@@ -57,17 +59,68 @@ public class Game implements IPlayerController{
 		board.add(player);
 	}
 	
-	public boolean aliensWin() {
-		return !player.isAlive () || AlienShip.haveLanded();
+	public Random getRandom() {
+		return rand;
 	}
-	
+		
+	public Level getLevel() {
+		return level;
+	}
+		
+	public void reset() {
+		initGame();
+		}
+		
+	public void addObject(GameObject object) {
+		board.add(object);
+	}
+			
+	public String positionToString( /∗ coordinadas ∗/ ) {
+		return board.toString( /∗ coordinadas ∗/ );
+	}
+			
+	public boolean isFinished() {
+				
+		return playerWin() || aliensWin() || doExit;
+	}
+			
+	public boolean aliensWin() {
+		return !player.isAlive () || AlienShip.haveLanded();		
+		
+	}
+
 	private boolean playerWin () {
 		return AlienShip.allDead();
 	}
+	
 	public void update() {
 		board.computerAction();
 		board.update();
 		currentCycle += 1;
+	}
+	
+	public boolean isOnBoard( /∗ coordinadas ∗/ ) {
+		return /∗ condición de rango sobre las coordinadas ∗/ ;
+	}
+	
+	public void exit() {
+		doExit = true;
+	}
+	
+	public String infoToString() {
+		return /∗ cadena estado−juego para imprimir junto con el tablero ∗/ ;
+	}
+	
+	public String getWinnerMessage () {
+		if (playerWin()) return "Player win!";
+		else if (aliensWin()) return "Aliens win!";
+		else if (doExit) return "Player exits the game";
+		else "This should not happen"
+	}	
+	
+	
+	
+	//TODO implementar los metodos de la interfaz IPlayerController
 }
 
 
@@ -165,8 +218,7 @@ public class Game {
 		int velocidad = level.getSpeed();
 		cicloActual += 1;
 			if(cicloActual % velocidad == 0 && cicloActual != 0) {
-				/*if(isCeldaVacia(this.desList.getDestroyerList(0).getX()+this.sentido,this.desList.getDestroyerList(0).getY())==true
-						&& isCeldaVacia(this.reguList.getRegularList(0).getX()+this.sentido,this.reguList.getRegularList(0).getY())==true)*/ {
+			{
 					if(!cambiarSentido()){
 						moverNaves(getSentido());
 					}
