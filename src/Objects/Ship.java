@@ -1,5 +1,6 @@
-package tp.p2;
+//PAQUETE QUE LO CONTIENE
+package Objects;
 
-public class Ship extends GameObject{
+public abstract class Ship extends GameObject{
 
 }

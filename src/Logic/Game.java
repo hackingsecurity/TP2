@@ -1,4 +1,4 @@
-package tp.p1;
+package Logic;
 import java.util.Random;
 
 
@@ -11,8 +11,67 @@ import java.util.Random;
 	El nuevo game mantiene una referencia al player y al board donde se almacenan los
 	objetos de juego. Cuando tiene que hacer alguna acción, la delega a la clase correspon-
 	diente. Podríamos decir que el Game no hace absolutamente nada salvo delegar.
+	
+		En el Game usamos una clase auxiliar para inicializar el juego. El boardInitializer se
+	encarga de añadir los objetos de juego en el juego dependiendo del nivel.
+	Si nos fijaos en la declaración del Game vemos que implementa un interfaz IPlayerCon-
+	troller. Esta interfaz no es 100 % necesaria, pero nos ayuda a abstraer qué métodos son
+	los necesarios para tratar la comunicación con el jugador. En realidad es lo que se conoce
+	como mixin es una forma de incluir métodos de una clase en otra, sin que exista relación
+	de herencia entre ellas.
  */
 
+
+
+
+
+
+
+
+
+public class Game implements IPlayerController{
+	
+	
+	public final static int DIM_X = 9;
+	public final static int DIM_Y = 8;
+	private int currentCycle;
+	private Random rand;
+	private Level level ;
+	
+	private boolean doExit;
+	private BoardInitializer initializer ;
+	
+	GameObjectBoard board;
+	private UCMShip player;
+	
+	public Game (Level level, Random random){
+		this. rand = random;
+		this. level = level;
+		initializer = new BoardInitializer();
+		initGame();
+	}
+	public void initGame () {
+		currentCycle = 0;
+		board = initializer . initialize (this, level );
+		player = new UCMShip(this, DIM_X / 2, DIM_Y − 1);
+		board.add(player);
+	}
+	
+	public boolean aliensWin() {
+		return !player.isAlive () || AlienShip.haveLanded();
+	}
+	
+	private boolean playerWin () {
+		return AlienShip.allDead();
+	}
+	public void update() {
+		board.computerAction();
+		board.update();
+		currentCycle += 1;
+}
+
+
+/*
 
 public class Game {
 	
@@ -219,27 +278,7 @@ public class Game {
 	
 		return p;
 	}
-	/*public boolean isCeldaVacia(int px, int py) {
-		boolean esVacia = false;
-		for (int i = 0; i <this.desList.getCont();i++) {
-			if((px == this.desList.getDestroyerList(i).getX())&&(py == this.desList.getDestroyerList(i).getY())) {
-				esVacia = false;
-			}
-			else {
-				esVacia = true;
-			}
-		}
-		for(int i = 0; i < this.reguList.getCont();i++) {
-			if((px == this.reguList.getRegularList(i).getX())&&(py == this.reguList.getRegularList(i).getY())) {
-				esVacia = false;
-			}
-			else {
-				esVacia = true;
-				//fhsjdjsjdjsdjsjdjd
-			}
-		}
-		return esVacia;
-	}*/
+
 	
 	public void moverNaves(int sentido) {
 		for(int i = 0; i < reguList.getCont(); i++) {
@@ -325,3 +364,6 @@ public class Game {
 				"\n" + "ShockWave: " + existShockWave();		
 		}
 }
+
+
+*/

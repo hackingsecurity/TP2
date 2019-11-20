@@ -1,0 +1,176 @@
+**********************************************************
+PRACTICA 2: SPACE INVADERS REFACTORED, PARTE I Y PARTE II
+**********************************************************
+
+FECHA DE ENTREGA:  5 DICIEMBRE
+
+GITHUB:  https://github.com/HackingSecurity/TP2.git
+
+-----------------------------------------------------------------------------------------------------
+
+OBJETIVO: 
+		-Herencia, polimorfismo, clases abstractas
+		-Interfaces, excepciones y gestión de ficheros.
+
+INTRODUCCIÓN:
+
+	-Mejorar el código	-> refactorizando codigo de la practica 1
+
+		-modificaremos el controlador distribuyendo su funcionalidad entre
+		un conjunto de clases.
+
+		-Uso de herencia para reorganizar los objetos
+			-Extender facilmente su fucionalidad
+
+			codigo repetido: tipos de naves alienigena
+			codigo repetido: misil y las bombas
+
+		-Una vez refactorizada vamos añadir nuevos objetss al juego.
+
+		-Herencia -> almacenamiento de la información del estado del juego.
+			-Es decir usar una sola estructura de datos para todos los objetos del juego.
+
+		-Modifica como se representa el tablero
+				-crearemos otro printer con el que podamos ver el juego de forma serializada
+
+		-Utilizaremos la serialización
+				-Guardar partidas en disco
+				-cargar partidas en disco
+			(ampliaremos el juego para gestionar ficheros de entrada y salida)
+
+		-Manejo y tratamiento de excepciones
+			-cada estado debe proporcionar al usuario información relevante:
+				-Errores producidos al procesar un determinado comando
+				-Dotar a programa de mayor robustez
+				-Mejorar la interoperabilidad con el usuario.
+
+	->Solo habrá una entrega para toda la práctica completa.
+
+
+REFACTORIZACIÓN DE LA SOLUCIÓN DE LA PRACTICA ANTERIOR
+
+->Regla en POO (fat models and skinny controllers)
+						|_>El codigo de los controladores debe ser minimo
+
+	-Usar modelos (ampliar no se entiende)
+
+	->Command
+		-Permite encapsular acciones de manera uniforme y extender sus nuevas acciones
+		sin modificar el controlador
+
+		-El cuerpo del metodo run del cotrolador va a tener más o menos este aspecto.
+
+
+			while(!game.isFinished()){
+			System.out.println(PROMPT);
+			String[]  words = in.nextLine().toLowerCase().trim().split ("\\s+");
+			Command command = CommandGenerator.parse(words);
+			if(command != null) {
+				if(command.execute(game))
+					System.out.println(game);
+				}
+				else{
+					System.out.format(unknownCommandMsg);
+				}	
+			}
+	->[Mientras el juego no termina, leemos un comando de la consola]
+		-Lo ejecutamos
+			-si el estado del juego ha cambiado lo repitamos
+
+COMMAND
+
+	->CADA COMANDO DEL JUEGO SE REPRESENTA POR UNA CLASE DIFERENTE.
+
+	->CLASES A IMPLEMENTAR:
+		-Command 			->Clase abstracta
+
+		-MoveCommand		->Clase concretas invocan metodos de game para invocar
+		-ShootCommand			los comandos respectivos
+		-UpdateCommand
+		-ResetCommand
+		-HelpCommand
+		-ExisteCommand()
+		-ShockwaveCommand()
+
+		//pregunta que significa
+		-ListCommand()			-> que implementa
+
+		->Metodo run del cotrolador divide en palabras el texto proporcionado
+			por el usuario (input) 
+				->invocar un metodo de la clase utilidad CommandGenerator
+					(ojo todos sus metodos son estaticos)
+					->Se le pasa el input como parametro
+						->este le pasa a su vez el input a un objeto comando
+							de cada una de las clases concretas
+								->para ver cual de ellas lo acepta como correcto
+		->De esta forma cada subclase de Command busca en el input el texto comando
+			que la subclase representa.
+
+		->aquel objeto comando que acepete el input como correcto devuelve al
+			commandGenerator tro objeto comando de la misma clase que él.
+
+		->El pasaeador pasará, a su vez, el objeto comando recibido al controlador.
+
+		->Los demás objetoc devuelven un null
+			-si todas devuelve un nuull
+				-el controlador informa al usuario (no corresponde a ningún comando conocido)
+
+			-Si no, El controlador obtiene del parseador CommandGenerator un objeto
+				de la subclase que representa a ese comando y que puede, a su vez
+					ejecutar el comando.
+
+
+HERENCIA Y POLIMORFISMO:
+
+
+	GameObject		-> padre (clase abstrata)
+		->Referencia a la clase Game
+		->atributos y metodos para controlar la posición en el tablero
+		->Hereda
+			Ship
+				->Naves del juego
+				->Hereda
+					EnemyShip	(todas la naves enemigas incluido el ovni)
+						->Gestiona el movimiento de las naves
+						->los puntos que se obtienen al ser destruidas
+						->Mismo movimiento que la practica1
+							-Atributo estatico nº naves  que deben
+							realizar un determinado movimiento.
+
+						->Hereda
+							AlienShip
+								->Hereda
+									RegularAlien
+									DestroyerAlien
+							Ovni
+
+					UCMship	(nave que controla el jugador)
+			Weapon
+				->Objetos que causan daño
+				->Hereda
+					Bomb
+					UcmMissile
+					->Representando el movimiento de los disparos
+						-DestroyerAlien
+						-UCMship
+
+					Shockwave ( es un arma)
+
+
+DETALLES DE LA IMPLEMENTACION
+
+	->Un contenedor para todos los objetos
+	->Desde game y Board solo manejamos abstracciones de los objetos 
+		(no podemos distinguir quien es quien)
+	->Toda la logica del juego estaŕa en los objetos de juego.
+		-como se mueve
+		-como ataca
+		-como recibe ataque
+		-cuand realiza computer actions
+
+
+[DIAPOSITIVA 6]
+->Copiar codigo de game (modificar game en la p2)		-> hecho
+
+NOS QUEDAMOS EN LA DIAPOSITVA 9 EN LOS ANEXOS
+

@@ -1,5 +1,7 @@
-package tp.p2;
+//PAQUETE QUE LO CONTIENE
+package Objects;
 
-public class EnemyShip extends Ship{
+public abstract class EnemyShip extends Ship{
+	
 
 }
