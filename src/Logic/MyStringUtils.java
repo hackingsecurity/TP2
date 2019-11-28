@@ -1,4 +1,4 @@
-package tp.p1;
+package Logic;
 
 public class MyStringUtils {
 	

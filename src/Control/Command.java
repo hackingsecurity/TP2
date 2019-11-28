@@ -1,7 +1,7 @@
 //PAQUETE QUE LO CONTIENE
 package Control;
 //PAQUETE QUE NECESITA PARA OPERAR
-import Logic.Game;
+//import Logic.Game;
 
 
 
@@ -69,7 +69,7 @@ public abstract class Command {
 	//METODOS ABSTRACTOS
 		//se van a implementar en las clases derivadas o hijas
 	
-	public abstract boolean execute(Game game);
+	//public abstract boolean execute(Game game);
 	
 	public abstract Command parse(String[] commandWords);
 	

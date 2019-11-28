@@ -1,4 +1,4 @@
-package tp.p1;
+package Logic;
 import java.util.Scanner;
 import java.util.Random;
 

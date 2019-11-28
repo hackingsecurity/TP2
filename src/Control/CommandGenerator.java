@@ -3,16 +3,17 @@ package Control;
 public class CommandGenerator {
 	
 	/*
-			 * Este atributo se usa en los dos siguientes métodos de CommandGenerator:
+			 * Este atributo se usa en los dos siguientes mÃ©todos de CommandGenerator:
 		public static Command parseCommand(String[ ] commandWords), que, a su vez, in-
-		voca el método parse de cada subclase de Command, tal y como se ha explicado
+		voca el mÃ©todo parse de cada subclase de Command, tal y como se ha explicado
 		anteriormente,
-		public static String commandHelp(), que tiene una estructura similar al método an-
-		terior, pero invocando el método helpText() de cada subclase de Command. Este
-		método es invocado por el método execute de la clase HelpCommand.
+		
+		public static String commandHelp(), que tiene una estructura similar al mÃ©todo an-
+		terior, pero invocando el mÃ©todo helpText() de cada subclase de Command. Este
+		mÃ©todo es invocado por el mÃ©todo execute de la clase HelpCommand.
 	 */
 	
-	//NUESTRO ATRIBUTO QUE ALMACENARÁ UNA INSTANCIA DE CADA COMANDO
+	//NUESTRO ATRIBUTO QUE ALMACENARÃ� UNA INSTANCIA DE CADA COMANDO
 	
 	private static Command[] availableCommands = {
 			new ListCommand(),
@@ -26,7 +27,7 @@ public class CommandGenerator {
 			};
 	
 	
-	//ESTA FUNCIÓN RECIBE LOS PARAMETRO DEL CONTROLER
+	//ESTA FUNCIÃ“N RECIBE LOS PARAMETRO DEL CONTROLER
 		//-PASAR ESTOS PARAMETROS A cada una de las clase.
 	
 	public static Command parseCommand(String[ ] commandWords) {

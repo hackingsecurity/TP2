@@ -24,7 +24,7 @@ public class Controller {
 	public Controller (Game game, Scanner scanner, Level level){
 		this.game = game;
 		this.level = level;
-		this.ran = game.getRand();
+		this.ran = game.getRandom();
 		this.scan = scanner;
 	}
 	
