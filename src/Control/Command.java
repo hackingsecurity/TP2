@@ -50,6 +50,14 @@ public abstract class Command {
 	protected static final String incorrectNumArgsMsg = "Incorrect number of arguments";
 	protected static final String incorrectArgsMsg = "Incorrect argument format";
 	
+	
+	/*
+	 * Name 		->  comandos
+	 * shortcut 	-> Abreviatura
+	 * Details		->
+	 * help			
+	 */
+	
 	public Command(String name, String shortcut, String details, String help){
 		this.name = name;
 		this.shortcut = shortcut;
@@ -59,9 +67,20 @@ public abstract class Command {
 	
 	
 	//METODOS ABSTRACTOS
+		//se van a implementar en las clases derivadas o hijas
+	
 	public abstract boolean execute(Game game);
+	
 	public abstract Command parse(String[] commandWords);
 	
+	
+	/*equealsIgnoreCase		-> eJ this.shortcut ( se supone que m)
+	*						-> Ej this.name ( se supone que move)
+	*
+	*		->Ignora mayus y minusculas
+	*
+	*/
+
 	protected boolean matchCommandName(String name) {
 		return this.shortcut.equalsIgnoreCase(name) ||
 		this.name.equalsIgnoreCase(name);

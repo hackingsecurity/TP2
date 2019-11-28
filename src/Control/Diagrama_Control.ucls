@@ -39,7 +39,7 @@
   </class>  
   <class id="5" language="java" name="Control.CommandGenerator" project="TP2" 
     file="/TP2/src/Control/CommandGenerator.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="115" width="198" x="766" y="-195"/>    
+    <position height="-1" width="-1" x="856" y="-142"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -48,7 +48,7 @@
   </class>  
   <class id="6" language="java" name="Control.Command" project="TP2" file="/TP2/src/Control/Command.java" binary="false" 
     corner="BOTTOM_RIGHT">    
-    <position height="259" width="211" x="766" y="-40"/>    
+    <position height="-1" width="-1" x="864" y="147"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -92,43 +92,47 @@
     </display>  
   </class>  
   <generalization id="11">    
-    <end type="SOURCE" refId="4"/>    
+    <end type="SOURCE" refId="8"/>    
     <end type="TARGET" refId="6"/>  
   </generalization>  
-  <generalization id="12">    
-    <end type="SOURCE" refId="1"/>    
-    <end type="TARGET" refId="6"/>  
-  </generalization>  
-  <generalization id="13">    
-    <end type="SOURCE" refId="3"/>    
-    <end type="TARGET" refId="6"/>  
-  </generalization>  
-  <association id="14">    
+  <association id="12">    
     <end type="SOURCE" refId="5" navigable="false">      
-      <attribute id="15" name="availableCommands"/>      
-      <multiplicity id="16" minimum="0" maximum="2147483647"/>    
+      <attribute id="13" name="availableCommands">        
+        <position height="24" width="159" x="682" y="-60"/>      
+      </attribute>      
+      <multiplicity id="14" minimum="0" maximum="2147483647">        
+        <position height="0" width="0" x="-7" y="58"/>      
+      </multiplicity>    
     </end>    
     <end type="TARGET" refId="6" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <generalization id="17">    
+  <generalization id="15">    
     <end type="SOURCE" refId="2"/>    
     <end type="TARGET" refId="6"/>  
   </generalization>  
-  <generalization id="18">    
+  <generalization id="16">    
     <end type="SOURCE" refId="7"/>    
     <end type="TARGET" refId="6"/>  
   </generalization>  
+  <generalization id="17">    
+    <end type="SOURCE" refId="9"/>    
+    <end type="TARGET" refId="6"/>  
+  </generalization>  
+  <generalization id="18">    
+    <end type="SOURCE" refId="3"/>    
+    <end type="TARGET" refId="6"/>  
+  </generalization>  
   <generalization id="19">    
-    <end type="SOURCE" refId="10"/>    
+    <end type="SOURCE" refId="1"/>    
     <end type="TARGET" refId="6"/>  
   </generalization>  
   <generalization id="20">    
-    <end type="SOURCE" refId="8"/>    
+    <end type="SOURCE" refId="4"/>    
     <end type="TARGET" refId="6"/>  
   </generalization>  
   <generalization id="21">    
-    <end type="SOURCE" refId="9"/>    
+    <end type="SOURCE" refId="10"/>    
     <end type="TARGET" refId="6"/>  
   </generalization>  
   <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 

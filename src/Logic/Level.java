@@ -5,6 +5,8 @@ public enum Level {
 	EASY(4, 2, 0.2, 3, 0.5, 1),
 	HARD(8, 4, 0.3, 2, 0.2, 2),
 	INSANE(12, 4, 0.5, 1, 0.1, 3);
+	
+	
 	private int numRegularAliens;
 	private int numDestroyerAliens;
 	private int numCyclesToMoveOneCell;
@@ -71,6 +73,8 @@ public enum Level {
 	
 	public double getTurnExplodeFrequency(){
 		return turnExplodeFrequency;
-	}	
+	}
+
+		
 
 }
