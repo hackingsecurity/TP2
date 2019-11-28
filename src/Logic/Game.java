@@ -93,19 +93,13 @@ public class Game implements IPlayerController{
 		return AlienShip.allDead();
 	}
 	
-	public void update() {
-		board.computerAction();
-		board.update();
-		currentCycle += 1;
-	}
+	
 	
 	public boolean isOnBoard( /∗ coordinadas ∗/ ) {
 		return /∗ condición de rango sobre las coordinadas ∗/ ;
 	}
 	
-	public void exit() {
-		doExit = true;
-	}
+	
 	
 	public String infoToString() {
 		return /∗ cadena estado−juego para imprimir junto con el tablero ∗/ ;
@@ -116,7 +110,43 @@ public class Game implements IPlayerController{
 		else if (aliensWin()) return "Aliens win!";
 		else if (doExit) return "Player exits the game";
 		else "This should not happen"
-	}	
+	}
+	
+	public void update() {
+		board.computerAction();
+		board.update();
+		currentCycle += 1;
+	}
+	
+	public void reset() {
+		initGame();
+	}
+	
+	public void exit() {
+		doExit = true;
+	}
+	
+	public void help() {
+		// TODO Auto-generated method stub
+		
+	}
+	public void list() {
+		// TODO Auto-generated method stub
+		
+	}
+	public void move() {
+		// TODO Auto-generated method stub
+		
+	}
+	public void shoot() {
+		// TODO Auto-generated method stub
+		
+	}
+	public void shockwave() {
+		// TODO Auto-generated method stub
+		
+	}
+	
 	
 	
 	

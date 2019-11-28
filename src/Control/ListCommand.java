@@ -1,6 +1,5 @@
 package Control;
 
-
 import Logic.Game;
 
 public class ListCommand extends Command {

@@ -13,6 +13,7 @@ public class HelpCommand extends Command{
 
 	public boolean execute(Game game) {
 		
+		game.help();
 		return true;
 	}
 	

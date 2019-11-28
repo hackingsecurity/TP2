@@ -1,16 +1,18 @@
 package Control;
 
-//import Logic.Game;
+import Logic.Game;
 
 public class ShockwaveCommand extends Command{
+	
 	public ShockwaveCommand() {
 		super("shockwave", "w", "shockWave", "UCM-Ship releases a shock wave");
 	}
 
-	/*public boolean execute(Game game) {
+	public boolean execute(Game game) {
 		
+		game.shockwave();
 		return true;
-	}*/
+	}
 	
 	public Command parse(String[] commandWords)
 	{
