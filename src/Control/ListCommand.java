@@ -1,7 +1,7 @@
 package Control;
 
 
-//import Logic.Game;
+import Logic.Game;
 
 public class ListCommand extends Command {
 
@@ -10,10 +10,10 @@ public class ListCommand extends Command {
 		super("List", "l", "list", "Prints the list of available ships");
 	}
 
-	/*public boolean execute(Game game) {
-		
+	public boolean execute(Game game) {
+		game.list();
 		return true;
-	}*/
+	}
 	
 	public Command parse(String[] commandWords)
 	{

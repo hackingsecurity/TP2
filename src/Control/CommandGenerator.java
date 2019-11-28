@@ -13,7 +13,15 @@ public class CommandGenerator {
 		mÃ©todo es invocado por el mÃ©todo execute de la clase HelpCommand.
 	 */
 	
-	//NUESTRO ATRIBUTO QUE ALMACENARÃ� UNA INSTANCIA DE CADA COMANDO
+	
+	/*
+	 *	1 -Creamos un array de  tipo Command y lo inicializamos
+	 *		a cada uno los objetos que va a manipular.
+	 * 	2-Uso de polimorfismo
+	 * 	3-Podemos crear distintos objetos hijos a Command (abstract)
+	 * 	4-Solo hay una copia del mismo y su valor es compartido por 
+	 * 	todos los objetos de la clase.
+	 */
 	
 	private static Command[] availableCommands = {
 			new ListCommand(),
@@ -27,36 +35,46 @@ public class CommandGenerator {
 			};
 	
 	
-	//ESTA FUNCIÃ“N RECIBE LOS PARAMETRO DEL CONTROLER
-		//-PASAR ESTOS PARAMETROS A cada una de las clase.
+	//
+	
+	
+	/*
+	 *	1 -Recibe la entrada desde consola
+	 *	2 -Creamos un tipo Command (polimofismo) guarda los objeto
+	 *	3 -Recorremos el array con un for-each
+	 *	4 -LLamamos el parse de cada uno de nuestros objetos en el array
+	 *	5 -Retornamos... 
+	 */
 	
 	public static Command parseCommand(String[ ] commandWords) {
 		
-		//CREAMOS UN REFERENCIA DEL OBJETO COMMAND Y LO INICIALIAZAMOS A NULL
 		
+		//Polimofismo Commmand --> cualquier clase hija.
 		Command command = null;
+		
 		for(Command availableCommands : availableCommands) {
 			
-			//es recorrer el array de objetos ( availableCommands y preguntar
-			// a cada metodo parse si el comandWords es suyo o no.
-			//nos retorna un null o el objeto que responde a la llamada
-				
 			command = availableCommands.parse(commandWords);
-			
+			//Si hemos encontrado un objeto
 			if((command != null)) 
 				return command;
 		}
 		return command;
 	}
 	
+	/*
+	 *	 -Incova el metodo helpText() de cada una de las clases
+	 *	 -Este metodo es invocado por el metodo execute de helpCommand
+	 */
 	
 	public static String commandHelp() {
 		
 		String helpText = null;
+		
 		for(Command availableCommands : availableCommands) {
 			helpText  = availableCommands.helpText();
 			if((helpText != null)) {
-				break;
+				return helpText;
 			}
 		}				
 		return helpText;

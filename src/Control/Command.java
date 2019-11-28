@@ -1,7 +1,7 @@
 //PAQUETE QUE LO CONTIENE
 package Control;
 //PAQUETE QUE NECESITA PARA OPERAR
-//import Logic.Game;
+import Logic.Game;
 
 
 
@@ -69,18 +69,14 @@ public abstract class Command {
 	//METODOS ABSTRACTOS
 		//se van a implementar en las clases derivadas o hijas
 	
-	//public abstract boolean execute(Game game);
+	public abstract boolean execute(Game game);
 	
 	public abstract Command parse(String[] commandWords);
 	
 	
-	/*equealsIgnoreCase		-> eJ this.shortcut ( se supone que m)
-	*						-> Ej this.name ( se supone que move)
-	*
-	*		->Ignora mayus y minusculas
-	*
+	/*
+	 * 	- equelasIgnoreCase -> Ignora mayusculas o minusculas.
 	*/
-
 	protected boolean matchCommandName(String name) {
 		return this.shortcut.equalsIgnoreCase(name) ||
 		this.name.equalsIgnoreCase(name);

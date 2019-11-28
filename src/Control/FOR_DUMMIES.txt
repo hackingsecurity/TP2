@@ -1,0 +1,39 @@
+ENTENDIMIENTO DEL PAQUETE CONTROL.
+
+
+	-QUE APLICAMOS:
+	
+		-abstraccion
+		-polimorfismo
+		
+->Una clase  abtracta (Command)
+	
+	//se heredan y se implementan en cada clase hija
+	
+	public abstract boolean execute(Game game);
+	public abstract Command parse(String[] commandWords);
+	
+	
+	//metodos que se heredan y solo tienen que ser
+	llamados por las clases hijas
+	
+	
+	protected boolean matchCommandName(String name) 
+	public String helpText()
+	
+
+GameGenerator
+
+	-1) Atributo
+		-Array de tipo Command que guardara los objetos
+		que heredan de el.
+		
+	//metodo que puede ser invocado desde fuera
+	//y lo que nos pasa es un array de string con la entrada 
+	//del usuario por consola.
+	
+	public static Command parseCommand(String[ ] commandWords)
+	public static String commandHelp()
+	
+		
+	

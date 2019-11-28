@@ -1,5 +1,7 @@
 package Logic;
 
+import Control.Command;
+
 import java.util.Random;
 import java.util.Scanner;
 
@@ -9,6 +11,7 @@ import Control.CommandGenerator;
 
 public class Controller {
 
+	private final String PROMPT = "< comannd > :";
 	private Scanner scan;
 	private Game game;
 	private GamePrinter gamePrinter;
@@ -30,6 +33,7 @@ public class Controller {
 	
 	
 	public void run (){
+		
 	
 		while (!game.isFinished()){
 			
@@ -52,11 +56,13 @@ public class Controller {
 			if (command != null) {
 			if (command.execute(game))
 				
-			System.out.println(game);
+				System.out.println(game);
+			
+			}
+			else {
+				System.out.format("nknownCommandMsg");
+			}
 		}
-		else {
-		System.out.format(unknownCommandMsg);
-		}
-	}
 		
+	}
 }

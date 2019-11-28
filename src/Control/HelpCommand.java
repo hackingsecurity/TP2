@@ -1,7 +1,7 @@
 //PAQUETE QUE LO CONTIENE
 package Control;
 //PAQUETE QUE NECESITA PARA OPERAR
-//import Logic.Game;
+import Logic.Game;
 
 
 public class HelpCommand extends Command{
@@ -11,11 +11,11 @@ public class HelpCommand extends Command{
 		super("help", "h", "help", "Prints help message");
 	}
 
-/*	public boolean execute(Game game) {
+	public boolean execute(Game game) {
 		
 		return true;
 	}
-	*/
+	
 	public Command parse(String[] commandWords)
 	{
 		Command command = null;
