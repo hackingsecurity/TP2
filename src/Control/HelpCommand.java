@@ -13,7 +13,8 @@ public class HelpCommand extends Command{
 
 	public boolean execute(Game game) {
 		
-		game.help();
+		String helpText = CommandGenerator.commandHelp(); 
+		System.out.println(helpText);
 		return true;
 	}
 	
@@ -21,11 +22,11 @@ public class HelpCommand extends Command{
 	{
 		Command command = null;
 		
-		//cadenas de caracteres
-		if (matchCommandName(commandWords[0])) {
-			command = new HelpCommand();
+		if (!(commandWords.length > 1)) {
+			if (matchCommandName(commandWords[0])) {
+				command = new HelpCommand();
+			}
 		}
-		
 		return command;
 	}
 	

@@ -31,7 +31,8 @@ public class CommandGenerator {
 			new ListCommand(),
 			new UpdateCommand(),
 			new MoveCommand(),
-			new ShockwaveCommand()
+			new ShockwaveCommand(),
+			new ShootCommand()
 			};
 	
 	
@@ -69,14 +70,13 @@ public class CommandGenerator {
 	
 	public static String commandHelp() {
 		
-		String helpText = null;
+		String helpText = "";
 		
 		for(Command availableCommands : availableCommands) {
-			helpText  = availableCommands.helpText();
-			if((helpText != null)) {
-				return helpText;
-			}
-		}				
+			helpText  += availableCommands.helpText();
+		
+		}	
+		
 		return helpText;
 					
 	}

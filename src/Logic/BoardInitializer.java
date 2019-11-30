@@ -6,6 +6,10 @@ public class BoardInitializer {
 	private GameObjectBoard board;
 	private Game game;
 	
+	public BoardInitializer() {
+		
+	}
+	
 	public GameObjectBoard initialize(Game game, Level level) {
 	this. level = level;
 	this. game = game;
@@ -18,7 +22,7 @@ public class BoardInitializer {
 	}
 	
 	private void initializeOvni () {
-	// TODO implement
+		
 	}
 	private void initializeRegularAliens () {
 	// TODO implement

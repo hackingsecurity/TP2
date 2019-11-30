@@ -9,8 +9,20 @@ public class ShockwaveCommand extends Command{
 	}
 
 	public boolean execute(Game game) {
-		
-		game.shockwave();
+		/*
+		boolean ex = false;
+		if(game.getShockWave()) {
+			
+			game.shockWaveShips();
+			game.setShockWave(false);
+			ex = true;
+			
+		}else {
+			System.out.println("NO HAY SHOCKWAVE DISPONIBLE");
+			ex = false;
+		}
+		return ex;
+	}*/
 		return true;
 	}
 	
@@ -18,11 +30,11 @@ public class ShockwaveCommand extends Command{
 	{
 		Command command = null;
 		
-		//cadenas de caracteres
-		if (matchCommandName(commandWords[0])) {
-			command = new ShockwaveCommand();
+		if (!(commandWords.length > 1)) {
+			if (matchCommandName(commandWords[0])) {
+				command = new ShockwaveCommand();
+			}
 		}
-		
 		return command;
 	}
 	

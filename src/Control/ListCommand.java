@@ -14,17 +14,18 @@ public class ListCommand extends Command {
 		return true;
 	}
 	
+	
 	public Command parse(String[] commandWords)
 	{
+		
+		
 		Command command = null;
 		
-		//cadenas de caracteres
-		if (matchCommandName(commandWords[0])) {
-			command = new ListCommand();
+		if (!(commandWords.length > 1)) {
+			if (matchCommandName(commandWords[0])) {
+				command = new MoveCommand();
+			}
 		}
-		
 		return command;
 	}
-	
-	
 }

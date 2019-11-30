@@ -9,20 +9,34 @@ public class ShootCommand extends Command{
 	}
 
 	public boolean execute(Game game) {
+		/*
+		boolean ex = false;
+		if(game.existeMisil()){
+			
+			System.out.println("ya hay misil en partida");
+			ex = false;
+		}
+		else {
+			game.activarMisil();
+			ex = true;
+		}
+
+		return true;
 		
-		game.shoot();
+		*/
 		return true;
 	}
+
 	
 	public Command parse(String[] commandWords)
 	{
 		Command command = null;
 		
-		//cadenas de caracteres
-		if (matchCommandName(commandWords[0])) {
-			command = new ShootCommand();
+		if (!(commandWords.length > 1)) {
+			if (matchCommandName(commandWords[0])) {
+				command = new ShootCommand();
+			}
 		}
-		
 		return command;
 	}
 	

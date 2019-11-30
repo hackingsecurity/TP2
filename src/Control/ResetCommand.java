@@ -8,19 +8,20 @@ public class ResetCommand extends Command {
 		super("reset", "r", "reset", "Starts a new game");
 	}
 
-public boolean execute(Game game) {
-		
-		game.reset();
-		return true;
+	public boolean execute(Game game) {
+	game.reset();
+	return true;
+
 	}
 	
 	public Command parse(String[] commandWords)
 	{
 		Command command = null;
 		
-		//cadenas de caracteres
-		if (matchCommandName(commandWords[0])) {
-			command = new ResetCommand();
+		if (!(commandWords.length > 1)) {
+			if (matchCommandName(commandWords[0])) {
+				command = new ResetCommand();
+			}
 		}
 		
 		return command;

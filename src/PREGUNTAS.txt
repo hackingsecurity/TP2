@@ -1,1 +1,8 @@
+	GameObjectBoard
+	
+		en la constructora de esta clase
+		se debe poner un limite al array
+		o es autoincremental?
+		
+		
 	

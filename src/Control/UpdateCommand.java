@@ -4,7 +4,7 @@ import Logic.Game;
 
 public class UpdateCommand extends Command{
 	public UpdateCommand() {
-		super("none", " ", "[none]", "Skips one cycle");
+		super("none", "", "[none]", "Skips one cycle");
 	}
 
 	public boolean execute(Game game) {
@@ -17,8 +17,10 @@ public class UpdateCommand extends Command{
 	{
 		Command command = null;
 		
-		if (matchCommandName(commandWords[0])) {
-			command = new UpdateCommand();
+		if (!(commandWords.length > 1)) {
+			if (matchCommandName(commandWords[0])) {
+				command = new UpdateCommand();
+			}
 		}
 		
 		return command;

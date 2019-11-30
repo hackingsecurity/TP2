@@ -18,10 +18,14 @@ public class ExitCommand extends Command{
 	{
 		Command command = null;
 		
-		if (matchCommandName(commandWords[0])) {
-			command = new ExitCommand();
-		}
+		if (!(commandWords.length > 1)) {
+			
+			if (matchCommandName(commandWords[0])) {
+				command = new ExitCommand();
+			}
 		
+		}
+	
 		return command;
 	}
 	
