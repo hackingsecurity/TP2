@@ -1,5 +1,10 @@
 package Logic;
 
+import Objects.GameObject;
+import Objects.Ovni;
+import Objects.DestroyerAlien;
+import Objects.RegularAlien;
+
 public class BoardInitializer {
 
 	private Level level ;
@@ -23,6 +28,8 @@ public class BoardInitializer {
 	
 	private void initializeOvni () {
 		
+		GameObject object = new Ovni();
+		//object.
 	}
 	private void initializeRegularAliens () {
 	// TODO implement

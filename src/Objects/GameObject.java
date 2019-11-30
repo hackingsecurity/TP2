@@ -10,6 +10,10 @@ public abstract class GameObject implements IAttack {
 	protected Game game;
 	protected int dagame ;
 	
+	public GameObject() {
+		
+	}
+	
 	public GameObject( Game game, int posX , int posY, int live) {
 		this.posX = posX;
 		this.posY = posY;

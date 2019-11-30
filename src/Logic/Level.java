@@ -2,6 +2,7 @@ package Logic;
 
 public enum Level {
 
+	
 	EASY(4, 2, 0.2, 3, 0.5, 1),
 	HARD(8, 4, 0.3, 2, 0.2, 2),
 	INSANE(12, 4, 0.5, 1, 0.1, 3);
@@ -66,7 +67,7 @@ public enum Level {
 	
 	public static Level parse(String cadenaEntrada) {
 		for (Level level : Level. values() )
-		if (level . name().equalsIgnoreCase(cadenaEntrada))
+		if (level.name().equalsIgnoreCase(cadenaEntrada))
 		return level;
 		return EASY;
 	}

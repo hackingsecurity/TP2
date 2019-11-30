@@ -4,7 +4,9 @@ import Logic.Game;
 
 public class Ovni extends AlienShip {
 
-	
+	public Ovni() {
+		super();
+	}
 
 	public Ovni(Game game, int posX, int posY, int live) {
 		super(game, posX, posY, live);
