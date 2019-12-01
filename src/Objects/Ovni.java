@@ -37,6 +37,11 @@ public class Ovni extends AlienShip {
 	
 	@Override
 	public String toString() {
-		return "O[" + this.live + "]" ;
+		
+		if(visibilidadOvni) {
+			return "O[" + this.live + "]" ;
+		}
+		
+		return null;
 	}
 }

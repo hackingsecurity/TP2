@@ -1,4 +1,5 @@
 package Logic;
+import Objects.AlienShip;
 import Objects.GameObject;
 import Objects.UCMShip;
 import java.util.Random;
@@ -29,8 +30,8 @@ import java.util.Random;
 public class Game implements IPlayerController{
 	
 	
-	public final static int DIM_X = 9;
-	public final static int DIM_Y = 8;
+	public final static int DIM_X = 8;
+	public final static int DIM_Y = 9;
 	private int currentCycle;
 	private Random rand;
 	private Level level ;
@@ -48,47 +49,51 @@ public class Game implements IPlayerController{
 		initializer = new BoardInitializer();
 		initGame();
 	}
-
-	public String stringGameObjectInPos(int posX, int posY){
-		
-		return this.board.stringObjectInPos(posX, posY);
-	}
 	
 	
-	
+	// _/
 	public void initGame () {
 		currentCycle = 0;
 		board = initializer.initialize(this, level );
-		player = new UCMShip(this,DIM_X/2, DIM_Y-1);
+		player = new UCMShip(this,DIM_X - 1, DIM_Y/2);
 		board.add(player);
 	}
 	
+	// _/
 	public Random getRandom() {
 		return rand;
 	}
 		
+	// _/
 	public Level getLevel() {
 		return level;
 	}
-		
+	// _/	
 	public void addObject(GameObject object) {
 		board.add(object);
 	}
 			
-	public String positionToString( /* coordinadas */ ) {
-		return board.toString( /* coordinadas */ );
+	// _/
+	public String positionToString(int posX, int posY) {
+		return this.board.stringObjectInPos(posX, posY);
 	}
 			
+	// _/
 	public boolean isFinished() {
 				
 		return playerWin() || aliensWin() || doExit;
 	}
-			
+		
+	/*
+	 * GANA CUANDO LA VIDA DEL JUGADOR ES CERO O 
+	 * 	LOS ALIENS HAN LLEGADO ATERRIZAR
+	 */
 	public boolean aliensWin() {
-		return false; //!player.isAlive () || AlienShip.haveLanded();		
+		return !player.isAlive ();  //|| AlienShip.haveLanded();		
 		
 	}
 
+	// _/
 	private boolean playerWin () {
 		return false; // AlienShip.allDead();
 	}
@@ -149,8 +154,6 @@ public class Game implements IPlayerController{
 	
 	
 	//METODOS ABSTARACTO DE LA INTERFEZ IPLAYERCONTROLLER
-	
-	// Player actions
 	public boolean move (int numCells) {
 		
 		return true;
