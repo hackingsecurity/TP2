@@ -23,6 +23,7 @@ public class GameObjectBoard {
 		
 		//PREGUNTAR A SIMON EL TAMAÑO DEL ARRAY OBJECTS
 		objects = new GameObject[width * height];
+		
 	}
 	
 	//CONTADOR DE NUESTRA LISTA GAMEOBJECTS
@@ -35,11 +36,14 @@ public class GameObjectBoard {
 		this.currentObjects += 1;
 	}
 	
-	//AÑADIMOS UN NUEVO OBJETO A NUESTRA LISTA
+	//AÑADIMOS UN NUEVO OBJETO A NUESTRA LISTA 
+	// E INCREMENTAMOS EL CONTADOR
 	public void add (GameObject object) {
 	  this.objects[getCurrentObjects()] = object;
+	  setCurrentObjects(this.currentObjects);
 	}
 	
+
 	//DEVUELVO UN OBJETO DADO UNAS COORDENADAS
 	private GameObject getObjectInPosition ( int posX, int posY ) {
 		
@@ -98,9 +102,26 @@ public class GameObjectBoard {
 	// TODO implement
 	}
 	
-	public String toString( /* coordinadas */ ) {
-	// TODO implement
-		return "hola";
+	public String stringObjectInPos(int posX, int posY) {
+		
+		String stringObject = null;
+		boolean encontrado = false;
+		int cont = 0;
+		while (cont < this.currentObjects && !encontrado) {
+			
+			if(this.objects[cont].getPosX() == posX) {
+				if(this.objects[cont].getPosY() == posY) {
+					encontrado = true;
+					stringObject = this.objects[cont].toString();
+					
+				}
+			}
+			
+			cont++;
+		}
+		
+		return stringObject;
 	}
+	
 	
 }

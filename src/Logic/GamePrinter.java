@@ -8,38 +8,36 @@ public class GamePrinter {
 	final String space = " ";
 	
 	
-	public GamePrinter (Game game, int DIM_X, int DIM_Y) {
-		this.numRows = DIM_X;
-		this.numCols = DIM_Y;		
+	public GamePrinter (Game game) {
+		this.numRows = Game.DIM_X;
+		this.numCols = Game.DIM_Y;		
 		encodeGame(game);
 	}
 	
 	
+	
 	/*
-	 * USAR INSTANCEOF PARA PODER COMPARAR OBJETOS DE UNA MISMA CLASE:
-	 *	if(nameVariableClase instanceof  AlienShip)
-	 *		-> devuelve un true si se cumple la condición
-	 * SI  CUMPLE LA CONDICIÓN LLAMAMOS SU TOSTRING Y LO PINTAMOS EN EL TABLERO	
-	 *
+	 * PEDIMOS AL GAME Y ESTE A GAMEOBJECTBOARD EL TOSTRING DE UN OBJECTO
+	 * DADAS LAS COORDENADAS DEL TABLERO
+	 * 
+	 * SI NOS DEVUELVE UN NULL -> PINTAMOS SPACE
+	 * 
 	 */
 	private void encodeGame(Game game) {
 		
 		board = new String[numRows][numCols];
-		
-		
-		int cont = 0;
+		String cad = "";
 		
 		for(int i = 0; i < numRows; i++) {
 			for(int j = 0; j < numCols; j++) {
 				
-				
-			/*	if (pos == 0) {
-					board [i][j] = game.getDesList().getPos(i, j)
+				cad = game.stringGameObjectInPos(i, j) ;
+				if( cad != null) {
+					board[i][j] = cad;
 				}
-				else {	
-					board[i][j] =  space
+				else {
+					board[i][j] = space;
 				}
-				*/
 			}
 		}
 	}

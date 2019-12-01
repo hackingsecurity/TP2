@@ -37,6 +37,7 @@ public class Game implements IPlayerController{
 	
 	private boolean doExit;
 	private BoardInitializer initializer ;
+	private GamePrinter boardWithObjects;
 	
 	GameObjectBoard board;
 	private UCMShip player;
@@ -47,6 +48,14 @@ public class Game implements IPlayerController{
 		initializer = new BoardInitializer();
 		initGame();
 	}
+
+	public String stringGameObjectInPos(int posX, int posY){
+		
+		return this.board.stringObjectInPos(posX, posY);
+	}
+	
+	
+	
 	public void initGame () {
 		currentCycle = 0;
 		board = initializer.initialize(this, level );
@@ -76,12 +85,12 @@ public class Game implements IPlayerController{
 	}
 			
 	public boolean aliensWin() {
-		return true; //!player.isAlive () || AlienShip.haveLanded();		
+		return false; //!player.isAlive () || AlienShip.haveLanded();		
 		
 	}
 
 	private boolean playerWin () {
-		return true; // AlienShip.allDead();
+		return false; // AlienShip.allDead();
 	}
 	
 	
@@ -90,11 +99,7 @@ public class Game implements IPlayerController{
 		return true /* condición de rango sobre las coordinadas */ ;
 	}
 	
-	
-	
-	public String infoToString() {
-		return "hola"/* cadena estado−juego para imprimir junto con el tablero */ ;
-	}
+
 	
 	public String getWinnerMessage () {
 		if (playerWin()) return "Player win!";
@@ -116,7 +121,7 @@ public class Game implements IPlayerController{
 	}
 	
 	public void exit() {
-		doExit = true;
+		doExit = false;
 	}
 	
 	public void help() {
@@ -165,6 +170,16 @@ public class Game implements IPlayerController{
 	}
 	public void enableMissile() {
 		
+	}
+	
+	
+	public String infoToString(GamePrinter board) {
+		
+		String stringObject  = "El estado del juego es\n\n";
+				
+		stringObject += board.toString();	
+
+		return stringObject;
 	}
 	
 	//***************************************************

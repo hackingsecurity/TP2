@@ -36,9 +36,8 @@ public class BoardInitializer {
 	
 	 
 	/*
-	 * PARA HARD Y INSANE  COMIENZO FILA 1 A LA 2 Y COLUMNAS 3 A LA 7
-	 * 
-	 * PARA EASY COMIENZO EN LA FILA 1 Y COLUMNAS 3 A LA 7
+	 * -PARA HARD Y INSANE  COMIENZO FILA 1 A LA 2 Y COLUMNAS 3 A LA 7
+	 * -PARA EASY COMIENZO EN LA FILA 1 Y COLUMNAS 3 A LA 7
 	 */
 	private void initializeRegularAliens () {
 		
@@ -59,9 +58,8 @@ public class BoardInitializer {
 	}
 		
 	/*
-	 * PARA HARD Y EASY FILA 3 Y COLUMNAS 5 Y 6
-	 * 
-	 * PARA INSANE FILA 3 Y COLUMNAS 4 A LA 7
+	 * -PARA HARD Y EASY FILA 3 Y COLUMNAS 5 Y 6 
+	 * -PARA INSANE FILA 3 Y COLUMNAS 4 A LA 7
 	 */
 	private void initializeDestroyerAliens () {
 		
@@ -72,6 +70,7 @@ public class BoardInitializer {
 				}
 			}
 		}
+		
 		else {
 			for(int fila = 3; fila < 5 ; fila++) {
 				for (int columna = 3; columna < 7; columna++) {
