@@ -5,12 +5,8 @@ import Logic.Game;
 public class UCMShip extends Ship{
 
 	
-	/*El 
-	 * 1) instancia de Game
-	 * 2) coordenadas
-	 * 3) live que cuenta UCMShip
-	 */
 	public UCMShip(Game game, int posX, int posY) {
+							//LIVE
 		super(game,posX, posY, 3);
 	}
 
@@ -28,7 +24,6 @@ public class UCMShip extends Ship{
 
 	@Override
 	public void move() {
-		// TODO Auto-generated method stub
 		
 	}
 

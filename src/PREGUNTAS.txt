@@ -1,8 +1,13 @@
 	GameObjectBoard
 	
-		en la constructora de esta clase
+		¿en la constructora de esta clase
 		se debe poner un limite al array
 		o es autoincremental?
 		
 		
+	GamePrinter
 	
+		¿Como pasamos el atributo que contiene el array de objetos
+		de GameObjectBoard a la clase GamePrinter y podemos recorrerla
+		para posteriormente usar instanceof en cada una y pintar su 
+		toString correspondiente en el tablero.

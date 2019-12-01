@@ -32,6 +32,8 @@ public class Controller {
 	}
 	
 	
+	
+	
 	public void run (){
 		
 	
@@ -56,7 +58,7 @@ public class Controller {
 			if (command != null) {
 			if (command.execute(game))
 				
-				System.out.println(game);
+				System.out.println(gamePrinter);
 			
 			}
 			else {

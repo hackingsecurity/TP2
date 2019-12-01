@@ -21,7 +21,7 @@ public class GameObjectBoard {
 		this.heigth = height;
 		this.currentObjects = 0;
 		
-		//PREGUNTAR A SIMON
+		//PREGUNTAR A SIMON EL TAMAÑO DEL ARRAY OBJECTS
 		objects = new GameObject[width * height];
 	}
 	
@@ -40,7 +40,7 @@ public class GameObjectBoard {
 	  this.objects[getCurrentObjects()] = object;
 	}
 	
-	//DEVUELVO UN OBJETO DADA UNAS COORDENADAS
+	//DEVUELVO UN OBJETO DADO UNAS COORDENADAS
 	private GameObject getObjectInPosition ( int posX, int posY ) {
 		
 		/*

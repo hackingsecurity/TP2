@@ -26,15 +26,58 @@ public class BoardInitializer {
 	return board;
 	}
 	
+	
+	/*
+	 * INICIALIZAMOS EL OVNI
+	 */
 	private void initializeOvni () {
-		
-		GameObject object = new Ovni();
-		//object.
+		board.add(new Ovni(this.game));
 	}
+	
+	 
+	/*
+	 * PARA HARD Y INSANE  COMIENZO FILA 1 A LA 2 Y COLUMNAS 3 A LA 7
+	 * 
+	 * PARA EASY COMIENZO EN LA FILA 1 Y COLUMNAS 3 A LA 7
+	 */
 	private void initializeRegularAliens () {
-	// TODO implement
+		
+		if(this.level.equals(level.INSANE) && this.level.equals(level.HARD)) {
+			for(int fila = 1; fila < 3 ; fila++) {
+				for (int columna = 3; columna < 7; columna++) {
+					this.board.add(new DestroyerAlien(this.game, fila, columna, 2));
+				}
+			}
+		}
+		else{
+			for(int fila = 1; fila < 2 ; fila++) {
+				for (int columna = 3; columna < 7; columna++) {
+					this.board.add(new DestroyerAlien(this.game, fila, columna, 2));
+				}
+			}
+		}
 	}
+		
+	/*
+	 * PARA HARD Y EASY FILA 3 Y COLUMNAS 5 Y 6
+	 * 
+	 * PARA INSANE FILA 3 Y COLUMNAS 4 A LA 7
+	 */
 	private void initializeDestroyerAliens () {
-	// TODO implement
+		
+		if(this.level.equals(level.HARD) && this.level.equals(level.EASY)) {
+			for(int fila = 3; fila < 4 ; fila++) {
+				for (int columna = 4; columna < 6; columna++) {
+					this.board.add(new RegularAlien(this.game, fila, columna, 2));
+				}
+			}
+		}
+		else {
+			for(int fila = 3; fila < 5 ; fila++) {
+				for (int columna = 3; columna < 7; columna++) {
+					this.board.add(new RegularAlien(this.game, fila, columna, 2));
+				}
+			}
+		}
 	}
 }

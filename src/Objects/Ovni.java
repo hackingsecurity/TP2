@@ -3,14 +3,18 @@ package Objects;
 import Logic.Game;
 
 public class Ovni extends AlienShip {
+	
+	/*
+	 * EL Ovni lo creamos al inicializar el tablero
+	 * Pero controlamos la visibilidad del objeto.
+	*/
+	boolean visibilidadOvni;
 
-	public Ovni() {
-		super();
-	}
-
-	public Ovni(Game game, int posX, int posY, int live) {
-		super(game, posX, posY, live);
-		// TODO Auto-generated constructor stub
+	public Ovni(Game game) {
+		//Game, posX, posY, live
+		super(game, 0 ,8, 1 );
+		this.visibilidadOvni = false;
+		
 	}
 
 	@Override

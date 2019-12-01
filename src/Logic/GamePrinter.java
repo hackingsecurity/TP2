@@ -1,4 +1,4 @@
-package tp.p1;
+package Logic;
 
 
 public class GamePrinter {	
@@ -8,32 +8,38 @@ public class GamePrinter {
 	final String space = " ";
 	
 	
-	public GamePrinter (Game game, int rows, int cols) {
-		this.numRows = rows;
-		this.numCols = cols;		
+	public GamePrinter (Game game, int DIM_X, int DIM_Y) {
+		this.numRows = DIM_X;
+		this.numCols = DIM_Y;		
 		encodeGame(game);
 	}
 	
+	
+	/*
+	 * USAR INSTANCEOF PARA PODER COMPARAR OBJETOS DE UNA MISMA CLASE:
+	 *	if(nameVariableClase instanceof  AlienShip)
+	 *		-> devuelve un true si se cumple la condición
+	 * SI  CUMPLE LA CONDICIÓN LLAMAMOS SU TOSTRING Y LO PINTAMOS EN EL TABLERO	
+	 *
+	 */
 	private void encodeGame(Game game) {
 		
 		board = new String[numRows][numCols];
-	
+		
+		
+		int cont = 0;
+		
 		for(int i = 0; i < numRows; i++) {
 			for(int j = 0; j < numCols; j++) {
 				
-					int pos = game.compObj(i,j);
-
-					if (pos < 6 && pos > -1) {
-						if (pos == 0) {	board [i][j] = game.getDesList().getPos(i, j);	}
-						if (pos == 1) {	board [i][j] = game.getReguList().getPos(i, j);	}
-						if (pos == 2) {	board [i][j] = game.getBomblist().getPos(i, j);}	
-						if (pos == 3) { board [i][j] = game.getUcm().toString();}
-						if (pos == 4) {	board [i][j] = game.getOvni().toString();}
-						if (pos == 5) {	board [i][j] = game.getMisil().toString();}	
-						}				
-					else {	board[i][j] =  space;	}
-					
 				
+			/*	if (pos == 0) {
+					board [i][j] = game.getDesList().getPos(i, j)
+				}
+				else {	
+					board[i][j] =  space
+				}
+				*/
 			}
 		}
 	}
