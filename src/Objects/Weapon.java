@@ -10,4 +10,8 @@ public abstract class Weapon extends GameObject{
 		// TODO Auto-generated constructor stub
 	}
 
+	public Weapon() {
+		super();
+	}
+
 }

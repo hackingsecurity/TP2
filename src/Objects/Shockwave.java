@@ -4,11 +4,16 @@ package Objects;
 import Logic.Game;
 
 public class Shockwave extends Weapon{
+	
 
-	public Shockwave(Game game, int posX, int posY, int live) {
-		super(game, posX, posY, live);
-		// TODO Auto-generated constructor stub
+	public Shockwave() {
+		super();
 	}
+	
+	public Shockwave(Game game, int posX, int posY, int live) {
+		super(game, 0, 8, live);
+	}
+	
 
 	@Override
 	public void computerAction() {
@@ -32,5 +37,7 @@ public class Shockwave extends Weapon{
 	public String toString() {
 		return null;
 	}
+
+	
 
 }

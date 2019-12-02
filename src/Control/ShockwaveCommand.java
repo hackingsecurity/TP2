@@ -9,9 +9,9 @@ public class ShockwaveCommand extends Command{
 	}
 
 	public boolean execute(Game game) {
+	
 		/*
-		boolean ex = false;
-		if(game.getShockWave()) {
+		if(game.shockWave()){
 			
 			game.shockWaveShips();
 			game.setShockWave(false);

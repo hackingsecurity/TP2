@@ -1,5 +1,7 @@
 package Logic;
 import Objects.GameObject;
+import Objects.Ovni;
+import Objects.Shockwave;
 
 /*
  * -GESTIONA A LISTA DE ELEMENTOS GAMEOBJECTS.
@@ -13,12 +15,8 @@ public class GameObjectBoard {
 	
 	private GameObject[] objects;
 	private int currentObjects;
-	private int width, heigth;
-	
 	public GameObjectBoard (int width, int height) {
 		
-		this.width = width;
-		this.heigth = height;
 		this.currentObjects = 0;
 		
 		//PREGUNTAR A SIMON EL TAMAÑO DEL ARRAY OBJECTS
@@ -60,14 +58,11 @@ public class GameObjectBoard {
 		GameObject obj = null;
 		
 		int cont = 0;
-		boolean encontrado = false;
-		 
 		while(( cont < getCurrentObjects()) && !false) {
 			
 			if(posX == (this.objects[cont].getPosX()) &&
 				posY == this.objects[cont].getPosY()) {
 		
-					encontrado = true;
 					obj = this.objects[cont];
 			}
 			else {
@@ -138,5 +133,43 @@ public class GameObjectBoard {
 			}
 		}
 		return encontrado;
+	}
+	
+	
+	/*
+	 * VEMOS SI EXISTE UN OBJECTO SHOOKWAVE
+	 */
+	public boolean existShowaveOnBoard() {
+		
+		boolean shock = false;
+		int cont = 0;
+		
+		while (cont < this.currentObjects && !shock) {
+			
+			if(this.objects[cont] instanceof Shockwave) {
+				shock = true;
+			}
+			
+			cont++;
+		}
+		
+		return shock;
+	}
+
+	
+	public void activeShockwave() {
+	
+		boolean activeshock = false;
+		int cont = 0;
+		while (cont < this.currentObjects && !activeshock) {
+			
+			if(this.objects[cont] instanceof Ovni) {
+	
+			}
+			else {
+				cont++;
+			}
+		}
+		
 	}
 }

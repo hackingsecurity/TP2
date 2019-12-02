@@ -18,6 +18,10 @@ public abstract class GameObject implements IAttack {
 		this.live = live;
 	}
 	
+	public GameObject() {
+		
+	}
+	
 	//PEDIR COORDENADAS DE UN OBJETO
 	public int getPosX() { return this.posX;}
 	public int getPosY() { return this.posY;}

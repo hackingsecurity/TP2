@@ -5,28 +5,6 @@ import Objects.UCMShip;
 import java.util.Random;
 
 
-//FALTA IMPORTAR CLASES QUE USA GAME
-
-/*
- * La clase Game solo tendrá un
-	atributo de tipo GameObjectBoard y otro de tipo UCMShip. Con estos dos atributos se
-	gestionarán todos los elementos del juego, incluidos el Ovni, los disparos del jugador y las
-	bombas lanzadas por las naves enemigas.
-	
-	El nuevo game mantiene una referencia al player y al board donde se almacenan los
-	objetos de juego. Cuando tiene que hacer alguna acción, la delega a la clase correspon-
-	diente. Podríamos decir que el Game no hace absolutamente nada salvo delegar.
-	
-		En el Game usamos una clase auxiliar para inicializar el juego. El boardInitializer se
-	encarga de añadir los objetos de juego en el juego dependiendo del nivel.
-	Si nos fijaos en la declaración del Game vemos que implementa un interfaz IPlayerCon-
-	troller. Esta interfaz no es 100 % necesaria, pero nos ayuda a abstraer qué métodos son
-	los necesarios para tratar la comunicación con el jugador. En realidad es lo que se conoce
-	como mixin es una forma de incluir métodos de una clase en otra, sin que exista relación
-	de herencia entre ellas.
- */
-
-
 public class Game implements IPlayerController{
 	
 	
@@ -38,7 +16,6 @@ public class Game implements IPlayerController{
 	
 	private boolean doExit;
 	private BoardInitializer initializer ;
-	private GamePrinter boardWithObjects;
 	
 	GameObjectBoard board;
 	private UCMShip player;
@@ -116,6 +93,8 @@ public class Game implements IPlayerController{
 	
 	
 	//FUNCIONES INVOCADAS DESDE LOS COMANDOS
+	
+	
 	public void update() {
 		board.computerAction();
 		board.update();
@@ -143,11 +122,10 @@ public class Game implements IPlayerController{
 		// TODO Auto-generated method stub
 		
 	}
-	public void shockwave() {
-		// TODO Auto-generated method stub
-		
-	}
 	
+	public void shock(int posX, int posY) {
+		//this.board.activeShock(0,8);
+	}
 	
 	//************************************************
 	
@@ -171,7 +149,13 @@ public class Game implements IPlayerController{
 		return true;
 	}
 	public boolean shockWave() {
-		return true;
+		boolean active = false;
+		if(this.board.existShowaveOnBoard()) {
+			active = true;
+			this.board.activeShockwave();
+			//activar shockwe
+		}
+		return active;
 	}
 	
 	// Callbacks
@@ -189,11 +173,15 @@ public class Game implements IPlayerController{
 	
 	public String infoToString(GamePrinter board) {
 		
-		String stringObject  = "El estado del juego es\n\n";
-				
-		stringObject += board.toString();	
 
-		return stringObject;
+		return "Life: " + this.player.getLive() +
+				"\nNumber of cycles: " + this.currentCycle +
+				"\nPoint: " + 0 +
+				"\nRamaining aliens: " + 10 +
+				"\nShockWave: NO\n" +
+				board.toString();
+
+		
 	}
 
 

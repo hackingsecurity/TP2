@@ -28,7 +28,6 @@ public class CommandGenerator {
 			new HelpCommand(),
 			new ResetCommand(),
 			new ExitCommand(),
-			new ListCommand(),
 			new UpdateCommand(),
 			new MoveCommand(),
 			new ShockwaveCommand(),

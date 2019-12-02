@@ -57,8 +57,6 @@ public class Controller {
 			
 			if (command != null) {
 				if (command.execute(game)) {
-				
-					game.update();
 					draw();
 					System.out.println(game.infoToString(this.boardObjects));
 				}
