@@ -10,10 +10,7 @@ public abstract class GameObject implements IAttack {
 	protected Game game;
 	protected int dagame ;
 	
-	public GameObject() {
-		
-	}
-	
+
 	public GameObject( Game game, int posX , int posY, int live) {
 		this.posX = posX;
 		this.posY = posY;
@@ -27,21 +24,19 @@ public abstract class GameObject implements IAttack {
 	
 	// métodos que devuelven el valor de las coordinadas 
 	public boolean isAlive() { return this.live > 0;}
-	
+
 	public int getLive() { return this.live;}
-	
-	public boolean isOnPosition( /* otras coordinadas */ ) {
-		return true;/* coordinadas = otras coordinadas */ 
+
+	public boolean isOnPosition(int posX, int posY) {	
+		return this.posX == posX && this.posY == posY; 
 	}
 	
-	/*
 	public void getDamage (int damage) {
-		this.live = damage >= this.live ? 0 : this.live − damage;
+		this.live = (damage >= this.live) ? 0 : (this.live - damage);
 	}
-	*/
 	
 	public boolean isOut() {
-		return !game.isOnBoard( /*coordinadas */ );
+		return !game.isOnBoard(this.posX, this.posY);
 	}
 	
 	//METODOS 

@@ -21,21 +21,27 @@ public class MoveCommand extends Command{
 		this.direccion = direccion;
 	}
 
+	/*
+	 * COMPROBAMOS SI ESTAMOS EN FUERA DEL TABLERO AL MOVER
+	 * 
+	 */
 	public boolean execute(Game game) {
-		/*
-		boolean ex = false;
-		if(!game.comprobarMoverUcmShip(this.direccion,this.numCasillas))
-	 	{
-			System.out.println("UCMship cannot move here");
-			ex = false;
-			
+		
+		boolean move = false;
+		
+		if(this.direccion.equals("left")) {
+			if(game.move(this.numCasillas * -1)) {
+				game.move(direccion, numCasillas);
+				move = true;
+			}
 		}
-		else {
-			ex = true;
+		else{
+			if(game.move(this.numCasillas )) {
+				game.move(direccion, numCasillas);
+				move = true;
+			}
 		}
-		return ex;
-	*/
-		return true;
+		return move;
 	}
 	
 	

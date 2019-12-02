@@ -9,7 +9,7 @@ import Control.CommandGenerator;
 
 public class Controller {
 
-	private final String PROMPT = "< comannd > :";
+	private final String PROMPT = "\n< comannd > :";
 	private Scanner scan;
 	private Game game;
 	private Level level;
@@ -35,6 +35,10 @@ public class Controller {
 	
 	public void run (){
 		
+		
+		//PINTAMOS EL TABLERO EN EL ESTADO ACTUAL
+		System.out.println(game.infoToString(this.boardObjects));
+		
 	
 		while (!game.isFinished()){
 			
@@ -49,17 +53,18 @@ public class Controller {
 			String[] words = scan.nextLine().toLowerCase().trim().split ("\\s+");
 			
 			Command command = CommandGenerator.parseCommand(words);
-			
-			
-			
+
 			
 			if (command != null) {
-			if (command.execute(game))
+				if (command.execute(game)) {
 				
-				System.out.println(game.infoToString(this.boardObjects));
+					game.update();
+					draw();
+					System.out.println(game.infoToString(this.boardObjects));
+				}
 			}
 			else {
-				System.out.format("nknownCommandMsg");
+				System.out.format("Unknown Command");
 			}
 		}
 		

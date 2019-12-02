@@ -9,7 +9,8 @@ public class UCMShip extends Ship{
 							//LIVE
 		super(game,posX, posY, 3);
 	}
-
+	
+	
 	@Override
 	public void computerAction() {
 		// TODO Auto-generated method stub
@@ -26,12 +27,60 @@ public class UCMShip extends Ship{
 	public void move() {
 		
 	}
+	
+	public void moveUCM(String direccion, int numCasillas) {
+		
+		if(direccion.equalsIgnoreCase("left")) {
+			if(game.move(numCasillas * - 1)) {
+				
+			}
+		}
+		else
+		{
+			if(game.move(numCasillas)) {
+			}
+		}
+	}
 
 	@Override
 	public String toString() {
 		
 		if(this.live > 0) return "^__^";
 		else return "!xx?";
+	}
+
+	/*
+	 * SI NUESTRO NUMCELLS ES POSITIVO
+	 * 	- SUMAMOS EL VALOR CON POSY
+	 * 
+	 * SI ES NEGATIVO, RESTAMOS
+	 */
+	public boolean move(int numCells) {
+
+		boolean move = false;
+		//derecha
+		if(numCells > 0) {
+			if(this.posY + numCells < Game.DIM_Y) {
+				move = true;
+			}
+		}
+		else if (numCells < 0) {
+			if((this.posY - numCells) > 0) {
+				move = true;
+			}
+		}
+		
+		return move;
+	}
+
+
+	public void move(String direccion, int numCasillas) {
+		if(direccion.equals("left")){
+			this.posY -= numCasillas;
+		}else {
+			this.posY += numCasillas;
+		}
+		
 	}
 
 

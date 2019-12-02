@@ -100,8 +100,9 @@ public class Game implements IPlayerController{
 	
 	
 	
-	public boolean isOnBoard( /*coordinadas */ ) {
-		return true /* condición de rango sobre las coordinadas */ ;
+	public boolean isOnBoard(int posX, int posY) {
+		
+		return this.board.existOnBoard(posX, posY);
 	}
 	
 
@@ -137,10 +138,7 @@ public class Game implements IPlayerController{
 		// TODO Auto-generated method stub
 		
 	}
-	public void move() {
-		// TODO Auto-generated method stub
-		
-	}
+	
 	public void shoot() {
 		// TODO Auto-generated method stub
 		
@@ -150,13 +148,24 @@ public class Game implements IPlayerController{
 		
 	}
 	
-	//**************************************************
+	
+	//************************************************
+	
+	
+	
+	//UCM SHIP
+	
+	public void move(String direccion, int numCasillas) {
+		player.move(direccion, numCasillas);
+	}
+	
+	//************************************************
+	
 	
 	
 	//METODOS ABSTARACTO DE LA INTERFEZ IPLAYERCONTROLLER
 	public boolean move (int numCells) {
-		
-		return true;
+		return player.move(numCells);
 	}
 	public boolean shootMissile() {
 		return true;
@@ -164,6 +173,7 @@ public class Game implements IPlayerController{
 	public boolean shockWave() {
 		return true;
 	}
+	
 	// Callbacks
 	public void receivePoints(int points) {
 		
@@ -175,6 +185,7 @@ public class Game implements IPlayerController{
 		
 	}
 	
+	//***************************************************
 	
 	public String infoToString(GamePrinter board) {
 		
@@ -184,6 +195,9 @@ public class Game implements IPlayerController{
 
 		return stringObject;
 	}
+
+
 	
-	//***************************************************
+	
+	
 }

@@ -122,6 +122,21 @@ public class GameObjectBoard {
 		
 		return stringObject;
 	}
-	
-	
+
+	public boolean existOnBoard(int posX, int posY) {
+		
+		
+		int cont = 0;
+		boolean encontrado = false;
+		
+		while (cont < this.currentObjects && !encontrado) {
+			
+			if(this.objects[cont].getPosX() == posX) {
+				if(this.objects[cont].getPosY() == posY){
+					encontrado = true;
+				}
+			}
+		}
+		return encontrado;
+	}
 }
