@@ -41,6 +41,10 @@ public class MoveCommand extends Command{
 				move = true;
 			}
 		}
+		
+		if (move == false) {
+			System.out.println("You can move UCMShip : " + this.direccion + ", Position: " + this.numCasillas );
+		}
 		return move;
 	}
 	

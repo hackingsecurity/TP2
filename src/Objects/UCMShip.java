@@ -28,26 +28,6 @@ public class UCMShip extends Ship{
 		
 	}
 	
-	public void moveUCM(String direccion, int numCasillas) {
-		
-		if(direccion.equalsIgnoreCase("left")) {
-			if(game.move(numCasillas * - 1)) {
-				
-			}
-		}
-		else
-		{
-			if(game.move(numCasillas)) {
-			}
-		}
-	}
-
-	@Override
-	public String toString() {
-		
-		if(this.live > 0) return "^__^";
-		else return "!xx?";
-	}
 
 	/*
 	 * SI NUESTRO NUMCELLS ES POSITIVO
@@ -65,7 +45,7 @@ public class UCMShip extends Ship{
 			}
 		}
 		else if (numCells < 0) {
-			if((this.posY - numCells) > 0) {
+			if((this.posY + numCells) >= 0) {
 				move = true;
 			}
 		}
@@ -81,6 +61,14 @@ public class UCMShip extends Ship{
 			this.posY += numCasillas;
 		}
 		
+	}
+
+
+	@Override
+	public String toString() {
+		
+		if(this.live > 0) return "^__^";
+		else return "!xx?";
 	}
 
 
