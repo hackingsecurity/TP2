@@ -22,11 +22,6 @@ public class RegularAlien extends AlienShip {
 		
 	}
 
-	@Override
-	public void move() {
-		// TODO Auto-generated method stub
-		
-	}
 
 	@Override
 	public String toString() {

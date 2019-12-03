@@ -8,7 +8,7 @@ public class Ovni extends AlienShip {
 	 * EL Ovni lo creamos al inicializar el tablero
 	 * Pero controlamos la visibilidad del objeto.
 	*/
-	boolean visibilidadOvni;
+	private boolean visibilidadOvni;
 
 	public Ovni(Game game) {
 		//Game, posX, posY, live

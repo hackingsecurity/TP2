@@ -11,6 +11,8 @@ public class Game implements IPlayerController{
 	public final static int DIM_X = 8;
 	public final static int DIM_Y = 9;
 	private int currentCycle;
+	private boolean cambiar; //comprobamos si las naves cambian de sentido
+	private int sentido; 
 	private Random rand;
 	private Level level ;
 	
@@ -22,8 +24,8 @@ public class Game implements IPlayerController{
 	private UCMShip player;
 	
 	public Game (Level level, Random random){
-		this. rand = random;
-		this. level = level;
+		this.rand = random;
+		this.level = level;
 		initializer = new BoardInitializer();
 		initGame();
 	}
@@ -34,11 +36,22 @@ public class Game implements IPlayerController{
 		currentCycle = 0;
 		board = initializer.initialize(this, level );
 		player = new UCMShip(this,DIM_X - 1, DIM_Y/2);
+		this.sentido = -1;
+		this.cambiar = false;
 		this.doExit = false;
 		board.add(player);
 	}
 	
 	// _/
+	public boolean getCambiar(){
+		return this.cambiar;
+	}
+	public int getSentido(){
+		return this.sentido;
+	}
+	public int getCurrentCycle(){
+		return this.currentCycle;
+	}
 	public Random getRandom() {
 		return rand;
 	}
@@ -182,6 +195,9 @@ public class Game implements IPlayerController{
 				board.toString();
 
 		
+	}
+	public int getCurrentObjects(){
+		return this.getCurrentObjects();
 	}
 
 

@@ -5,12 +5,14 @@ import Logic.Game;
 
 public class DestroyerAlien extends AlienShip {
 
-	
+	private boolean lanzado;
+	private int id;
 
 
-	public DestroyerAlien(Game game, int posX, int posY, int live) {
+	public DestroyerAlien(Game game, int posX, int posY, int live, int id) {
 		super(game, posX, posY, live);
-		// TODO Auto-generated constructor stub
+		this.lanzado = false;
+		this.id = id;
 	}
 
 
