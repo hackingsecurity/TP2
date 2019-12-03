@@ -16,8 +16,8 @@ public class BoardInitializer {
 	}
 	
 	public GameObjectBoard initialize(Game game, Level level) {
-	this. level = level;
-	this. game = game;
+	this.level = level;
+	this.game = game;
 	board = new GameObjectBoard(Game.DIM_X, Game.DIM_Y);
 	
 	initializeOvni () ;
@@ -41,21 +41,31 @@ public class BoardInitializer {
 	 */
 	private void initializeRegularAliens () {
 		
-		if(this.level.equals(Level.INSANE) && this.level.equals(Level.HARD)) {
-			for(int fila = 1; fila < 3 ; fila++) {
-				for (int columna = 3; columna < 7; columna++) {
-					this.board.add(new RegularAlien(this.game, fila, columna, 2));
-				}
-			}
-		}
-		else{
+		//regularAliens 
+
+		if(this.level.equals(Level.EASY)) {
 			for(int fila = 1; fila < 2 ; fila++) {
 				for (int columna = 3; columna < 7; columna++) {
 					this.board.add(new RegularAlien(this.game, fila, columna, 2));
 				}
 			}
 		}
+		else if(this.level.equals(Level.HARD)) {
+			for(int fila = 1; fila < 3 ; fila++) {
+				for (int columna = 3; columna < 7; columna++) {
+					this.board.add(new RegularAlien(this.game, fila, columna, 2));
+				}
+			}
+		}
+		else {
+			for(int fila = 1; fila < 4 ; fila++) {
+				for (int columna = 3; columna < 7 ; columna++) {
+					this.board.add(new RegularAlien(this.game, fila, columna, 2));
+				}
+			}
+		}
 	}
+		//destroyer
 		
 	/*
 	 * -PARA HARD Y EASY FILA 3 Y COLUMNAS 5 Y 6 
@@ -63,17 +73,26 @@ public class BoardInitializer {
 	 */
 	private void initializeDestroyerAliens () {
 		
-		if(this.level.equals(Level.HARD) ||  this.level.equals(Level.EASY)) {
+		if(this.level.equals(Level.EASY)) {
 			for(int fila = 2; fila < 3 ; fila++) {
 				for (int columna = 4; columna < 6; columna++) {
-					this.board.add(new DestroyerAlien(this.game, fila, columna, 2));
+					this.board.add(new DestroyerAlien(this.game, fila, columna, 1));
 				}
 			}
 		}
-		else {
-			for(int fila = 3; fila < 5 ; fila++) {
+		else if(this.level.equals(Level.HARD)) {
+			for(int fila = 3; fila < 4 ; fila++) {
 				for (int columna = 3; columna < 7; columna++) {
-					this.board.add(new DestroyerAlien(this.game, fila, columna, 2));
+					this.board.add(new DestroyerAlien(this.game, fila, columna, 1));
+				}
+			}
+			
+			//hppñaadsfasdfç
+		}
+		else {
+			for(int fila = 4; fila < 5 ; fila++) {
+				for (int columna = 3; columna < 7; columna++) {
+					this.board.add(new DestroyerAlien(this.game, fila, columna, 1));
 				}
 			}
 		}

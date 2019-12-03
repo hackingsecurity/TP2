@@ -14,10 +14,11 @@ public class Game implements IPlayerController{
 	private Random rand;
 	private Level level ;
 	
+	
 	private boolean doExit;
 	private BoardInitializer initializer ;
 	
-	GameObjectBoard board;
+	private GameObjectBoard board;
 	private UCMShip player;
 	
 	public Game (Level level, Random random){
@@ -33,6 +34,7 @@ public class Game implements IPlayerController{
 		currentCycle = 0;
 		board = initializer.initialize(this, level );
 		player = new UCMShip(this,DIM_X - 1, DIM_Y/2);
+		this.doExit = false;
 		board.add(player);
 	}
 	
@@ -46,9 +48,7 @@ public class Game implements IPlayerController{
 		return level;
 	}
 	// _/	
-	public void addObject(GameObject object) {
-		board.add(object);
-	}
+
 			
 	// _/
 	public String positionToString(int posX, int posY) {
@@ -106,7 +106,7 @@ public class Game implements IPlayerController{
 	}
 	
 	public void exit() {
-		doExit = false;
+		doExit = true;
 	}
 	
 	public void help() {

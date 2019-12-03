@@ -66,10 +66,11 @@ public enum Level {
 	}
 	
 	public static Level parse(String cadenaEntrada) {
-		for (Level level : Level. values() )
+		for (Level level : Level.values() )
 		if (level.name().equalsIgnoreCase(cadenaEntrada))
-		return level;
+			return level;
 		return EASY;
+		
 	}
 	
 	public double getTurnExplodeFrequency(){

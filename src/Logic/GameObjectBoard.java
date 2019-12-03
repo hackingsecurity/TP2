@@ -54,16 +54,17 @@ public class GameObjectBoard {
 		 *	4) Para cada objeto comparamos las coordenadas paradas
 		 *
 		 */
-		
+		boolean find = false;
 		GameObject obj = null;
 		
 		int cont = 0;
-		while(( cont < getCurrentObjects()) && !false) {
+		while(( cont < getCurrentObjects()) || !find) {
 			
 			if(posX == (this.objects[cont].getPosX()) &&
 				posY == this.objects[cont].getPosY()) {
 		
 					obj = this.objects[cont];
+					find = true;
 			}
 			else {
 				cont++;
@@ -72,17 +73,30 @@ public class GameObjectBoard {
 		return obj ;
 	}
 	
-	private int getIndex( /* coordinadas */ ) {
-	// TODO implement
-		return 0;
+	private int getIndex(int x, int y) {
+		int index =0;
+		boolean encontrado = false;
+		while(index < this.currentObjects && !encontrado){
+			index++;
+		}
+		return index;
 	}
 	
 	private void remove (GameObject object) {
-	// TODO implement
+		int x = object.getPosX();
+		int y = object.getPosY();
+		int index = getIndex(x,y);
+		for(int i = index; i <this.currentObjects-1; i++){
+			this.objects[i] = this.objects[i+1];
+		}
+		this.objects[this.currentObjects-1]= null;
+		this.currentObjects--;
 	}
-	
 	public void update() {
 	// TODO implement
+		for(int i = 0; i < this.currentObjects; i++){
+			this.objects[i].move();
+		}
 	}
 	
 	private void checkAttacks(GameObject object) {
@@ -90,7 +104,10 @@ public class GameObjectBoard {
 	}
 	
 	public void computerAction() {
-	// TODO implement
+		
+		for(int i = 0 ; i < this.currentObjects; i++){
+			this.objects[i].computerAction();
+		}
 	}
 	
 	private void removeDead() {
