@@ -33,13 +33,7 @@ public class DestroyerAlien extends AlienShip {
 
 
 
-	@Override
-	public void move() {
-		// TODO Auto-generated method stub
-		
-	}
 	
-	@Override
 	public String toString(){
 		 return "D[" + this.getLive()+ "]" ;
 	}

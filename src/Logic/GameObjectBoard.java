@@ -1,4 +1,5 @@
 package Logic;
+import Objects.AlienShip;
 import Objects.GameObject;
 import Objects.Ovni;
 import Objects.Shockwave;
@@ -94,9 +95,12 @@ public class GameObjectBoard {
 	}
 	public void update() {
 	// TODO implement
+	
+		
 		for(int i = 0; i < this.currentObjects; i++){
 			this.objects[i].move();
 		}
+		AlienShip.setBajar(false);
 	}
 	
 	private void checkAttacks(GameObject object) {
@@ -134,7 +138,27 @@ public class GameObjectBoard {
 		
 		return stringObject;
 	}
-
+	//comprobamos si cambian el sentido y tambien si 
+	public void checkAliens(Game game) {
+		for(int i = 1; i < AlienShip.getContadorAlien(); i++) {
+			if((objects[i].getPosY() == 0 && AlienShip.getSentido()==-1) 
+					|| (objects[i].getPosY()==8 && AlienShip.getSentido()==1)) {
+				if(game.getCurrentCycle() % game.getLevel().getNumCyclesToMoveOneCell() == 0) {
+					AlienShip.setBajar(true);
+					AlienShip.setSentido();
+					break;
+				}
+			}
+		}
+		for(int i = 1; i < AlienShip.getContadorAlien(); i++) {
+			if((objects[i].getPosX() == 6 &&  AlienShip.getBajar())) {
+				if(game.getCurrentCycle() % game.getLevel().getNumCyclesToMoveOneCell() == 0) {
+					AlienShip.setHaveLanded(true);
+					break;
+				}
+			}
+		}
+	}
 	public boolean existOnBoard(int posX, int posY) {
 		
 		

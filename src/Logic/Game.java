@@ -11,8 +11,6 @@ public class Game implements IPlayerController{
 	public final static int DIM_X = 8;
 	public final static int DIM_Y = 9;
 	private int currentCycle;
-	private boolean cambiar; //comprobamos si las naves cambian de sentido
-	private int sentido; 
 	private Random rand;
 	private Level level ;
 	
@@ -36,19 +34,11 @@ public class Game implements IPlayerController{
 		currentCycle = 0;
 		board = initializer.initialize(this, level );
 		player = new UCMShip(this,DIM_X - 1, DIM_Y/2);
-		this.sentido = -1;
-		this.cambiar = false;
 		this.doExit = false;
 		board.add(player);
 	}
 	
 	// _/
-	public boolean getCambiar(){
-		return this.cambiar;
-	}
-	public int getSentido(){
-		return this.sentido;
-	}
 	public int getCurrentCycle(){
 		return this.currentCycle;
 	}
@@ -79,13 +69,13 @@ public class Game implements IPlayerController{
 	 * 	LOS ALIENS HAN LLEGADO ATERRIZAR
 	 */
 	public boolean aliensWin() {
-		return !player.isAlive ();  //|| AlienShip.haveLanded();		
+		return !player.isAlive () || AlienShip.HaveLanded();		
 		
 	}
 
 	// _/
 	private boolean playerWin () {
-		return false; // AlienShip.allDead();
+		return  AlienShip.AllDeads();
 	}
 	
 	
@@ -110,6 +100,7 @@ public class Game implements IPlayerController{
 	
 	public void update() {
 		board.computerAction();
+		board.checkAliens(this);
 		board.update();
 		currentCycle += 1;
 	}

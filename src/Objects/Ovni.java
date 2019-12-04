@@ -2,7 +2,7 @@ package Objects;
 
 import Logic.Game;
 
-public class Ovni extends AlienShip {
+public class Ovni extends EnemyShip {
 	
 	/*
 	 * EL Ovni lo creamos al inicializar el tablero
