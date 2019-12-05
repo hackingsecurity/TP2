@@ -72,30 +72,26 @@ public class BoardInitializer {
 	 * -PARA INSANE FILA 3 Y COLUMNAS 4 A LA 7
 	 */
 	private void initializeDestroyerAliens () {
-		int id = 0;
 		if(this.level.equals(Level.EASY)) {
 			for(int fila = 2; fila < 3 ; fila++) {
 				for (int columna = 4; columna < 6; columna++) {
-					this.board.add(new DestroyerAlien(this.game, fila, columna,1, id));
-					id++;
+					this.board.add(new DestroyerAlien(this.game, fila, columna,1));
 				}
 			}
 		}
 		else if(this.level.equals(Level.HARD)) {
 			for(int fila = 3; fila < 4 ; fila++) {
 				for (int columna = 3; columna < 7; columna++) {
-					this.board.add(new DestroyerAlien(this.game, fila, columna, 1, id));
-					id++;
+					this.board.add(new DestroyerAlien(this.game, fila, columna, 1));
 				}
 			}
 			
-			//hppñaadsfasdfç
+			//hppï¿½aadsfasdfï¿½
 		}
 		else {
 			for(int fila = 4; fila < 5 ; fila++) {
 				for (int columna = 3; columna < 7; columna++) {
-					this.board.add(new DestroyerAlien(this.game, fila, columna, 1, id));
-					id++;
+					this.board.add(new DestroyerAlien(this.game, fila, columna, 1));
 				}
 			}
 		}

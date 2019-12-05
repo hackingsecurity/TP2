@@ -9,22 +9,22 @@ public class ShootCommand extends Command{
 	}
 
 	public boolean execute(Game game) {
-		/*
+		
 		boolean ex = false;
-		if(game.existeMisil()){
+		
+		if(game.shootMissile()){
 			
 			System.out.println("ya hay misil en partida");
 			ex = false;
 		}
 		else {
-			game.activarMisil();
+			game.enableMissile();
 			ex = true;
+			game.update();
 		}
-
-		return true;
 		
-		*/
-		return true;
+		return ex;
+		
 	}
 
 	

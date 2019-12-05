@@ -16,7 +16,25 @@ public  abstract class AlienShip extends EnemyShip {
 		bajar = false;
 		haveLanded = false;
 	}
-
+	
+	
+	public void computerAction() {
+		if((game.getCurrentCycle()%game.getLevel().getNumCyclesToMoveOneCell()) == 0 && game.getCurrentCycle()!=0) {
+			if((posY == 0 && sentido == -1 && bajar == false)||(posY == 8 && sentido == 1 && bajar == false)) {
+				setBajar(true);
+				setSentido();
+			}
+			if(bajar == true && posX == 6) {
+				setHaveLanded(true);
+			}
+		}
+		
+	}
+	
+	//otra funcion 
+	
+	
+	//desplazamiento lateral 
 	public void move(){
 		if((game.getCurrentCycle()%game.getLevel().getNumCyclesToMoveOneCell()) == 0 && game.getCurrentCycle()!=0){
 			if(bajar){
@@ -25,10 +43,29 @@ public  abstract class AlienShip extends EnemyShip {
 			else {
 				this.posY += sentido;
 			}
+			
+	
 		}
 			//cuando me voy a mover :
 		// cuando ciclo %  Level
 	}
+	public boolean receiveMissileAttack(int damage) {
+		boolean hit = false;
+		if(this.isAlive()) {
+			this.live -= damage;
+			hit = true;
+		}
+			return hit;
+		};
+	public boolean receiveShockWaveAttack(int damage) {
+		boolean hit = false;
+		if(this.isAlive()) {
+			this.live -= damage;
+			hit = true;
+			}
+		return hit;
+	};
+
 	public static void setSentido() {
 		sentido *= -1;
 	}
@@ -43,6 +80,9 @@ public  abstract class AlienShip extends EnemyShip {
 	}
 	public static int getContadorAlien() {
 		return contadorAlien;
+	}
+	public static void setContador() {
+		contadorAlien--;
 	}
 	public static boolean AllDeads() {
 		boolean yes= false;

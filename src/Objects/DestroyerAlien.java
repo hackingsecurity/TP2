@@ -2,33 +2,39 @@
 package Objects;
 
 import Logic.Game;
+import Logic.IExecuteRandomActions;
 
-public class DestroyerAlien extends AlienShip {
+public class DestroyerAlien extends AlienShip implements IExecuteRandomActions {
 
 	private boolean lanzado;
-	private int id;
 
 
-	public DestroyerAlien(Game game, int posX, int posY, int live, int id) {
+	public DestroyerAlien(Game game, int posX, int posY, int live) {
 		super(game, posX, posY, live);
 		this.lanzado = false;
-		this.id = id;
 	}
 
 
 
-	@Override
+	
 	public void computerAction() {
 		// TODO Auto-generated method stub
-	
+		super.computerAction();	
+		//la logica que nec
+		if(IExecuteRandomActions.canGenerateRandomBomb(game)) {
+			if(this.lanzado == false) {
+				game.activarBomba(this.posX, this.posY);
+				this.lanzado = true;
+			}
+		}
 	}
 
-
-
+	
 	@Override
 	public void onDelete() {
 		// TODO Auto-generated method stub
-		
+		game.receivePoints(10);
+		AlienShip.setContador();
 	}
 
 

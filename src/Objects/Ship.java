@@ -8,6 +8,10 @@ public abstract class Ship extends GameObject{
 	{
 		super(game, posX, posY, live);
 	}
+
+	public Ship() {
+		// TODO Auto-generated constructor stub
+	}
 	
 	
 }

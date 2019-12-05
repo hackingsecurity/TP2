@@ -10,16 +10,16 @@ public class RegularAlien extends AlienShip {
 		// TODO Auto-generated constructor stub
 	}
 
-	@Override
-	public void computerAction() {
-		// TODO Auto-generated method stub
-
-	}
+	
+	
 
 	@Override
 	public void onDelete() {
 		// TODO Auto-generated method stub
-		
+		if(!this.isAlive()) {
+			game.receivePoints(5);
+			AlienShip.setContador();
+		}
 	}
 
 

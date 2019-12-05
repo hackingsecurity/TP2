@@ -8,14 +8,17 @@ public abstract class GameObject implements IAttack {
 	protected int posX, posY;
 	protected int live;
 	protected Game game;
-	protected int dagame ;
+	protected int damage ;
 	
+
 
 	public GameObject( Game game, int posX , int posY, int live) {
 		this.posX = posX;
 		this.posY = posY;
 		this.game = game;
 		this.live = live;
+		this.damage = 1;
+
 	}
 	
 	public GameObject() {
@@ -25,6 +28,7 @@ public abstract class GameObject implements IAttack {
 	//PEDIR COORDENADAS DE UN OBJETO
 	public int getPosX() { return this.posX;}
 	public int getPosY() { return this.posY;}
+	public int getDamage() {return this.damage;}
 	
 	// métodos que devuelven el valor de las coordinadas 
 	public boolean isAlive() { return this.live > 0;}

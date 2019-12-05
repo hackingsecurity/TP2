@@ -41,9 +41,9 @@ public class MoveCommand extends Command{
 				move = true;
 			}
 		}
-		
+		game.update();
 		if (move == false) {
-			System.out.println("You can move UCMShip : " + this.direccion + ", Position: " + this.numCasillas );
+			System.out.println("You can`t move UCMShip : " + this.direccion + ", Position: " + this.numCasillas );
 		}
 		return move;
 	}
