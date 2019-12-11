@@ -6,12 +6,10 @@ import Logic.IExecuteRandomActions;
 
 public class DestroyerAlien extends AlienShip implements IExecuteRandomActions {
 
-	private boolean lanzado;
-
-
-	public DestroyerAlien(Game game, int posX, int posY, int live) {
-		super(game, posX, posY, live);
+	public DestroyerAlien(Game game, int posX, int posY, int id) {
+		super(game, posX, posY, 1);
 		this.lanzado = false;
+		this.id = id;
 	}
 
 
@@ -20,10 +18,11 @@ public class DestroyerAlien extends AlienShip implements IExecuteRandomActions {
 	public void computerAction() {
 		// TODO Auto-generated method stub
 		super.computerAction();	
+		
 		//la logica que nec
 		if(IExecuteRandomActions.canGenerateRandomBomb(game)) {
 			if(this.lanzado == false) {
-				game.activarBomba(this.posX, this.posY);
+				game.activarBomba(this.posX, this.posY, this.id);
 				this.lanzado = true;
 			}
 		}

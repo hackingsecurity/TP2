@@ -81,6 +81,7 @@ public class Game implements IPlayerController{
 	}
 
 	// _/
+
 	private boolean playerWin () {
 		return  AlienShip.AllDeads();
 	}
@@ -156,12 +157,12 @@ public class Game implements IPlayerController{
 		return player.move(numCells);
 	}
 	public boolean shootMissile() {
-		return player.getMisilLanzado();
+		return player.getLanzado();
 	}
 	public boolean  shockWave() {
 		boolean shock = false;
 		if(this.shockwave) {
-			board.add(new Shockwave(this,0,10,1));
+			
 			shock = true;
 		}
 		return shock;
@@ -172,14 +173,14 @@ public class Game implements IPlayerController{
 		this.points += points;
 	}
 	public void enableShockWave() {
-		this.shockwave = true;
+		board.add(new Shockwave(this,0,10,1));
 	}
 	public void enableMissile() {
-		board.add(new UCMMissile(this,player.getPosX()-1,player.getPosY(),1));
-		player.setMissil(true);
+		board.add(new UCMMissile(this,player.getPosX(),player.getPosY(),1));
+		player.setLanzado(true);
 	}
 	public void disableMissile() {
-		player.setMissil(false);
+		player.setLanzado(false);
 	}
 	//***************************************************
 	
@@ -213,14 +214,27 @@ public class Game implements IPlayerController{
 
 
 
-	public void activarBomba(int posX, int posY) {
-		board.add(new Bomb(this,posX,posY,1));
+	public void activarBomba(int posX, int posY, int id) {
+		board.add(new Bomb(this,posX,posY, id));
 	}
 
 
 	public void disableSW() {
 		// TODO Auto-generated method stub
 		this.shockwave = false;
+	}
+
+
+	public void disableBomba(int id) {
+		board.disableBomba(id);
+		
+	}
+
+
+	public void setShockwave(boolean sw) {
+		// TODO Auto-generated method stub
+		this.shockwave = sw;
+		
 	}
 
 

@@ -5,17 +5,14 @@ import Logic.Game;
 public class UCMShip extends Ship{
 
 	
-	private boolean missile;
+	
 	
 	public UCMShip(Game game, int posX, int posY) {
 							//LIVE
 		super(game,posX, posY, 3);
-		this.missile = false;
+		this.lanzado = false;
 	}
 	
-	
-	public void setMissil(boolean activo) { this.missile = activo;}
-	public boolean getMisilLanzado() {return missile;}
 	
 	@Override
 	public void computerAction() {
@@ -65,7 +62,7 @@ public class UCMShip extends Ship{
 	public boolean receiveBombAttack(int damage) {
 		boolean hit = false;
 		if(this.isAlive()) {
-			this.live -= damage;
+			getDamage(damage);
 		}
 		
 		return false;};

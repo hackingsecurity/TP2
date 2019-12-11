@@ -19,8 +19,9 @@ public class ShootCommand extends Command{
 		}
 		else {
 			game.enableMissile();
-			ex = true;
 			game.update();
+			ex = true;
+			//game.update();
 		}
 		
 		return ex;

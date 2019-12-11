@@ -9,6 +9,8 @@ public abstract class GameObject implements IAttack {
 	protected int live;
 	protected Game game;
 	protected int damage ;
+	protected int id;
+	protected boolean lanzado;
 	
 
 
@@ -29,6 +31,12 @@ public abstract class GameObject implements IAttack {
 	public int getPosX() { return this.posX;}
 	public int getPosY() { return this.posY;}
 	public int getDamage() {return this.damage;}
+	public boolean getLanzado() {return this.lanzado;}
+	public int getId() {return this.id;}
+	
+	public void setLanzado(boolean yes) {
+		this.lanzado = yes;
+	}
 	
 	// métodos que devuelven el valor de las coordinadas 
 	public boolean isAlive() { return this.live > 0;}

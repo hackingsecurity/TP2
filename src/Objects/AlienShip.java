@@ -4,6 +4,7 @@ package Objects;
 import Logic.Game;
 
 public  abstract class AlienShip extends EnemyShip {
+	
 	private static int contadorAlien = 0;
 	private static int sentido;
 	private static boolean bajar;

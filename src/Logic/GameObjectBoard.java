@@ -215,6 +215,18 @@ public class GameObjectBoard {
 		return shock;
 	}
 
+	public void disableBomba(int id) {
+		// TODO Auto-generated method stub
+		for(int i = 0; i < this.currentObjects; i++) {
+			
+			if(objects[i].getId() == id) {
+				objects[i].setLanzado(false);
+			}
+			
+		}
+		
+	}
+
 	
 		
 	}

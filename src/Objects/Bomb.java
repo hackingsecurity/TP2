@@ -8,8 +8,10 @@ public class Bomb extends Weapon{
 	
 
 	
-	public Bomb(Game game, int posX, int posY, int live) {
-		super(game, posX, posY, live);
+	public Bomb(Game game, int posX, int posY, int id) {
+		super(game, posX, posY, 1);
+		this.id = id; 
+		
 	}
 
 
@@ -18,6 +20,8 @@ public class Bomb extends Weapon{
 		
 		if(posX + 1 == other.getPosX() && posY == other.getPosY() ) {
 			attack = true;
+			this.live -= 1;
+			game.disableBomba(this.id);
 		}
 		
 		return attack;
@@ -26,6 +30,7 @@ public class Bomb extends Weapon{
 		boolean hit=false;
 		if(this.isAlive()) {
 			this.live -= damage;
+			game.disableBomba(this.id);
 		}
 		
 		return hit;
@@ -38,6 +43,7 @@ public class Bomb extends Weapon{
 		if(posX == 7) {
 			
 			this.live -= 1;
+			game.disableBomba(this.id);
 		}
 	}
 

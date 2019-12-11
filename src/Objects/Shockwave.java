@@ -16,7 +16,7 @@ public class Shockwave extends Weapon{
 	
 	
 	public boolean performAttack(GameObject other) {
-		this.live--;
+		this.live -= 1;
 		game.disableSW();
 		return true;
 		
@@ -28,22 +28,18 @@ public class Shockwave extends Weapon{
 		// TODO Auto-generated method stub
 		
 	}
+    
+
+	@Override
+	public String toString() {
+		return null;
+	}
+
 
 	@Override
 	public void onDelete() {
 		// TODO Auto-generated method stub
 		
-	}
-
-	@Override
-	public void move() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public String toString() {
-		return null;
 	}
 
 	

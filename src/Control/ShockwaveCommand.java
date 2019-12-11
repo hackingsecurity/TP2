@@ -12,8 +12,10 @@ public class ShockwaveCommand extends Command{
 	
 		boolean  ex = false;
 		if(game.shockWave()){
-			ex = true;
+			game.enableShockWave();
 			game.update();
+			ex = true;
+	
 			
 		}else {
 			System.out.println("NO HAY SHOCKWAVE DISPONIBLE");

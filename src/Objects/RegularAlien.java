@@ -5,8 +5,8 @@ import Logic.Game;
 
 public class RegularAlien extends AlienShip {
 
-	public RegularAlien(Game game, int posX, int posY, int live) {
-		super(game, posX, posY, live);
+	public RegularAlien(Game game, int posX, int posY) {
+		super(game, posX, posY, 2);
 		// TODO Auto-generated constructor stub
 	}
 
