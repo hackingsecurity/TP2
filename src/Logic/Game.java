@@ -26,14 +26,10 @@ public class Game implements IPlayerController{
 	private UCMShip player;
 	
 	public Game (Level level, Random random){
-<<<<<<< HEAD
 		this. rand = random;
 		this. level = level;
-	
-=======
 		this.rand = random;
 		this.level = level;
->>>>>>> branch 'master' of https://github.com/HackingSecurity/TP2.git
 		initializer = new BoardInitializer();
 		this.shockwave = true;
 		this.points = 0;
@@ -226,6 +222,12 @@ public class Game implements IPlayerController{
 	public void disableSW() {
 		// TODO Auto-generated method stub
 		this.shockwave = false;
+	}
+
+
+	public void saveGame() {
+		// TODO Auto-generated method stub
+		
 	}
 
 

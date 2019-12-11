@@ -8,10 +8,11 @@ public class Bomb extends Weapon{
 	
 
 	
-	public Bomb(Game game, int posX, int posY, int live) {
-		super(game, posX, posY, live);
+	public Bomb(Game game, int posX, int posY, int id) {
+		super(game, posX, posY, 1);
+		this.id = id;
+		
 	}
-
 
 	public boolean performAttack(GameObject other) {
 		boolean attack = false;

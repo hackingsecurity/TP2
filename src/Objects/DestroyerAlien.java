@@ -6,12 +6,12 @@ import Logic.IExecuteRandomActions;
 
 public class DestroyerAlien extends AlienShip implements IExecuteRandomActions {
 
-	private boolean lanzado;
 
 
-	public DestroyerAlien(Game game, int posX, int posY, int live) {
-		super(game, posX, posY, live);
+	public DestroyerAlien(Game game, int posX, int posY, int id) {
+		super(game, posX, posY, 1);
 		this.lanzado = false;
+		this.id = id;
 	}
 
 
