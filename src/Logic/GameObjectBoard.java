@@ -1,4 +1,5 @@
 package Logic;
+import Objects.AlienShip;
 import Objects.GameObject;
 import Objects.Ovni;
 import Objects.Shockwave;
@@ -74,10 +75,15 @@ public class GameObjectBoard {
 	}
 	
 	private int getIndex(int x, int y) {
-		int index =0;
+		int index = 0;
 		boolean encontrado = false;
 		while(index < this.currentObjects && !encontrado){
-			index++;
+			if(objects[index].getPosX()==x && objects[index].getPosY() == y ){
+				encontrado = true;
+			}
+			else {
+				index++;
+			}
 		}
 		return index;
 	}
@@ -95,24 +101,61 @@ public class GameObjectBoard {
 	}
 	public void update() {
 	// TODO implement
+		
+		removeDead();
 		for(int i = 0; i < this.currentObjects; i++){
 			this.objects[i].move();
+			
 		}
+		
+		AlienShip.setBajar(false);
 	}
 	
+	
+	
+	/*
+	 * Logica:
+	 * 	-> dado un objeto
+	 * 		->llamamos al metodo para ver si hayun objeto en la posicion siguiente (arriba, y abajo)
+	 * 		->
+	 */									//misile
 	private void checkAttacks(GameObject object) {
-	// TODO implement
+	
+		for(int i = 0; i < this.currentObjects; i++) {
+			                        //ovni
+			if(object.performAttack(objects[i])) {
+				if(objects[i].receiveBombAttack(object.getDamage())) {
+					
+				}
+				else if(objects[i].receiveMissileAttack(object.getDamage())) {
+					
+				}
+				else if(objects[i].receiveShockWaveAttack(object.getDamage())) {
+					
+				}
+			}
+		}
+	
 	}
 	
 	public void computerAction() {
 		
 		for(int i = 0 ; i < this.currentObjects; i++){
 			this.objects[i].computerAction();
+			checkAttacks(objects[i]);
+			
 		}
 	}
 	
 	private void removeDead() {
 	// TODO implement
+		for(int i = 0; i < this.currentObjects; i++) {
+			if(!objects[i].isAlive()) {
+				objects[i].onDelete();
+				remove(objects[i]);
+				i--;
+			}
+		}
 	}
 	
 	public String stringObjectInPos(int posX, int posY) {
@@ -135,10 +178,9 @@ public class GameObjectBoard {
 		
 		return stringObject;
 	}
+	//comprobamos si cambian el sentido y tambien si 
 
 	public boolean existOnBoard(int posX, int posY) {
-		
-		
 		int cont = 0;
 		boolean encontrado = false;
 		
@@ -175,19 +217,6 @@ public class GameObjectBoard {
 	}
 
 	
-	public void activeShockwave() {
-	
-		boolean activeshock = false;
-		int cont = 0;
-		while (cont < this.currentObjects && !activeshock) {
-			
-			if(this.objects[cont] instanceof Ovni) {
-	
-			}
-			else {
-				cont++;
-			}
-		}
 		
 	}
-}
+	

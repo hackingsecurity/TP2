@@ -10,20 +10,16 @@ public class ShockwaveCommand extends Command{
 
 	public boolean execute(Game game) {
 	
-		/*
+		boolean  ex = false;
 		if(game.shockWave()){
-			
-			game.shockWaveShips();
-			game.setShockWave(false);
 			ex = true;
+			game.update();
 			
 		}else {
 			System.out.println("NO HAY SHOCKWAVE DISPONIBLE");
 			ex = false;
 		}
 		return ex;
-	}*/
-		return true;
 	}
 	
 	public Command parse(String[] commandWords)

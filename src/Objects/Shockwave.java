@@ -6,12 +6,20 @@ import Logic.Game;
 public class Shockwave extends Weapon{
 	
 
-	public Shockwave() {
-		super();
-	}
 	
 	public Shockwave(Game game, int posX, int posY, int live) {
-		super(game, 0, 8, live);
+		super(game, posX, posY, live);
+
+	
+	
+	}
+	
+	
+	public boolean performAttack(GameObject other) {
+		this.live--;
+		game.disableSW();
+		return true;
+		
 	}
 	
 

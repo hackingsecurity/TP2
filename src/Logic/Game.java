@@ -1,6 +1,9 @@
 package Logic;
 import Objects.AlienShip;
+import Objects.Bomb;
 import Objects.GameObject;
+import Objects.Shockwave;
+import Objects.UCMMissile;
 import Objects.UCMShip;
 import java.util.Random;
 
@@ -13,6 +16,8 @@ public class Game implements IPlayerController{
 	private int currentCycle;
 	private Random rand;
 	private Level level ;
+	private boolean shockwave;
+	private int points ;
 	
 	private boolean doExit;
 	private BoardInitializer initializer ;
@@ -21,10 +26,17 @@ public class Game implements IPlayerController{
 	private UCMShip player;
 	
 	public Game (Level level, Random random){
+<<<<<<< HEAD
 		this. rand = random;
 		this. level = level;
 	
+=======
+		this.rand = random;
+		this.level = level;
+>>>>>>> branch 'master' of https://github.com/HackingSecurity/TP2.git
 		initializer = new BoardInitializer();
+		this.shockwave = true;
+		this.points = 0;
 		initGame();
 	}
 	
@@ -39,6 +51,9 @@ public class Game implements IPlayerController{
 	}
 	
 	// _/
+	public int getCurrentCycle(){
+		return this.currentCycle;
+	}
 	public Random getRandom() {
 		return rand;
 	}
@@ -66,13 +81,13 @@ public class Game implements IPlayerController{
 	 * 	LOS ALIENS HAN LLEGADO ATERRIZAR
 	 */
 	public boolean aliensWin() {
-		return !player.isAlive ();  //|| AlienShip.haveLanded();		
+		return !player.isAlive () || AlienShip.HaveLanded();		
 		
 	}
 
 	// _/
 	private boolean playerWin () {
-		return false; // AlienShip.allDead();
+		return  AlienShip.AllDeads();
 	}
 	
 	
@@ -146,29 +161,31 @@ public class Game implements IPlayerController{
 		return player.move(numCells);
 	}
 	public boolean shootMissile() {
-		return true;
+		return player.getMisilLanzado();
 	}
-	public boolean shockWave() {
-		boolean active = false;
-		if(this.board.existShowaveOnBoard()) {
-			active = true;
-			this.board.activeShockwave();
-			//activar shockwe
+	public boolean  shockWave() {
+		boolean shock = false;
+		if(this.shockwave) {
+			board.add(new Shockwave(this,0,10,1));
+			shock = true;
 		}
-		return active;
+		return shock;
 	}
 	
 	// Callbacks
 	public void receivePoints(int points) {
-		
+		this.points += points;
 	}
 	public void enableShockWave() {
-		
+		this.shockwave = true;
 	}
 	public void enableMissile() {
-		
+		board.add(new UCMMissile(this,player.getPosX()-1,player.getPosY(),1));
+		player.setMissil(true);
 	}
-	
+	public void disableMissile() {
+		player.setMissil(false);
+	}
 	//***************************************************
 	
 	public String infoToString(GamePrinter board) {
@@ -176,13 +193,41 @@ public class Game implements IPlayerController{
 
 		return "Life: " + this.player.getLive() +
 				"\nNumber of cycles: " + this.currentCycle +
-				"\nPoint: " + 0 +
-				"\nRamaining aliens: " + 10 +
-				"\nShockWave: NO\n" +
+				"\nPoint: " + this.points +
+				"\nRamaining aliens: " + AlienShip.getContadorAlien() + "\n" +
+				"\nShockWave: " + shock() + "\n" +
 				board.toString();
 
 		
 	}
+	
+	public String shock () {
+		
+		String shock = "NO";
+		if(shockwave)
+		{
+			shock = "SI";
+		}
+		
+		return shock;
+	}
+	public int getCurrentObjects(){
+		return this.getCurrentObjects();
+	}
+
+
+
+
+	public void activarBomba(int posX, int posY) {
+		board.add(new Bomb(this,posX,posY,1));
+	}
+
+
+	public void disableSW() {
+		// TODO Auto-generated method stub
+		this.shockwave = false;
+	}
+
 
 
 	

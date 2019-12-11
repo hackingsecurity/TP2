@@ -1,14 +1,15 @@
 package Objects;
 
 import Logic.Game;
+import Logic.IExecuteRandomActions;
 
-public class Ovni extends AlienShip {
+public class Ovni  extends EnemyShip implements IExecuteRandomActions {
 	
 	/*
 	 * EL Ovni lo creamos al inicializar el tablero
 	 * Pero controlamos la visibilidad del objeto.
 	*/
-	boolean visibilidadOvni;
+	private boolean visibilidadOvni;
 
 	public Ovni(Game game) {
 		//Game, posX, posY, live
@@ -16,30 +17,48 @@ public class Ovni extends AlienShip {
 		this.visibilidadOvni = false;
 		
 	}
-
+	
 	@Override
 	public void computerAction() {
+		
+	
 		if(!this.visibilidadOvni){
-			int prob;
-			double probOvni = game.getLevel().getOvniFrequency()* 10;
-			int probO = (int)(probOvni);
-			prob = game.getRandom().nextInt(10)+1;
 			
-			if(prob>0 && prob <= probO ){
-				 this.visibilidadOvni= true;
-				 
+			if(IExecuteRandomActions.canGenerateRandomOvni(this.game)) {
+					this.visibilidadOvni = true;
+					
+					
 			}
 		}
 	}
 
+	
 
 	@Override
 	public void onDelete() {
-		// TODO Auto-generated method stub
 		
+		game.receivePoints(25);
 		
 	}
-
+	public boolean receiveMissileAttack(int damage) {
+		boolean hit = false;
+		if(this.isAlive()) {
+			this.live -= damage;
+			game.enableShockWave();
+			hit = true;
+		}
+			return hit;
+		};
+	
+	public boolean receiveShockWaveAttack(int damage) {
+			boolean hit = false;
+			if(this.isAlive()) {
+				this.live -= damage;
+				hit = true;
+				}
+			return hit;
+		};
+		
 	@Override
 	public void move() {
 		if(this.visibilidadOvni){
