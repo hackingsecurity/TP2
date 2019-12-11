@@ -8,7 +8,9 @@ public abstract class GameObject implements IAttack {
 	protected int posX, posY;
 	protected int live;
 	protected Game game;
-	protected int dagame ;
+	protected int dagame ;		//no todos hacen daño
+	protected int id;			//No todos deben tener un identificador
+								//s
 	
 
 	public GameObject( Game game, int posX , int posY, int live) {
@@ -16,6 +18,7 @@ public abstract class GameObject implements IAttack {
 		this.posY = posY;
 		this.game = game;
 		this.live = live;
+		
 	}
 	
 	public GameObject() {

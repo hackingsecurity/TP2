@@ -83,6 +83,7 @@ public class GameObjectBoard {
 	}
 	
 	private void remove (GameObject object) {
+		
 		int x = object.getPosX();
 		int y = object.getPosY();
 		int index = getIndex(x,y);

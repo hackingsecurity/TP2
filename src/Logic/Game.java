@@ -14,7 +14,6 @@ public class Game implements IPlayerController{
 	private Random rand;
 	private Level level ;
 	
-	
 	private boolean doExit;
 	private BoardInitializer initializer ;
 	
@@ -24,6 +23,7 @@ public class Game implements IPlayerController{
 	public Game (Level level, Random random){
 		this. rand = random;
 		this. level = level;
+	
 		initializer = new BoardInitializer();
 		initGame();
 	}

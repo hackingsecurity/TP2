@@ -33,15 +33,15 @@ public class BoardInitializer {
 	private void initializeOvni () {
 		board.add(new Ovni(this.game));
 	}
+
 	
-	 
 	/*
 	 * -PARA HARD Y INSANE  COMIENZO FILA 1 A LA 2 Y COLUMNAS 3 A LA 7
 	 * -PARA EASY COMIENZO EN LA FILA 1 Y COLUMNAS 3 A LA 7
 	 */
 	private void initializeRegularAliens () {
 		
-		//regularAliens 
+		//RegularAliens + DestroyerShip + Ship 
 
 		if(this.level.equals(Level.EASY)) {
 			for(int fila = 1; fila < 2 ; fila++) {
@@ -57,6 +57,7 @@ public class BoardInitializer {
 				}
 			}
 		}
+		
 		else {
 			for(int fila = 1; fila < 4 ; fila++) {
 				for (int columna = 3; columna < 7 ; columna++) {
@@ -64,6 +65,8 @@ public class BoardInitializer {
 				}
 			}
 		}
+		
+	
 	}
 		//destroyer
 		
@@ -87,7 +90,7 @@ public class BoardInitializer {
 				}
 			}
 			
-			//hppñaadsfasdfç
+			//hppï¿½aadsfasdfï¿½
 		}
 		else {
 			for(int fila = 4; fila < 5 ; fila++) {
