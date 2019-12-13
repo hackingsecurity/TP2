@@ -1,13 +1,10 @@
-//PAQUETE QUE LO CONTIENE
 package Objects;
 
 import Logic.Game;
 
-public class UCMMissile extends Weapon{
-	
-
-	public UCMMissile(Game game, int posX, int posY, int live) {
-		super(game, posX, posY, live,1);
+public class SuperMissile extends Weapon {
+	public SuperMissile(Game game, int posX, int posY, int live) {
+		super(game, posX, posY, live,2);
 		// TODO Auto-generated constructor stub
 	}
 
@@ -31,6 +28,7 @@ public class UCMMissile extends Weapon{
 		if((posX - 1 == other.getPosX() && posY == other.getPosY()) ) {
 			attack = true;
 			this.live -= 1;
+			game.gastarSuperMissile();
 			game.disableMissile();
 		}
 		
@@ -43,6 +41,7 @@ public class UCMMissile extends Weapon{
 	
 	@Override
 	public String toString() {
-		return "oo";
+		return "ss";
 	}
 }
+

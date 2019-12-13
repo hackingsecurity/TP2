@@ -1,8 +1,10 @@
 package Logic;
 import Objects.AlienShip;
 import Objects.Bomb;
+import Objects.ExplodeShip;
 import Objects.GameObject;
 import Objects.Shockwave;
+import Objects.SuperMissile;
 import Objects.UCMMissile;
 import Objects.UCMShip;
 import java.util.Random;
@@ -18,6 +20,7 @@ public class Game implements IPlayerController{
 	private Level level ;
 	private boolean shockwave;
 	private int points ;
+	private int superMisil;
 	
 	
 	private boolean doExit;
@@ -179,6 +182,9 @@ public class Game implements IPlayerController{
 		board.add(new UCMMissile(this,player.getPosX(),player.getPosY(),1));
 		player.setLanzado(true);
 	}
+	/*public void enableSuperMissile() {
+		board.add(new SuperMissile(this.player.getPosX(),player.getPosY(),1));
+	}*/
 	public void disableMissile() {
 		player.setLanzado(false);
 	}
@@ -190,7 +196,8 @@ public class Game implements IPlayerController{
 		return "Life: " + this.player.getLive() +
 				"\nNumber of cycles: " + this.currentCycle +
 				"\nPoint: " + this.points +
-				"\nRamaining aliens: " + AlienShip.getContadorAlien() + "\n" +
+				"\nRemaining aliens: " + AlienShip.getContadorAlien() + "\n" +
+				"\nSuperMissiles: " + this.superMisil +
 				"\nShockWave: " + shock() + "\n" +
 				board.toString();
 
@@ -236,6 +243,47 @@ public class Game implements IPlayerController{
 		this.shockwave = sw;
 		
 	}
+
+
+	public void changeRegularToExplode(int posX, int posY, int vida) {
+		// TODO Auto-generated method stub
+		if(board.changeRegularToExplode(posX,posY)) {
+			board.add(new ExplodeShip(this,posX,posY,vida));
+		}
+	}
+
+
+	public void explode(int posX, int posY, int damage) {
+		// TODO Auto-generated method stub
+		board.explode(posX, posY, damage);
+		
+	}
+	public int getPoints() {
+		return this.points;
+	}
+
+	public int  getSuperMisil() {
+		return this.superMisil;
+	}
+	public void buyMisil() {
+		// TODO Auto-generated method stub
+		this.superMisil++;
+	}
+
+
+	@Override
+	public void enableSuperMissile() {
+		// TODO Auto-generated method stub
+		board.add(new SuperMissile(this, this.player.getPosX(),player.getPosY(),1));
+		player.setLanzado(true);
+	}
+
+
+	public void gastarSuperMissile() {
+		// TODO Auto-generated method stub
+		this.superMisil--;
+	}
+
 
 
 

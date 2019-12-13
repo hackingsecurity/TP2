@@ -6,15 +6,15 @@ import Logic.Game;
 public  abstract class AlienShip extends EnemyShip {
 	
 	private static int contadorAlien = 0;
-	private static int sentido;
-	private static boolean bajar;
+	private static int sentido = -1;
+	private static boolean bajar = false;
 	private static boolean haveLanded;
 	
 	public AlienShip(Game game, int posX, int posY, int live) {
 		super(game, posX, posY, live);
 		contadorAlien += 1;
-		sentido = -1;
-		bajar = false;
+		
+		
 		haveLanded = false;
 	}
 	
@@ -66,6 +66,14 @@ public  abstract class AlienShip extends EnemyShip {
 			}
 		return hit;
 	};
+	public boolean receiveSuperMissileAttack(int damage) {
+		boolean hit= false;
+		if(this.isAlive()) {
+			this.live -= damage;
+			hit = true;
+		}
+		return hit;
+	}
 
 	public static void setSentido() {
 		sentido *= -1;

@@ -132,6 +132,9 @@ public class GameObjectBoard {
 				else if(objects[i].receiveShockWaveAttack(object.getDamage())) {
 					
 				}
+				else if(objects[i].receiveSuperMissileAttack(object.getDamage())) {
+					
+				}
 			}
 		}
 	
@@ -185,11 +188,13 @@ public class GameObjectBoard {
 		
 		while (cont < this.currentObjects && !encontrado) {
 			
-			if(this.objects[cont].getPosX() == posX) {
-				if(this.objects[cont].getPosY() == posY){
+			if(this.objects[cont].getPosX() == posX && 
+			this.objects[cont].getPosY() == posY){
 					encontrado = true;
+					
 				}
-			}
+			cont++;
+			
 		}
 		return encontrado;
 	}
@@ -198,22 +203,7 @@ public class GameObjectBoard {
 	/*
 	 * VEMOS SI EXISTE UN OBJECTO SHOOKWAVE
 	 */
-	public boolean existShowaveOnBoard() {
-		
-		boolean shock = false;
-		int cont = 0;
-		
-		while (cont < this.currentObjects && !shock) {
-			
-			if(this.objects[cont] instanceof Shockwave) {
-				shock = true;
-			}
-			
-			cont++;
-		}
-		
-		return shock;
-	}
+
 
 	public void disableBomba(int id) {
 		// TODO Auto-generated method stub
@@ -225,6 +215,56 @@ public class GameObjectBoard {
 			
 		}
 		
+	}
+
+	public boolean changeRegularToExplode(int posX, int posY) {
+		// TODO Auto-generated method stub
+		boolean can = false;
+				
+				if(existOnBoard(posX,posY)) {
+					remove(objects[getIndex(posX,posY)]);
+					can = true;
+				}
+			
+		
+		return can;
+	}
+
+	public void explode(int posX, int posY, int damage) {
+		// TODO Auto-generated method stub
+		//comprobar en la  horizontal, vertical y diagonal
+		//horizontal derecha
+		if(existOnBoard(posX,posY + 1)) {
+			objects[getIndex(posX,posY + 1)].hit(damage);
+		}
+		//horizontal izquierda
+		if(existOnBoard(posX,posY - 1)) {
+			objects[getIndex(posX,posY - 1)].hit(damage);
+		}
+		//vertical arriba
+		if(existOnBoard(posX-1,posY)) {
+			objects[getIndex(posX-1,posY)].hit(damage);
+		}
+		//vertical abajo
+		if(existOnBoard(posX+1,posY)) {
+			objects[getIndex(posX+1,posY)].hit(damage);
+		}
+		// diagonal arriba izquierda
+		if(existOnBoard(posX-1,posY- 1)) {
+			objects[getIndex(posX-1,posY - 1)].hit(damage);
+		}
+		//diagonal arriba derecha
+		if(existOnBoard(posX-1, posY + 1)) {
+			objects[getIndex(posX-1,posY + 1)].hit(damage);
+		}
+		// diagonal abajo izquierda
+		if(existOnBoard(posX + 1 , posY - 1)) {
+			objects[getIndex(posX+1,posY - 1)].hit(damage);
+		}
+		// diagonal abajo derecha
+		if(existOnBoard(posX + 1 , posY + 1)) {
+			objects[getIndex(posX+1,posY + 1)].hit(damage);
+		}
 	}
 
 	

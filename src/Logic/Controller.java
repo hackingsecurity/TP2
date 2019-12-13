@@ -58,9 +58,12 @@ public class Controller {
 			
 			if (command != null) {
 				if (!command.execute(game)) {
-					System.out.format("Unknown Command");
+					System.out.println("Unknown Command");
 				}
 			
+			}
+			else {
+				System.out.println("Unknown Command");
 			}
 		
 	}

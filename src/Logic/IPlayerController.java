@@ -24,5 +24,6 @@ public interface IPlayerController {
 	public void receivePoints(int points);
 	public void enableShockWave();
 	public void enableMissile();
+	public void enableSuperMissile();
 
 }

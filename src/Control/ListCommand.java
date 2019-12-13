@@ -23,7 +23,7 @@ public class ListCommand extends Command {
 		
 		if (!(commandWords.length > 1)) {
 			if (matchCommandName(commandWords[0])) {
-				command = new MoveCommand();
+				command = new ListCommand();
 			}
 		}
 		return command;

@@ -49,7 +49,15 @@ public class Ovni  extends EnemyShip implements IExecuteRandomActions {
 		}
 			return hit;
 		};
-	
+	public boolean receiveSuperMissileAttack(int damage) {
+			boolean hit = false;
+			if(this.isAlive()) {
+				this.live -= damage;
+				game.setShockwave(true);
+				hit = true;
+			}
+				return hit;
+	};
 	public boolean receiveShockWaveAttack(int damage) {
 			boolean hit = false;
 			if(this.isAlive()) {

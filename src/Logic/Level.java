@@ -14,6 +14,7 @@ public enum Level {
 	private double ovniFrequency;
 	private double shootFrequency;
 	private int numRowsOfRegularAliens;
+
 	//ERRATA AL COPIAR CAMBIO INT POR DOUBLE
 	private double  turnExplodeFrequency = 0.05; // actualmente no depende del nivel
 		
@@ -32,7 +33,9 @@ public enum Level {
 		this. ovniFrequency = ovniFrequency;
 		this. numRowsOfRegularAliens = numRowsOfRegularAliens;
 	}
-	
+	public double getTurnExplodeFrequency() {
+		return turnExplodeFrequency;
+	}
 	public int getNumRegularAliens() {
 		return numRegularAliens;
 	}
@@ -73,10 +76,7 @@ public enum Level {
 		
 	}
 	
-	public double getTurnExplodeFrequency(){
-		return turnExplodeFrequency;
-	}
-
+	
 		
 
 }

@@ -14,12 +14,12 @@ public abstract class GameObject implements IAttack {
 	
 
 
-	public GameObject( Game game, int posX , int posY, int live) {
+	public GameObject( Game game, int posX , int posY, int live,int damage) {
 		this.posX = posX;
 		this.posY = posY;
 		this.game = game;
 		this.live = live;
-		this.damage = 1;
+		this.damage = damage;
 
 	}
 	
@@ -61,5 +61,10 @@ public abstract class GameObject implements IAttack {
 	
 	public abstract void move();
 	public abstract String toString();
+
+	public void hit(int damage2) {
+		// TODO Auto-generated method stub
+		this.live -= damage;
+	}
 
 }

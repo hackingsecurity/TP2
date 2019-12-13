@@ -8,7 +8,7 @@ public class Shockwave extends Weapon{
 
 	
 	public Shockwave(Game game, int posX, int posY, int live) {
-		super(game, posX, posY, live);
+		super(game, posX, posY, live,1);
 
 	
 	

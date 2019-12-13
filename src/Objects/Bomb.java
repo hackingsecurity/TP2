@@ -9,7 +9,7 @@ public class Bomb extends Weapon{
 
 	
 	public Bomb(Game game, int posX, int posY, int id) {
-		super(game, posX, posY, 1);
+		super(game, posX, posY, 1,1);
 		this.id = id; 
 		
 	}
@@ -36,7 +36,16 @@ public class Bomb extends Weapon{
 		return hit;
 	}
 	
-
+	public boolean receiveSuperMissileAttack(int damage) {
+		boolean hit=false;
+		if(this.isAlive()) {
+			this.live -= damage;
+			game.disableBomba(this.id);
+		}
+		
+		return hit;
+	}
+	
 	@Override
 	public void computerAction() {
 		// TODO Auto-generated method stub
