@@ -16,7 +16,7 @@ public enum Level {
 	private int numRowsOfRegularAliens;
 
 	//ERRATA AL COPIAR CAMBIO INT POR DOUBLE
-	private double  turnExplodeFrequency = 0.05; // actualmente no depende del nivel
+	private double  turnExplodeFrequency = 0.10; // actualmente no depende del nivel
 		
 	private Level(
 		int numRegularAliens,
