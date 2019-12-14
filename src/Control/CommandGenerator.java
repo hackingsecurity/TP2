@@ -1,28 +1,9 @@
 package Control;
 
+import Exeptions.CommandParseException;
 
 public class CommandGenerator {
 	
-	/*
-			 * Este atributo se usa en los dos siguientes mÃ©todos de CommandGenerator:
-		public static Command parseCommand(String[ ] commandWords), que, a su vez, in-
-		voca el mÃ©todo parse de cada subclase de Command, tal y como se ha explicado
-		anteriormente,
-		
-		public static String commandHelp(), que tiene una estructura similar al mÃ©todo an-
-		terior, pero invocando el mÃ©todo helpText() de cada subclase de Command. Este
-		mÃ©todo es invocado por el mÃ©todo execute de la clase HelpCommand.
-	 */
-	
-	
-	/*
-	 *	1 -Creamos un array de  tipo Command y lo inicializamos
-	 *		a cada uno los objetos que va a manipular.
-	 * 	2-Uso de polimorfismo
-	 * 	3-Podemos crear distintos objetos hijos a Command (abstract)
-	 * 	4-Solo hay una copia del mismo y su valor es compartido por 
-	 * 	todos los objetos de la clase.
-	 */
 	
 	private static Command[] availableCommands = {
 			new ListCommand(),
@@ -48,7 +29,7 @@ public class CommandGenerator {
 	 *	5 -Retornamos... 
 	 */
 	
-	public static Command parseCommand(String[ ] commandWords) {
+	public static Command parseCommand(String[ ] commandWords) throws CommandParseException {
 		
 		
 		//Polimofismo Commmand --> cualquier clase hija.

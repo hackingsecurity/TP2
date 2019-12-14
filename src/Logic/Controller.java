@@ -14,7 +14,7 @@ public class Controller {
 	private Scanner scan;
 	private Game game;
 	private Level level;
-	private GamePrinter boardObjects;
+	private BoardPrinter boardObjects;
 	
 	private boolean finPartida;
 	private int cicloActual;
@@ -31,7 +31,8 @@ public class Controller {
 	
 	private void draw() {
 		
-		this.boardObjects = new GamePrinter(this.game);
+		this.boardObjects = new BoardPrinter(this.game);
+		System.out.println(game.infoToString(this.boardObjects));
 	}
 	
 	public void run (){
@@ -40,11 +41,10 @@ public class Controller {
 		//PINTAMOS EL TABLERO EN EL ESTADO ACTUAL
 		
 		
-	
+		draw();
 		while (!game.isFinished()){
 			
-			draw();
-			System.out.println(game.infoToString(this.boardObjects));
+			
 			System.out.println(PROMPT);
 			
 			/*
@@ -61,12 +61,12 @@ public class Controller {
 
 				
 				if (command != null) {
-					if (!command.execute(game)) System.out.println("Unknown Command");
+					if (command.execute(game)) draw() ;
 				else
-					System.out.println("Unknown Command");
+					System.err.println();
 			
 				}
-			}catch (CommandParseException | CommmandExecuteException ex) {
+			}catch (CommandParseException | CommandExecuteException ex) {
 				System.err.println(ex.getMessage());
 			}
 		

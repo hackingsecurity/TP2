@@ -190,7 +190,7 @@ public class Game implements IPlayerController{
 	}
 	//***************************************************
 	
-	public String infoToString(GamePrinter board) {
+	public String infoToString(BoardPrinter board) {
 		
 
 		return "Life: " + this.player.getLive() +

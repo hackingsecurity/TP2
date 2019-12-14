@@ -45,7 +45,8 @@ public class MoveCommand extends Command{
 		}
 		game.update();
 		if (move == false) {
-			System.out.println("You can`t move UCMShip : " + this.direccion + ", Position: " + this.numCasillas );
+			
+			throw new CommandExecuteException("too near to the border");
 		}
 		return move;
 	}
@@ -61,8 +62,6 @@ public class MoveCommand extends Command{
 		Command command = null;
 		
 		if (commandWords.length == 3 && matchCommandName(commandWords[0])) {
-	
-			if (commandWords[2] != null && commandWords[1] != null) {
 					
 				if ((commandWords[1].equals("left")) || (commandWords[1].equals("right"))) {
 					
@@ -70,14 +69,17 @@ public class MoveCommand extends Command{
 						
 						command = new MoveCommand(commandWords[1], Integer.parseInt(commandWords[2]));
 					}
+					else {
+						throw new CommandParseException("only can move 1 or 2 cells");
+					}
 				}
-			}
-			else {
-				throw new CommandParseExeption("Wrong parameters for move");
-			}
+			
+				else {
+					throw new CommandParseException(incorrectArgsMsg);
+				}
 		}
 		else {
-			throw new CommandParseExecption("Wrong command");
+			throw new CommandParseException(incorrectNumArgsMsg);
 		}
 		return command;
 	}
