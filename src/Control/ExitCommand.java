@@ -1,5 +1,6 @@
 package Control;
 
+import Exeptions.CommandParseException;
 import Logic.Game;
 
 public class ExitCommand extends Command{
@@ -14,17 +15,16 @@ public class ExitCommand extends Command{
 		return true;
 	}
 	
-	public Command parse(String[] commandWords)
+	public Command parse(String[] commandWords) throws CommandParseException
 	{
 		Command command = null;
 		
-		if (!(commandWords.length > 1)) {
+		if (commandWords.length == 1) {
 			
 			if (matchCommandName(commandWords[0])) {
 				command = new ExitCommand();
 			}
-		
-		}
+		}else throw new CommandParseException (incorrectNumArgsMsg);
 	
 		return command;
 	}

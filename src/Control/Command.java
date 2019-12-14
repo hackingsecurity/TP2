@@ -16,6 +16,7 @@ public abstract class Command {
 	private final String details ;
 	private final String help;
 	
+	
 	protected static final String incorrectNumArgsMsg = "Incorrect number of arguments\n";
 	protected static final String incorrectArgsMsg = "Incorrect argument format\n";
 	

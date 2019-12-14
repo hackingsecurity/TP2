@@ -36,6 +36,9 @@ public class MoveCommand extends Command{
 				game.move(direccion, numCasillas);
 				move = true;
 			}
+			else {
+				
+			}
 		}
 		else{
 			if(game.move(this.numCasillas )) {
@@ -43,11 +46,13 @@ public class MoveCommand extends Command{
 				move = true;
 			}
 		}
+		
 		game.update();
 		if (move == false) {
 			
 			throw new CommandExecuteException("too near to the border");
 		}
+		
 		return move;
 	}
 	

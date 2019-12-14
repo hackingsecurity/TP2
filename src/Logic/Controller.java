@@ -15,10 +15,7 @@ public class Controller {
 	private Game game;
 	private Level level;
 	private BoardPrinter boardObjects;
-	
-	private boolean finPartida;
-	private int cicloActual;
-	private boolean reset;
+
 	
 	public Controller (Game game, Scanner scanner, Level level){
 		this.game = game;
@@ -39,9 +36,8 @@ public class Controller {
 		
 		
 		//PINTAMOS EL TABLERO EN EL ESTADO ACTUAL
-		
-		
 		draw();
+		
 		while (!game.isFinished()){
 			
 			
@@ -63,7 +59,7 @@ public class Controller {
 				if (command != null) {
 					if (command.execute(game)) draw() ;
 				else
-					System.err.println();
+					System.err.println("Unkown Command");
 			
 				}
 			}catch (CommandParseException | CommandExecuteException ex) {

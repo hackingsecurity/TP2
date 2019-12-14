@@ -1,5 +1,6 @@
 package Control;
 
+import Exeptions.CommandParseException;
 import Logic.Game;
 
 public class UpdateCommand extends Command{
@@ -13,15 +14,15 @@ public class UpdateCommand extends Command{
 		return true;
 	}
 	
-	public Command parse(String[] commandWords)
+	public Command parse(String[] commandWords) throws CommandParseException
 	{
 		Command command = null;
 		
-		if (!(commandWords.length > 1)) {
+		if (commandWords.length == 1) {
 			if (matchCommandName(commandWords[0])) {
 				command = new UpdateCommand();
 			}
-		}
+		}else throw new CommandParseException (incorrectNumArgsMsg);
 		
 		return command;
 	}

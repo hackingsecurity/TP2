@@ -21,26 +21,27 @@ public class UCMShip extends Ship{
 	}
 
 	@Override
-	public void onDelete() {
-	}
+	public void onDelete() {}
 
+	@Override
 	public void move() {}
 
-	/*
-	 * SI NUESTRO NUMCELLS ES POSITIVO
-	 * 	- SUMAMOS EL VALOR CON POSY
-	 * 
-	 * SI ES NEGATIVO, RESTAMOS
-	 */
 	public boolean move(int numCells) {
 
 		boolean move = false;
-		//derecha
+		/*
+		 * -SI VAMOS POR LA DERECHA
+		 * -Si nuestro parametro es positivo
+		 */
 		if(numCells > 0) {
 			if(this.posY + numCells < Game.DIM_Y) {
 				move = true;
 			}
 		}
+		/*
+		 * -SI VAMOS POR LA IZQUIERDA
+		 * -Si nuestro parametros es negativo
+		 */
 		else if (numCells < 0) {
 			if((this.posY + numCells) >= 0) {
 				move = true;
@@ -52,6 +53,7 @@ public class UCMShip extends Ship{
 
 
 	public void move(String direccion, int numCasillas) {
+		
 		if(direccion.equals("left")){
 			this.posY -= numCasillas;
 		}else {
@@ -60,12 +62,18 @@ public class UCMShip extends Ship{
 		
 	}
 	public boolean receiveBombAttack(int damage) {
+		
+		
 		boolean hit = false;
 		if(this.isAlive()) {
+			
 			getDamage(damage);
+			//hit = true;
 		}
 		
-		return false;};
+		return hit;
+		
+	}
 
 
 	@Override
