@@ -1,19 +1,21 @@
 package Logic;
-
-import Control.Command;
 import Exeptions.*;
-
+import board.BoardPrinter;
+import comandos.Command;
+import comandos.CommandGenerator;
 import java.util.Random;
 import java.util.Scanner;
-import Control.CommandGenerator;
+import board.GamePrinter;
 
 
 public class Controller {
 
+	private Game game;
+	private GamePrinter printer;	
+	private Level level;
+	
 	private final String PROMPT = "\ncomannd > :";
 	private Scanner scan;
-	private Game game;
-	private Level level;
 	private BoardPrinter boardObjects;
 
 	
@@ -28,7 +30,7 @@ public class Controller {
 	
 	private void draw() {
 		
-		this.boardObjects = new BoardPrinter(this.game);
+		this.boardObjects = new BoardPrinter();
 		System.out.println(game.infoToString(this.boardObjects));
 	}
 	

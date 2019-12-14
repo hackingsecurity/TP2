@@ -1,0 +1,77 @@
+
+
+Utilizaremos la serialización para poder grabar y cargar partidas en disco
+--------------------------------------------------------------------------
+
+***********************************************************************************
+	Def serelization (conversion del estado de ejecución de un programa, o parte
+	del programa, en un flujo de bytes.
+************************************************************************************
+	
+	Dos modos de pintado del tablero:
+	
+		-[formatted]  	igual que lo hemos estado haciendo
+		-[stringifed]	mostramos mas informacion en texto plano 
+		
+	nuevos comandos
+	
+		->stringifyCommand (envia el estado del juego serializado como texto)
+			-Ojo nos permitirá
+			
+		->ListPrintersCommand (nos liste los printers disponibles)
+			textual:
+			boardprinter : prints the game formatted as a board of dimension: 9x8
+			stringifier : prints the game as plain text
+		
+		La primera línea será siempre--- Space Invaders v2.0 ---
+		La segunda línea es una línea en blancoLa 
+		tercera línea dará información sobre el  Game:G;totalCycles
+		La cuarta línea dará información sobre el  Level:L;level
+		
+		información sobre los objetos de juego que estén en el tablero:
+		
+		OJO: [NOS SABEMOS QUE SIGNIFICA EXACTAMENTE QUE QUIERE
+		DECIR CYCLESNEXTALIENMOVE]
+		
+		
+		Ovni:O;x;y;live
+		Regular alien:R;x,y;live;cyclesNextAlienMove;dir
+		Destroyer alien:D;x,y;live;cyclesNextAlienMove;dir
+		Explosive alien:E;x,y;live;cyclesNextAlienMove;dir
+		Bomb:B;x,y
+		Missile:M;x,y
+		Supermissile:X;x,y
+		UCMShip (player):P;x,y;live;points;hasShock;superMissiles
+		
+		
+		
+		Para menejar los distintos tipos de tableros:
+		
+		class abstract GamePrinter   (herencia)
+						|
+						-> BoardPrinter (renombrado GamePrinter)
+						|
+						-> Stringifier 
+							-execute (tendra la misma lineas de codigo que run del controlador)
+							
+						
+						
+		Ojo ahora el game no depende  del game printer 
+		
+		
+		
+			Tendremos una variable en controller
+			
+					GamePrinter -> tipo real va ser BoardPrinter
+					
+
+Para gestionar los diferentes printers
+
+	->Nueva clase PrinterGenerator   (parecido a CommandGenerator)
+		
+	->Esta clase usará en las clases Controller y StringifyCommand para
+		imprimir el estado del juego con el formato correspodiente.
+		
+			->El metodo printerHelp nos ayudará para poder saber el tipo
+			de enumerado que necesitamos.
+	

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <class-diagram version="1.2.3" icons="true" automaticImage="PNG" always-add-relationships="false" generalizations="true" 
   realizations="true" associations="true" dependencies="false" nesting-relationships="true" router="FAN">  
-  <enumeration id="1" language="java" name="Logic.Level" project="TP2" file="/TP2/src/Logic/Level.java" binary="false" 
+  <enumeration id="1" language="java" name="Logic.Level" project="TP2" file="/TP2/Logic/Level.java" binary="false" 
     corner="BOTTOM_RIGHT">    
     <position height="367" width="199" x="725" y="1009"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -10,7 +10,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </enumeration>  
-  <class id="2" language="java" name="Logic.Main" project="TP2" file="/TP2/src/Logic/Main.java" binary="false" 
+  <class id="2" language="java" name="Logic.Main" project="TP2" file="/TP2/Logic/Main.java" binary="false" 
     corner="BOTTOM_RIGHT">    
     <position height="97" width="113" x="402" y="80"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -19,7 +19,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="3" language="java" name="Logic.GameObjectBoard" project="TP2" file="/TP2/src/Logic/GameObjectBoard.java" 
+  <class id="3" language="java" name="Logic.GameObjectBoard" project="TP2" file="/TP2/Logic/GameObjectBoard.java" 
     binary="false" corner="BOTTOM_RIGHT">    
     <position height="79" width="130" x="555" y="80"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -28,7 +28,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="4" language="java" name="Logic.MyStringUtils" project="TP2" file="/TP2/src/Logic/MyStringUtils.java" 
+  <class id="4" language="java" name="board.MyStringUtils" project="TP2" file="/TP2/board/MyStringUtils.java" 
     binary="false" corner="BOTTOM_RIGHT">    
     <position height="115" width="138" x="929" y="80"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -37,7 +37,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="5" language="java" name="Logic.Game" project="TP2" file="/TP2/src/Logic/Game.java" binary="false" 
+  <class id="5" language="java" name="Logic.Game" project="TP2" file="/TP2/Logic/Game.java" binary="false" 
     corner="BOTTOM_RIGHT">    
     <position height="889" width="164" x="725" y="80"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -46,8 +46,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="6" language="java" name="Logic.GamePrinter" project="TP2" file="/TP2/src/Logic/GamePrinter.java" 
-    binary="false" corner="BOTTOM_RIGHT">    
+  <class id="6" language="java" name="board.GamePrinter" project="TP2" file="/TP2/board/GamePrinter.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
     <position height="187" width="152" x="1107" y="80"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      

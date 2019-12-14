@@ -1,12 +1,16 @@
 package Logic;
-import Objects.AlienShip;
-import Objects.Bomb;
-import Objects.ExplodeShip;
-import Objects.GameObject;
-import Objects.Shockwave;
-import Objects.SuperMissile;
-import Objects.UCMMissile;
-import Objects.UCMShip;
+import board.BoardInitializer;
+import board.BoardPrinter;
+import interfaces.IPlayerController;
+import object.AlienShip;
+import object.Bomb;
+import object.ExplodeShip;
+import object.GameObject;
+import object.Shockwave;
+import object.SuperMissile;
+import object.UCMMissile;
+import object.UCMShip;
+
 import java.util.Random;
 
 
@@ -38,6 +42,10 @@ public class Game implements IPlayerController{
 		initGame();
 	}
 	
+	public GameObjectBoard  getBoard () {
+		
+		return this.board;
+	}
 	
 	// _/
 	public void initGame () {

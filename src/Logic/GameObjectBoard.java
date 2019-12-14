@@ -1,8 +1,8 @@
 package Logic;
-import Objects.AlienShip;
-import Objects.GameObject;
-import Objects.Ovni;
-import Objects.Shockwave;
+import object.AlienShip;
+import object.GameObject;
+import object.Ovni;
+import object.Shockwave;
 
 /*
  * -GESTIONA A LISTA DE ELEMENTOS GAMEOBJECTS.
