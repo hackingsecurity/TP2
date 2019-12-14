@@ -6,8 +6,13 @@ public class ExplodeShip extends AlienShip {
 	
 	public  ExplodeShip(Game game,int posX,int posY, int vida){
 		super(game, posX,  posY, vida);
-		
+		AlienShip.setContador();
 	}
+	
+	
+	
+	
+	
 	
 	public boolean receiveMissileAttack(int damage) {
 		boolean hit = false;

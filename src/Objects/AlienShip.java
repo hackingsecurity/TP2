@@ -8,14 +8,14 @@ public  abstract class AlienShip extends EnemyShip {
 	private static int contadorAlien = 0;
 	private static int sentido = -1;
 	private static boolean bajar = false;
-	private static boolean haveLanded;
+	private static boolean haveLanded = false;
 	
 	public AlienShip(Game game, int posX, int posY, int live) {
 		super(game, posX, posY, live);
 		contadorAlien += 1;
 		
 		
-		haveLanded = false;
+		
 	}
 	
 	
@@ -25,12 +25,14 @@ public  abstract class AlienShip extends EnemyShip {
 				setBajar(true);
 				setSentido();
 			}
-			if(bajar == true && posX == 6) {
-				setHaveLanded(true);
-			}
+			
 		}
 		
 	}
+	
+	
+	
+	
 	
 	//otra funcion 
 	
@@ -39,7 +41,14 @@ public  abstract class AlienShip extends EnemyShip {
 	public void move(){
 		if((game.getCurrentCycle()%game.getLevel().getNumCyclesToMoveOneCell()) == 0 && game.getCurrentCycle()!=0){
 			if(bajar){
-				this.posX += 1;
+				if(posX==6) {
+					
+					setHaveLanded(true);
+					
+				}
+				else {
+					this.posX += 1;
+				}
 			}
 			else {
 				this.posY += sentido;

@@ -35,10 +35,8 @@ public class BoardInitializer {
 	}
 	
 	 
-	/*
-	 * -PARA HARD Y INSANE  COMIENZO FILA 1 A LA 2 Y COLUMNAS 3 A LA 7
-	 * -PARA EASY COMIENZO EN LA FILA 1 Y COLUMNAS 3 A LA 7
-	 */
+	
+
 	private void initializeRegularAliens () {
 		
 		//regularAliens 
@@ -65,12 +63,7 @@ public class BoardInitializer {
 			}
 		}
 	}
-		//destroyer
-		
-	/*
-	 * -PARA HARD Y EASY FILA 3 Y COLUMNAS 5 Y 6 
-	 * -PARA INSANE FILA 3 Y COLUMNAS 4 A LA 7
-	 */
+	
 	private void initializeDestroyerAliens () {
 		if(this.level.equals(Level.EASY)) {
 			for(int fila = 2; fila < 3 ; fila++) {
@@ -86,7 +79,7 @@ public class BoardInitializer {
 				}
 			}
 			
-			//hpp�aadsfasdf�
+		
 		}
 		else {
 			for(int fila = 4; fila < 5 ; fila++) {
