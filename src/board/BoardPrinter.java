@@ -11,8 +11,8 @@ public class BoardPrinter extends GamePrinter {
 	
 	public BoardPrinter (){
 		
-		this.numRows = game.DIM_Y;
-		this.numCols = game.DIM_X;
+		this.numRows = Game.DIM_Y;
+		this.numCols = Game.DIM_X;
 		encodeGame(game);
 	}
 	
