@@ -1,6 +1,7 @@
 package Logic;
 
 import Control.Command;
+import Exeptions.*;
 
 import java.util.Random;
 import java.util.Scanner;
@@ -41,6 +42,7 @@ public class Controller {
 		
 	
 		while (!game.isFinished()){
+			
 			draw();
 			System.out.println(game.infoToString(this.boardObjects));
 			System.out.println(PROMPT);
@@ -53,17 +55,19 @@ public class Controller {
 			 */
 			String[] words = scan.nextLine().toLowerCase().trim().split ("\\s+");
 			
-			Command command = CommandGenerator.parseCommand(words);
+			try {
+				
+				Command command = CommandGenerator.parseCommand(words);
 
-			
-			if (command != null) {
-				if (!command.execute(game)) {
+				
+				if (command != null) {
+					if (!command.execute(game)) System.out.println("Unknown Command");
+				else
 					System.out.println("Unknown Command");
-				}
 			
-			}
-			else {
-				System.out.println("Unknown Command");
+				}
+			}catch (CommandParseException | CommmandExecuteException ex) {
+				System.err.println(ex.getMessage());
 			}
 		
 	}

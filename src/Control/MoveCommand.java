@@ -1,5 +1,7 @@
 package Control;
 
+import Exeptions.CommandParseException;
+import Exeptions.CommandExecuteException;
 import Logic.Game;
 
 //import Logic.Game;
@@ -25,7 +27,7 @@ public class MoveCommand extends Command{
 	 * COMPROBAMOS SI ESTAMOS EN FUERA DEL TABLERO AL MOVER
 	 * 
 	 */
-	public boolean execute(Game game) {
+	public boolean execute(Game game) throws CommandExecuteException {
 		
 		boolean move = false;
 		
@@ -54,7 +56,7 @@ public class MoveCommand extends Command{
 	 * 2)COMPROBAMOS LA PRIMERA POSICON DEL ARRAY
 	 * 3)COMPROBAMOS LA PRIMERA Y SEGUNDA POSICIÓN DEL ARRAY
 	 */
-	public Command parse(String[] commandWords)
+	public Command parse(String[] commandWords) throws CommandParseException
 	{
 		Command command = null;
 		
@@ -70,6 +72,12 @@ public class MoveCommand extends Command{
 					}
 				}
 			}
+			else {
+				throw new CommandParseExeption("Wrong parameters for move");
+			}
+		}
+		else {
+			throw new CommandParseExecption("Wrong command");
 		}
 		return command;
 	}
