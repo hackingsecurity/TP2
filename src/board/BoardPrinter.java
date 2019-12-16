@@ -4,22 +4,25 @@ import Logic.Game;
 
 public class BoardPrinter extends GamePrinter {	
 	
-	private String[][] board;
+	private String[][] boardPrinter;
 	private final String space = " ";	
 	private int numRows;
 	private int numCols;
 	
+	
+	
 	public BoardPrinter (){
 		
+		super("boardPrinter");
 		this.numRows = Game.DIM_Y;
 		this.numCols = Game.DIM_X;
-		encodeGame(game);
+		
 	}
 	
 	
 	private void encodeGame(Game game) {
 			
-			board = new String[this.numRows][this.numCols];
+			boardPrinter = new String[this.numRows][this.numCols];
 			String cad = "";
 			
 			for(int i = 0; i < this.numRows; i++) {
@@ -27,16 +30,18 @@ public class BoardPrinter extends GamePrinter {
 					
 					cad = game.positionToString(i, j);
 					if( cad != null) {
-						board[i][j] = cad;
+						boardPrinter[i][j] = cad;
 					}
 					else {
-						board[i][j] = space;
+						boardPrinter[i][j] = space;
 					}
 				}
 			}
 	}
 		
 	public String toString() {
+		
+		encodeGame(this.game);
 
 		int cellSize = 7;
 		int marginSize = 2;
@@ -62,11 +67,26 @@ public class BoardPrinter extends GamePrinter {
 		for(int i=0; i<numRows; i++) {
 				str.append(margin).append(vDelimiter);
 				for (int j=0; j<numCols; j++)
-					str.append( MyStringUtils.centre(board[i][j], cellSize)).append(vDelimiter);
+					str.append( MyStringUtils.centre(boardPrinter[i][j], cellSize)).append(vDelimiter);
 				if (i != numRows - 1) str.append(lineDelimiter);
 				else str.append(lineEdge);	
 		}
 		
-		return str.toString();
+		return game.infoToString() + str.toString();
 		}
+	
+	
+	
+	public GamePrinter parseBoard(String typeBoard){
+			
+		GamePrinter printer = null;
+		
+		if (typeBoard.equalsIgnoreCase("boardPrinter")) {
+			printer = new BoardPrinter();
+		}
+	
+		return printer;
+	}
+
+	
 }

@@ -55,19 +55,21 @@ public class ShootCommand extends Command{
 	}
 
 	
-	public Command parse(String[] commandWords) throws CommandParseException
-	{
-	Command command = null;
+	public Command parse(String[] commandWords) throws CommandParseException {
 		
-		if (commandWords.length == 2) {
-			if ((commandWords[1].equals("m")) || (commandWords[1].equals("s"))) {
-				command = new ShootCommand(commandWords[1]);
-				
-			}else  throw new CommandParseException ("Incorrect type of misil");
-			
-		}else	throw new CommandParseException (incorrectNumArgsMsg);
+		Command command = null;
 
-		
-		return command;
+		if (matchCommandName(commandWords[0])) {
+			if(commandWords.length == 2 ) {
+				if ((commandWords[1].equals("m")) || (commandWords[1].equals("s"))) {
+					command = new ShootCommand(commandWords[1]);
+				}
+				else throw new CommandParseException ("Incorrect type of misil");
+				
+			}else throw new CommandParseException (incorrectNumArgsMsg);
+				
+		}
+			return command;
 	}
+		
 }

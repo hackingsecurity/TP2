@@ -1,11 +1,10 @@
 package board;
 
-import Logic.Game;
-
 public class Stringifier extends GamePrinter {
 	
 	public Stringifier() {
-
+		super("stringifier");
+		
 	}
 
 	/*
@@ -20,12 +19,21 @@ public class Stringifier extends GamePrinter {
 		string += "\n";
 		string += "G;" + game.getCurrentCycle() + "\n";
 		string += "L;" + game.getLevel().name() + "\n";
+		string += game.stringifier() + "\n";
 		
-		/*
-		for(int i = 0; i < board; i++) {
-			string += board[i].stringifier() + "\n";
-		}
-		*/
 		return string;
 	}
+	
+	
+	public GamePrinter parseBoard(String typeBoard){
+		
+		GamePrinter printer = null;
+		
+		if (typeBoard.equalsIgnoreCase("stringifie")) {
+			printer = new Stringifier();
+		}
+	
+		return printer;
+	}
+
 }

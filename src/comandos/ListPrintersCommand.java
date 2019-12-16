@@ -3,6 +3,7 @@ package comandos;
 import Exeptions.CommandExecuteException;
 import Exeptions.CommandParseException;
 import Logic.Game;
+import board.PrinterTypes;
 
 public class ListPrintersCommand extends Command {
 	
@@ -13,19 +14,20 @@ public class ListPrintersCommand extends Command {
 	}
 
 	public boolean execute(Game game) throws CommandExecuteException {
-	
-		return true;
+		System.out.println(PrinterTypes.printerHelp(game));
+		return false;
 	}
 	
 	public Command parse(String[] commandWords) throws CommandParseException {
 		
 		Command command = null;
 		
-		if (commandWords.length == 1) {
-			if (matchCommandName(commandWords[0])) {
-				command = new ResetCommand();
-			}
-		}else throw new CommandParseException (incorrectNumArgsMsg);
+		
+		if (matchCommandName(commandWords[0])) {
+			
+			if (commandWords.length == 1) command = new ListPrintersCommand();
+			else throw new CommandParseException (incorrectNumArgsMsg);
+		}
 		
 		return command;
 	}

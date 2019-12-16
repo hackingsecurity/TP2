@@ -6,39 +6,52 @@ import comandos.CommandGenerator;
 import java.util.Random;
 import java.util.Scanner;
 import board.GamePrinter;
+import board.PrinterTypes;
+import board.Stringifier;
 
 
 public class Controller {
 
 	private Game game;
-	private GamePrinter printer;	
+	private GamePrinter printer;
 	private Level level;
 	
 	private final String PROMPT = "\ncomannd > :";
 	private Scanner scan;
-	private BoardPrinter boardObjects;
 
 	
 	public Controller (Game game, Scanner scanner, Level level){
 		this.game = game;
 		this.level = level;
 		this.scan = scanner;
-		draw();
+		
 	}
 	
-	
-	
-	private void draw() {
+	private void drawSerializable() {
 		
-		this.boardObjects = new BoardPrinter();
-		System.out.println(game.infoToString(this.boardObjects));
+		printer = new Stringifier();
+		printer.setGamePrinter(game);
+	}
+	
+
+	private void draw() {
+	
+		
+		printer = new BoardPrinter();
+		//INICIALIZAMOS EL GAME EN GAMEPRINTER
+		printer.setGamePrinter(game);
+		
+		
 	}
 	
 	public void run (){
 		
 		
 		//PINTAMOS EL TABLERO EN EL ESTADO ACTUAL
-		draw();
+		//draw();
+		drawSerializable();
+		System.out.println(printer);
+		
 		
 		while (!game.isFinished()){
 			
@@ -59,11 +72,18 @@ public class Controller {
 
 				
 				if (command != null) {
-					if (command.execute(game)) draw() ;
-				else
-					System.err.println("Unkown Command");
+					
+					if (command.execute(game)) {
+						
+							//draw();
+							drawSerializable();
+							System.out.println(printer);
+							
+					}
 			
-				}
+				}else System.err.println("Unkown Command");
+				
+				
 			}catch (CommandParseException | CommandExecuteException ex) {
 				System.err.println(ex.getMessage());
 			}

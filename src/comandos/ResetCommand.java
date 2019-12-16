@@ -18,12 +18,11 @@ public class ResetCommand extends Command {
 	public Command parse(String[] commandWords) throws CommandParseException {
 		
 		Command command = null;
-		
-		if (!(commandWords.length == 1)) {
-			if (matchCommandName(commandWords[0])) {
-				command = new ResetCommand();
-			}
-		}else throw new CommandParseException (incorrectNumArgsMsg);
+
+		if (matchCommandName(commandWords[0])) {
+			if(commandWords.length == 1) command = new ResetCommand();
+			else throw new CommandParseException (incorrectNumArgsMsg);
+		}
 		
 		return command;
 	}

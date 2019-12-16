@@ -57,35 +57,22 @@ public class MoveCommand extends Command{
 	}
 	
 	
-	/*
-	 * 1)COMPROBAMOS EL TAMAÑO DEL ARARY PARA MOVE (TRES DATOS)
-	 * 2)COMPROBAMOS LA PRIMERA POSICON DEL ARRAY
-	 * 3)COMPROBAMOS LA PRIMERA Y SEGUNDA POSICIÓN DEL ARRAY
-	 */
+	
 	public Command parse(String[] commandWords) throws CommandParseException
 	{
 		Command command = null;
 		
-		if (commandWords.length == 3 && matchCommandName(commandWords[0])) {
-					
+		if (matchCommandName(commandWords[0])) {
+			if(commandWords.length == 3) {
 				if ((commandWords[1].equals("left")) || (commandWords[1].equals("right"))) {
-					
 					if((Integer.parseInt(commandWords[2]) == 1) ||  (Integer.parseInt(commandWords[2]) == 2)) {
-						
 						command = new MoveCommand(commandWords[1], Integer.parseInt(commandWords[2]));
-					}
-					else {
-						throw new CommandParseException("only can move 1 or 2 cells");
-					}
-				}
-			
-				else {
-					throw new CommandParseException(incorrectArgsMsg);
-				}
+						
+					}else throw new CommandParseException("only can move 1 or 2 cells");
+				}else  throw new CommandParseException("Wrong direcction");
+			}else throw new CommandParseException(incorrectNumArgsMsg);
 		}
-		else {
-			throw new CommandParseException(incorrectNumArgsMsg);
-		}
+		
 		return command;
 	}
 }

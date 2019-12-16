@@ -42,11 +42,6 @@ public class Game implements IPlayerController{
 		initGame();
 	}
 	
-	public GameObjectBoard  getBoard () {
-		
-		return this.board;
-	}
-	
 	// _/
 	public void initGame () {
 		currentCycle = 0;
@@ -198,7 +193,9 @@ public class Game implements IPlayerController{
 	}
 	//***************************************************
 	
-	public String infoToString(BoardPrinter board) {
+	
+	//CABECERA DEL JUEGO
+	public String infoToString() {
 		
 
 		return "Life: " + this.player.getLive() +
@@ -206,10 +203,7 @@ public class Game implements IPlayerController{
 				"\nPoint: " + this.points +
 				"\nRemaining aliens: " + AlienShip.getContadorAlien() + "\n" +
 				"\nSuperMissiles: " + this.superMisil +
-				"\nShockWave: " + shock() + "\n" +
-				board.toString();
-
-		
+				"\nShockWave: " + shock() + "\n";
 	}
 	
 	public String shock () {
@@ -291,6 +285,13 @@ public class Game implements IPlayerController{
 		// TODO Auto-generated method stub
 		this.superMisil--;
 	}
+
+	public GameObjectBoard setBoard() {
+		// TODO Auto-generated method stub
+		return this.board;
+	}
+
+	public String stringifier() { return board.stringifier();}
 
 
 

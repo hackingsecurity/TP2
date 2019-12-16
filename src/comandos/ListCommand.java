@@ -10,23 +10,22 @@ public class ListCommand extends Command {
 		super("List", "l", "list", "Prints the list of available ships");
 	}
 
+	/*
+	 * MOSTRAMOS SOLO LA LISTA PERO NO EJECUTAMOS UNA NUEVA PANTALLA.
+	 */
 	public boolean execute(Game game) {
 		game.list();
-		return true;
+		return false;
 	}
 	
 	
-	public Command parse(String[] commandWords) throws CommandParseException
-	{
-		
-		
+	public Command parse(String[] commandWords) throws CommandParseException{	
 		Command command = null;
 		
-		if (commandWords.length == 1) {
-			if (matchCommandName(commandWords[0])) {
-				command = new ListCommand();
-			}
-		}else throw new CommandParseException (incorrectNumArgsMsg);
+		if (matchCommandName(commandWords[0])) {
+			if (commandWords.length == 1) command = new ListCommand();
+			else throw new CommandParseException (incorrectNumArgsMsg);
+		}
 		
 		return command;
 	}

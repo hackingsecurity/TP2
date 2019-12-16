@@ -19,12 +19,10 @@ public class ExitCommand extends Command{
 	{
 		Command command = null;
 		
-		if (commandWords.length == 1) {
-			
-			if (matchCommandName(commandWords[0])) {
-				command = new ExitCommand();
-			}
-		}else throw new CommandParseException (incorrectNumArgsMsg);
+		if (matchCommandName(commandWords[0])) {
+			if (commandWords.length == 1) command = new ExitCommand();
+			else throw new CommandParseException (incorrectNumArgsMsg);
+		}
 	
 		return command;
 	}

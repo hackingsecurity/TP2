@@ -38,26 +38,18 @@ public enum PrinterTypes {
 		 */
 		
 		for (PrinterTypes printer : PrinterTypes.values())
-		helpString += printer.printerName + "," + printer.helpText + "," +
-		(printer == BOARDPRINTER ? Game.DIM_X + " x " + Game.DIM_Y : "");
+		helpString += printer.printerName + ", " + printer.helpText + ", " +
+		(printer == BOARDPRINTER ? Game.DIM_X + " x " + Game.DIM_Y : "") + "\n";
 		
 		return helpString;
 	}
 	
-	/*
+	
 	public GamePrinter getObject(Game game) {
 		
-		printerObject.setGame(game);
+		printerObject.setGamePrinter(game);
 		
 		return printerObject;
 	}
-	*/
 	
-	public String getName() {
-		return printerName;
-	}
-	
-	public String getText() {
-		return helpText;
-	}
 }

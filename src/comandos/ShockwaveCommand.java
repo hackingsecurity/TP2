@@ -28,12 +28,12 @@ public class ShockwaveCommand extends Command{
 	{
 		Command command = null;
 		
-		if (commandWords.length == 1) {
 			if (matchCommandName(commandWords[0])) {
-				command = new ShockwaveCommand();
+				
+				if (commandWords.length == 1) command = new ShockwaveCommand();
+				else throw new CommandParseException (incorrectNumArgsMsg);
 			}
-		}else throw new CommandParseException (incorrectNumArgsMsg);
-		
+	
 		return command;
 	}
 	

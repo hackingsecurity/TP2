@@ -1,8 +1,7 @@
 package Logic;
 import object.AlienShip;
 import object.GameObject;
-import object.Ovni;
-import object.Shockwave;
+
 
 /*
  * -GESTIONA A LISTA DE ELEMENTOS GAMEOBJECTS.
@@ -16,6 +15,7 @@ public class GameObjectBoard {
 	
 	private GameObject[] objects;
 	private int currentObjects;
+	
 	public GameObjectBoard (int width, int height) {
 		
 		this.currentObjects = 0;
@@ -89,6 +89,7 @@ public class GameObjectBoard {
 	}
 	
 	private void remove (GameObject object) {
+
 		int x = object.getPosX();
 		int y = object.getPosY();
 		int index = getIndex(x,y);
@@ -265,6 +266,15 @@ public class GameObjectBoard {
 		if(existOnBoard(posX + 1 , posY + 1)) {
 			objects[getIndex(posX+1,posY + 1)].hit(damage);
 		}
+	}
+
+	public String stringifier() {
+		String stringfier ="";
+		
+		for (int i = 0; i < this.currentObjects; i++) {
+			stringfier += this.objects[i].stringifed();
+		}	
+		return stringfier;
 	}
 
 	
