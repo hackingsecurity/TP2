@@ -1,8 +1,8 @@
-package comandos;
+package commands;
 
-import Exeptions.CommandExecuteException;
-import Exeptions.CommandParseException;
-import Logic.Game;
+import exceptions.CommandExecuteException;
+import exceptions.CommandParseException;
+import logic.Game;
 
 public class StringifyCommand extends Command{
 	

@@ -1,13 +1,16 @@
-package Logic;
-import Exeptions.*;
+package controller;
 import board.BoardPrinter;
-import comandos.Command;
-import comandos.CommandGenerator;
+import logic.Game;
+import logic.Level;
+import utils.CommandGenerator;
+
 import java.util.Random;
 import java.util.Scanner;
 import board.GamePrinter;
 import board.PrinterTypes;
 import board.Stringifier;
+import commands.Command;
+import exceptions.*;
 
 
 public class Controller {
@@ -48,8 +51,8 @@ public class Controller {
 		
 		
 		//PINTAMOS EL TABLERO EN EL ESTADO ACTUAL
-		//draw();
-		drawSerializable();
+		draw();
+		//drawSerializable();
 		System.out.println(printer);
 		
 		
@@ -75,8 +78,8 @@ public class Controller {
 					
 					if (command.execute(game)) {
 						
-							//draw();
-							drawSerializable();
+							draw();
+							//drawSerializable();
 							System.out.println(printer);
 							
 					}

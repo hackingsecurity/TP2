@@ -1,7 +1,7 @@
-package comandos;
+package commands;
 
-import Exeptions.*;
-import Logic.Game;
+import exceptions.*;
+import logic.Game;
 
 /*
  * 

@@ -1,13 +1,28 @@
 
 
+He divido la practica en varios paquetes para guardar
+las distintas clases.
 
-
-
-
-
-
-
-
-
-
-10) TERMINADAS LAS EXCEPCIONES DE LOS COMANDOS
+boar 
+	-para guarda todo lo referente a la visualización del tablero
+	
+commands
+	-todos los comandos
+	
+controoler
+	-controlador del juego
+	
+exceptiones
+	-todas la exepciones
+	
+logic
+	-la logica del juego
+	
+main
+	-Recibe los parametros de entrada así como de iniciar el juego
+	
+-object
+	-todos los objectos del juego
+	
+-utils
+	-clases con todos sus métodos estaticos y que son de utilidad

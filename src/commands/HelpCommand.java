@@ -1,8 +1,8 @@
 //PAQUETE QUE LO CONTIENE
-package comandos;
-import Exeptions.CommandParseException;
-//PAQUETE QUE NECESITA PARA OPERAR
-import Logic.Game;
+package commands;
+import exceptions.CommandParseException;
+import logic.Game;
+import utils.CommandGenerator;
 
 
 public class HelpCommand extends Command{

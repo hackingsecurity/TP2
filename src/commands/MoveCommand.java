@@ -1,8 +1,8 @@
-package comandos;
+package commands;
 
-import Exeptions.CommandParseException;
-import Exeptions.CommandExecuteException;
-import Logic.Game;
+import exceptions.CommandExecuteException;
+import exceptions.CommandParseException;
+import logic.Game;
 
 //import Logic.Game;
 

@@ -1,9 +1,9 @@
-package comandos;
+package commands;
 
-import Exeptions.CommandExecuteException;
-import Exeptions.CommandParseException;
-import Logic.Game;
 import board.PrinterTypes;
+import exceptions.CommandExecuteException;
+import exceptions.CommandParseException;
+import logic.Game;
 
 public class ListPrintersCommand extends Command {
 	

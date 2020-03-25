@@ -1,6 +1,7 @@
-package comandos;
+package utils;
 
-import Exeptions.CommandParseException;
+import commands.*;
+import exceptions.CommandParseException;
 
 public class CommandGenerator {
 	

@@ -1,5 +1,7 @@
-package Logic;
+package main;
 import java.util.Scanner;
+import controller.Controller;
+import logic.*;
 import java.util.Random;
 
 

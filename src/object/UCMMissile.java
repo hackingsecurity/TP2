@@ -1,7 +1,7 @@
 //PAQUETE QUE LO CONTIENE
 package object;
 
-import Logic.Game;
+import logic.Game;
 
 public class UCMMissile extends Weapon{
 	

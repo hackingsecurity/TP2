@@ -1,7 +1,7 @@
-package comandos;
+package commands;
 
-import Exeptions.CommandParseException;
-import Logic.Game;
+import exceptions.CommandParseException;
+import logic.Game;
 
 public class UpdateCommand extends Command{
 	public UpdateCommand() {

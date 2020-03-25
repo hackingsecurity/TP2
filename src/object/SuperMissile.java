@@ -1,6 +1,6 @@
 package object;
 
-import Logic.Game;
+import logic.Game;
 
 public class SuperMissile extends Weapon {
 	public SuperMissile(Game game, int posX, int posY, int live) {

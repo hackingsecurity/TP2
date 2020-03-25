@@ -1,6 +1,6 @@
-package comandos;
-import Exeptions.*;
-import Logic.Game;
+package commands;
+import exceptions.*;
+import logic.Game;
 
 public class ResetCommand extends Command {
 	

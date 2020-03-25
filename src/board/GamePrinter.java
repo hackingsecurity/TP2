@@ -1,6 +1,6 @@
 package board;
-import Logic.Game;
-import Logic.GameObjectBoard;
+import logic.Game;
+import logic.GameObjectBoard;
 
 
 public abstract class GamePrinter  {

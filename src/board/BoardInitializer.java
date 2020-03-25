@@ -1,8 +1,8 @@
 package board;
 
-import Logic.Game;
-import Logic.GameObjectBoard;
-import Logic.Level;
+import logic.Game;
+import logic.GameObjectBoard;
+import logic.Level;
 import object.DestroyerAlien;
 import object.Ovni;
 import object.RegularAlien;

@@ -1,4 +1,4 @@
-package Exeptions;
+package exceptions;
 
 public class CommandParseException extends Exception{
 

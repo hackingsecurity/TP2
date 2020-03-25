@@ -1,7 +1,7 @@
 package object;
 
-import Logic.Game;
 import interfaces.IExecuteRandomActions;
+import logic.Game;
 
 public class Ovni  extends EnemyShip implements IExecuteRandomActions {
 	

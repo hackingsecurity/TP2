@@ -1,6 +1,6 @@
 package interfaces;
 
-import Logic.Game;
+import logic.Game;
 
 /*
  * IExecuteRandomActions donde se encapsulan como métodos estáticos

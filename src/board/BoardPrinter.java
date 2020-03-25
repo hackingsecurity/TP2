@@ -1,6 +1,7 @@
 package board;
 
-import Logic.Game;
+import logic.Game;
+import utils.MyStringUtils;
 
 public class BoardPrinter extends GamePrinter {	
 	

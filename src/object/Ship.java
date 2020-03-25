@@ -1,6 +1,6 @@
 //PAQUETE QUE LO CONTIENE
 package object;
-import Logic.Game;
+import logic.Game;
 
 public abstract class Ship extends GameObject{
 	
@@ -9,9 +9,6 @@ public abstract class Ship extends GameObject{
 		super(game, posX, posY, live, 1);
 	}
 
-	public Ship() {
-		// TODO Auto-generated constructor stub
-	}
 	
 	
 }

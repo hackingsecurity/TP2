@@ -1,5 +1,5 @@
 package board;
-import Logic.Game;
+import logic.Game;
 
 
 public enum PrinterTypes {

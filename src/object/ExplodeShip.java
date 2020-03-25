@@ -1,5 +1,5 @@
 package object;
-import Logic.Game;
+import logic.Game;
 
 
 public class ExplodeShip extends AlienShip {

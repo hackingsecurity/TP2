@@ -1,20 +1,41 @@
 package object;
-import Logic.Game;
 import interfaces.IAttack;
+import logic.Game;
 
+
+//-----------------VARIABLES----------------
+//-----------------CONTRUCTOR---------------
+//--------------GETTER AND SETTER-----------
+//---------------OWNER METHODS--------------
+//--------------ABSTRACT METHODS------------
+
+
+
+/**
+ * 
+ * 
+ * 
+ *
+ */
 
 public abstract class GameObject implements IAttack {
 	
+	/*-----------------VARIABLES----------------
+				ALL object need to use this
+	*/
 	protected int posX, posY;
 	protected int live;
 	protected Game game;
+	//Remember Ovni don´t have damage
 	protected int damage ;
+	
+	
 	protected int id;
 	protected boolean lanzado;
 	
-
-
-	public GameObject( Game game, int posX , int posY, int live,int damage) {
+	//-----------------CONTRUCTOR---------------
+	
+	public GameObject( Game game, int posX , int posY, int live, int damage) {
 		this.posX = posX;
 		this.posY = posY;
 		this.game = game;
@@ -23,13 +44,13 @@ public abstract class GameObject implements IAttack {
 
 	}
 	
-	public GameObject() {
-		
-	}
+	//ESTO NO ESTA ORIENTADO A OBJECTOS
+	
 	
 	//PEDIR COORDENADAS DE UN OBJETO
 	public int getPosX() { return this.posX;}
 	public int getPosY() { return this.posY;}
+	
 	public int getDamage() {return this.damage;}
 	public boolean getLanzado() {return this.lanzado;}
 	public int getId() {return this.id;}
@@ -55,14 +76,12 @@ public abstract class GameObject implements IAttack {
 		return !game.isOnBoard(this.posX, this.posY);
 	}
 	
-	//METODOS 
+	//--------------ABSTRACT METHODS------------
+	
 	public abstract void computerAction();
 	public abstract void onDelete();
-	
 	public abstract void move();
-	
 	public abstract String toString();
-
 	public String stringifed() {
 		return this.posX + "," + this.posY;
 	}

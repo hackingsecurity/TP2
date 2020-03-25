@@ -1,7 +1,7 @@
 //PAQUETE QUE LO CONTIENE
 package object;
 
-import Logic.Game;
+import logic.Game;
 
 public abstract class Weapon extends GameObject{
 
@@ -10,10 +10,6 @@ public abstract class Weapon extends GameObject{
 	
 	}
 
-	public Weapon() {
-		super();
-		
-	}
 	public void move() {
 		
 	}

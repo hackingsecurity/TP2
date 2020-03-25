@@ -1,8 +1,8 @@
 //PAQUETE QUE LO CONTIENE
 package object;
 
-import Logic.Game;
 import interfaces.IExecuteRandomActions;
+import logic.Game;
 
 public class RegularAlien extends AlienShip implements IExecuteRandomActions{
 

@@ -1,10 +1,8 @@
 //PAQUETE QUE LO CONTIENE
-package comandos;
-import Exeptions.CommandExecuteException;
-import Exeptions.CommandParseException;
-
-//PAQUETE QUE NECESITA PARA OPERAR
-import Logic.Game;
+package commands;
+import exceptions.CommandExecuteException;
+import exceptions.CommandParseException;
+import logic.Game;
 
 
 

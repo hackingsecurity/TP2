@@ -1,4 +1,4 @@
-package Logic;
+package logic;
 import board.BoardInitializer;
 import board.BoardPrinter;
 import interfaces.IPlayerController;

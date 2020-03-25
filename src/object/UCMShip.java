@@ -1,6 +1,6 @@
 //PAQUETE QUE LO CONTIENE
 package object;
-import Logic.Game;
+import logic.Game;
 
 public class UCMShip extends Ship{
 
