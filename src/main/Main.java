@@ -7,6 +7,8 @@ import java.util.Random;
 
 public class Main {
 
+	//esto es nuevo
+	
 	public static void main(String[] args) {
 		
 		//Llamamos al método estático de Level ->Default EASY
