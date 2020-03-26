@@ -34,7 +34,7 @@ public class UCMShip extends Ship{
 		 * -Si nuestro parametro es positivo
 		 */
 		if(numCells > 0) {
-			if(this.posY + numCells < Game.DIM_Y) {
+			if(this.posY + numCells < Game.DIM_X) {
 				move = true;
 			}
 		}

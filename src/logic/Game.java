@@ -17,8 +17,8 @@ import java.util.Random;
 public class Game implements IPlayerController{
 	
 	
-	public final static int DIM_X = 8;
-	public final static int DIM_Y = 9;
+	public final static int DIM_X = 9;
+	public final static int DIM_Y = 8;
 	private int currentCycle;
 	private Random rand;
 	private Level level ;
@@ -46,7 +46,7 @@ public class Game implements IPlayerController{
 	public void initGame () {
 		currentCycle = 0;
 		board = initializer.initialize(this, level );
-		player = new UCMShip(this,DIM_X - 1, DIM_Y/2);
+		player = new UCMShip(this,DIM_Y -1 , DIM_X/2);
 		this.doExit = false;
 		board.add(player);
 	}
@@ -181,7 +181,10 @@ public class Game implements IPlayerController{
 	public void enableShockWave() {
 		board.add(new Shockwave(this,0,10,1));
 	}
+	
+	//por que void
 	public void enableMissile() {
+		
 		board.add(new UCMMissile(this,player.getPosX(),player.getPosY(),1));
 		player.setLanzado(true);
 	}
@@ -270,6 +273,7 @@ public class Game implements IPlayerController{
 	public void buyMisil() {
 		// TODO Auto-generated method stub
 		this.superMisil++;
+		this.points -= 20;
 	}
 
 

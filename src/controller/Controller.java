@@ -19,7 +19,7 @@ public class Controller {
 	private GamePrinter printer;
 	private Level level;
 	
-	private final String PROMPT = "\ncomannd > :";
+	private final String PROMPT = "\ncommand > :";
 	private Scanner scan;
 
 	
@@ -29,30 +29,15 @@ public class Controller {
 		this.scan = scanner;
 		
 	}
-	
-	private void drawSerializable() {
-		
-		printer = new Stringifier();
-		printer.setGamePrinter(game);
-	}
-	
 
-	private void draw() {
-	
-		
-		printer = new BoardPrinter();
-		//INICIALIZAMOS EL GAME EN GAMEPRINTER
-		printer.setGamePrinter(game);
-		
-		
-	}
 	
 	public void run (){
 		
 		
 		//PINTAMOS EL TABLERO EN EL ESTADO ACTUAL
-		draw();
+		
 		//drawSerializable();
+		printer = PrinterTypes.BOARDPRINTER.getObject(this.game);
 		System.out.println(printer);
 		
 		
@@ -78,13 +63,15 @@ public class Controller {
 					
 					if (command.execute(game)) {
 						
-							draw();
+						
 							//drawSerializable();
-							System.out.println(printer);
+						printer = PrinterTypes.BOARDPRINTER.getObject(this.game);
+						System.out.println(printer);
+						
 							
 					}
 			
-				}else System.err.println("Unkown Command");
+				}else System.err.println("Unknown Command");
 				
 				
 			}catch (CommandParseException | CommandExecuteException ex) {

@@ -19,7 +19,7 @@ public class DestroyerAlien extends AlienShip implements IExecuteRandomActions {
 		// TODO Auto-generated method stub
 		super.computerAction();	
 		
-		//la logica que nec
+	
 		if(IExecuteRandomActions.canGenerateRandomBomb(game)) {
 			if(this.lanzado == false) {
 				game.activarBomba(this.posX, this.posY, this.id);

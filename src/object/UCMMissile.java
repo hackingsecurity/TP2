@@ -28,6 +28,9 @@ public class UCMMissile extends Weapon{
 	public boolean performAttack(GameObject other) {
 		boolean attack = false;
 		
+		//if(other.receiveMissileAttack(this.damage))
+
+			
 		if((posX - 1 == other.getPosX() && posY == other.getPosY()) ) {
 			attack = true;
 			this.live -= 1;

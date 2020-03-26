@@ -6,7 +6,7 @@ import logic.Game;
 public class BuyCommand extends Command{
 
 	public BuyCommand() {
-		super("buy", "b", "buy", "Buy supermisil");
+		super("buy", "b", "buy Super Missile", "Buy supermisil for 20 point");
 	}
 
 	@Override

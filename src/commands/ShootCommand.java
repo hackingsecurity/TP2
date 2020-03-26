@@ -12,46 +12,58 @@ import logic.Game;
 public class ShootCommand extends Command{
 	
 	
-	String tipo;
+	
+	private boolean supermissile;
+	
 	
 	
 	public ShootCommand() {
-		super("shoot", "s", "shoot", "UCM-Ship releases a shock wave");
+		super("shoot", "s", "shoot", "UCM-Ship releases a misil or supermisil");
+	}
+	public ShootCommand(Boolean sm) {
+		super("shoot", "s", "shoot", "UCM-Ship releases a missil or supermissile");
+		this.supermissile = sm;
 	}
 	
 	
-	public ShootCommand(String tipo) {
-		
-		super("shoot", "s", "shoot", "UCM-Ship releases a shock wave");
-		this.tipo = tipo;
-	}
 
 	public boolean execute(Game game) throws CommandExecuteException {
 		
 		boolean ex = false;
 		
-		if(game.shootMissile()){
+		try {
 			
-			if(this.tipo.equals("m")) 
-			{
-					game.enableMissile();
-					game.update();
 			
-			}
-			else if(game.getSuperMisil() > 0) {
-					game.enableSuperMissile();
-					game.update();
-					
-			}
-			else {
-				throw new CommandExecuteException("You don't have superMissile");
+			if(!game.shootMissile()){
 				
-			}
-			ex = true;
+				if(this.supermissile == false) 
+				{
+						game.enableMissile();
+						game.update();
+						ex = true;
+				
+				}
+				else if(this.supermissile == true) { 
+					if(game.getSuperMisil() > 0) {
+						game.enableSuperMissile();
+						game.gastarSuperMissile();
+						game.update();
+					}
+					else {
+						throw new SuperMissileException();
+					}
+				ex = true;
+				
+			}else throw new ShootException ();
 			
-		}else throw new CommandExecuteException ("ya hay misil en partida");
-	
-		return ex;	
+		
+			}
+		}
+		catch(ShootException | SuperMissileException e) {
+			throw new CommandExecuteException(e.getMessage());
+		}
+		
+		return ex;
 	}
 
 	
@@ -59,10 +71,18 @@ public class ShootCommand extends Command{
 		
 		Command command = null;
 
+		
+		
 		if (matchCommandName(commandWords[0])) {
-			if(commandWords.length == 2 ) {
-				if ((commandWords[1].equals("m")) || (commandWords[1].equals("s"))) {
-					command = new ShootCommand(commandWords[1]);
+			
+			if(commandWords.length == 1) {
+				command = new ShootCommand(false);
+				
+			}
+		
+			else if(commandWords.length == 2 ) {
+				if ( (commandWords[1].equals("s")||(commandWords[1].equals("supermisil")))) {
+					command = new ShootCommand(true);
 				}
 				else throw new CommandParseException ("Incorrect type of misil");
 				
@@ -71,5 +91,7 @@ public class ShootCommand extends Command{
 		}
 			return command;
 	}
+	
+
 		
 }

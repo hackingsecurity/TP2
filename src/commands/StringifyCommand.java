@@ -1,5 +1,6 @@
 package commands;
 
+import board.PrinterTypes;
 import exceptions.CommandExecuteException;
 import exceptions.CommandParseException;
 import logic.Game;
@@ -13,8 +14,10 @@ public class StringifyCommand extends Command{
 	}
 
 	public boolean execute(Game game) throws CommandExecuteException {
-	
-		return true;
+		
+		System.out.println(PrinterTypes.BOARDPRINTER.getObject(game));
+		
+		return false;
 	}
 	
 	public Command parse(String[] commandWords) throws CommandParseException {
