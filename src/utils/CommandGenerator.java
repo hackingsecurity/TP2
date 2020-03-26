@@ -5,7 +5,7 @@ import exceptions.CommandParseException;
 
 public class CommandGenerator {
 	
-	
+	//INICIALIZAMOS TODOS NUESTROS COMANDOS
 	private static Command[] availableCommands = {
 			new ListCommand(),
 			new HelpCommand(),
@@ -38,9 +38,9 @@ public class CommandGenerator {
 		//Polimofismo Commmand --> cualquier clase hija.
 		Command command = null;
 		
-		for(Command availableCommands : availableCommands) {
+		for(Command c : availableCommands) {
 			
-			command = availableCommands.parse(commandWords);
+			command = c.parse(commandWords);
 			//Si hemos encontrado un objeto
 			if((command != null)) 
 				return command;
@@ -61,8 +61,6 @@ public class CommandGenerator {
 			helpText  += availableCommands.helpText();
 		
 		}	
-		
-		return helpText;
-					
+		return helpText;			
 	}
 }
