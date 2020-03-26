@@ -39,8 +39,9 @@ public class SuperMissile extends Weapon {
 		posX -= 1; 
 	}
 	
-	public String stringifie() {
-		return "X" + ";" + super.stringifed();   
+	public String stringifed() {
+		if(this.lanzado) return "Supermissile: " + "X" + ";" + this.posX +","+ this.posY + "\n";
+		else return "";
 	}
 	
 	@Override

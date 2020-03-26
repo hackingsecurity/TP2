@@ -64,8 +64,8 @@ public class Bomb extends Weapon{
 		posX += 1;
 	}
 	
-	public String stringifie() {
-		return "B" + ";" + super.stringifed();  
+	public String stringifed() {
+		return "Bomb: "+  "B" + ";" + this.posX +"," +this.posY+"\n";  
 	}
 	
 	@Override

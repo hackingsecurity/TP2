@@ -37,7 +37,7 @@ public class Controller {
 		//PINTAMOS EL TABLERO EN EL ESTADO ACTUAL
 		
 		//drawSerializable();
-		printer = PrinterTypes.BOARDPRINTER.getObject(this.game);
+		printer = new BoardPrinter(game);
 		System.out.println(printer);
 		
 		
@@ -65,7 +65,7 @@ public class Controller {
 						
 						
 							//drawSerializable();
-						printer = PrinterTypes.BOARDPRINTER.getObject(this.game);
+						printer = new BoardPrinter(game);
 						System.out.println(printer);
 						
 							

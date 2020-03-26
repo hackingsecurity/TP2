@@ -82,8 +82,9 @@ public class Ovni  extends EnemyShip implements IExecuteRandomActions {
 		
 	}
 	
-	public String stringifie() {
-		return "O" + super.stringifed() + ";" + this.live;
+	public String stringifed() {
+		if(this.lanzado) return "Ovni: "+ "O" + this.posX+","+this.posY + ";" + this.live + "\n";
+		else return "";
 	}
 	
 	@Override
@@ -95,4 +96,6 @@ public class Ovni  extends EnemyShip implements IExecuteRandomActions {
 		
 		return null;
 	}
+
+	
 }

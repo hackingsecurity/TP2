@@ -36,9 +36,9 @@ public class DestroyerAlien extends AlienShip implements IExecuteRandomActions {
 		AlienShip.setContador();
 	}
 
-	public String stringifie() {
-		return "D" + ";" + super.stringifed() + ";" 
-				+ this.live + ";" + AlienShip.getSentido() ;   
+	public String stringifed() {
+		return "Destroyer: "+ "D" + ";" + this.posX+","+this.posY + ";" 
+				+ this.live + ";" + game.stringSent(AlienShip.getSentido()) + "\n";   
 	}
 
 	

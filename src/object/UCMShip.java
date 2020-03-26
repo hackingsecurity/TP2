@@ -75,11 +75,11 @@ public class UCMShip extends Ship{
 		
 	}
 
-	public String stringifie() {
-		return "R" + ";" + super.stringifed() + ";" 
+	public String stringifed() {
+		return "UCMShip: "+"P" + ";" + this.posX+","+this.posY + ";" 
 				+ this.live + ";" + this.game.getPoints() +
-				";" + this.game.shockWave() + ";" +
-				this.game.getSuperMisil();
+				";" + game.getSWSt() + ";" +
+				this.game.getSuperMisil()+"\n";
 	}
 
 	@Override

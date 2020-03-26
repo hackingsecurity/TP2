@@ -12,9 +12,9 @@ public class BoardPrinter extends GamePrinter {
 	
 	
 	
-	public BoardPrinter (){
+	public BoardPrinter (Game game){
 		
-		super("boardPrinter");
+		super(game);
 		this.numRows = Game.DIM_Y;
 		this.numCols = Game.DIM_X;
 		
@@ -78,7 +78,7 @@ public class BoardPrinter extends GamePrinter {
 	
 	
 	
-	public GamePrinter parseBoard(String typeBoard){
+	/*public GamePrinter parseBoard(String typeBoard){
 			
 		GamePrinter printer = null;
 		
@@ -88,6 +88,6 @@ public class BoardPrinter extends GamePrinter {
 	
 		return printer;
 	}
-
+*/
 	
 }

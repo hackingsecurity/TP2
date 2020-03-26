@@ -272,7 +272,7 @@ public class GameObjectBoard {
 		String stringfier ="";
 		
 		for (int i = 0; i < this.currentObjects; i++) {
-			stringfier += this.objects[i].stringifed();
+			stringfier += this.objects[i].stringifed() ; 
 		}	
 		return stringfier;
 	}

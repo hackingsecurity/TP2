@@ -1,9 +1,11 @@
 package board;
 
+import logic.Game;
+
 public class Stringifier extends GamePrinter {
 	
-	public Stringifier() {
-		super("stringifier");
+	public Stringifier(Game game) {
+		super(game);
 		
 	}
 
@@ -25,15 +27,15 @@ public class Stringifier extends GamePrinter {
 	}
 	
 	
-	public GamePrinter parseBoard(String typeBoard){
+	/*public GamePrinter parseBoard(String typeBoard){
 		
 		GamePrinter printer = null;
 		
-		if (typeBoard.equalsIgnoreCase("stringifie")) {
+		if (typeBoard.equalsIgnoreCase("stringifier")) {
 			printer = new Stringifier();
 		}
 	
 		return printer;
 	}
-
+*/
 }

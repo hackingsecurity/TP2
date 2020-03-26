@@ -82,9 +82,9 @@ public abstract class GameObject implements IAttack {
 	public abstract void onDelete();
 	public abstract void move();
 	public abstract String toString();
-	public String stringifed() {
-		return this.posX + "," + this.posY;
-	}
+	public abstract String stringifed();
+		
+	
 	
 	public void hit(int damage2) {
 		// TODO Auto-generated method stub

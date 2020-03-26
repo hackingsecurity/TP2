@@ -6,23 +6,24 @@ public enum PrinterTypes {
 	
 	BOARDPRINTER(
 		"boardprinter",
-		"prints the game formatted as a board of dimension: ",
-		new BoardPrinter()),
+		"prints the game formatted as a board of dimension: "
+		),
+		
 	
 	STRINGIFIER(
 		"stringifier",
-		"prints the game as plain text",
-		new Stringifier());
+		"prints the game as plain text");
+		
 	
 	
 	private String printerName;
 	private String helpText;
-	private GamePrinter printerObject;
 	
-	private PrinterTypes(String name, String text, GamePrinter printer) {
+	
+	private PrinterTypes(String name, String text) {
 		printerName = name;
 		helpText = text;
-		printerObject = printer;
+		
 	}
 
 	
@@ -45,11 +46,11 @@ public enum PrinterTypes {
 	}
 	
 	
-	public GamePrinter getObject(Game game) {
+	/*public GamePrinter getObject(Game game) {
 		
 		printerObject.setGamePrinter(game);
 		
 		return printerObject;
 	}
-	
+	*/
 }

@@ -4,7 +4,7 @@ package object;
 import interfaces.IExecuteRandomActions;
 import logic.Game;
 
-public class RegularAlien extends AlienShip implements IExecuteRandomActions{
+public  class RegularAlien extends AlienShip implements IExecuteRandomActions{
 
 	public RegularAlien(Game game, int posX, int posY) {
 		super(game, posX, posY, 2);
@@ -32,9 +32,9 @@ public class RegularAlien extends AlienShip implements IExecuteRandomActions{
 	}
 
 
-	public String stringifie() {
-		return "R" + ";" + super.stringifed() + ";" 
-				+ this.live + ";" + AlienShip.getSentido() ;   
+	public String stringifed() {
+		return "Regular:"+" " +"R" + ";" + this.posX +","+ this.posY + ";" 
+				+ this.live + ";" + game.stringSent(AlienShip.getSentido())+ "\n" ;   
 	}
 	
 	@Override

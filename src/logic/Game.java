@@ -297,6 +297,18 @@ public class Game implements IPlayerController{
 
 	public String stringifier() { return board.stringifier();}
 
+	public String getSWSt() {
+		if(shockWave()) return "hasShock";
+		// TODO Auto-generated method stub
+		return "";
+	}
+
+	public String stringSent(int sentido) {
+		if(sentido == -1) return "<-";
+		else return "->";
+		
+	}
+
 
 
 

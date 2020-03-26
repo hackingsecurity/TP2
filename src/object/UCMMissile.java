@@ -44,8 +44,9 @@ public class UCMMissile extends Weapon{
 		posX -= 1; 
 	}
 	
-	public String stringifie() {
-		return "M" + ";" + super.stringifed();   
+	public String stringifed() {
+		if(this.lanzado)return "Missile: "+"M" + ";" + this.posX+","+this.posY + "\n";  
+		else return "";
 	}
 	
 	@Override

@@ -34,9 +34,9 @@ public class ExplodeShip extends AlienShip {
 		}
 	
 	
-	public String stringifie() {
-		return "E" + ";" + super.stringifed() + ";" 
-				+ this.live + ";" + AlienShip.getSentido() ;   
+	public String stringifed() {
+		return "Explosive: "+"E" + ";" + this.posX+","+this.posY + ";" 
+				+ this.live + ";" + game.stringSent(AlienShip.getSentido()) + "\n";   
 	}
 	
 	
