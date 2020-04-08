@@ -11,6 +11,8 @@ import object.UCMShip;
 import utils.CommandGenerator;
 import utils.Level;
 
+import java.io.BufferedReader;
+import java.io.IOException;
 import java.util.Random;
 
 import board.PrinterTypes;
@@ -336,6 +338,28 @@ public class Game implements IPlayerController{
 		if(sentido == -1) return "<-";
 		else return "->";
 		
+	}
+
+	public  void load(BufferedReader br) throws IOException {
+		String linea = br.readLine().trim();
+		linea = linea.split(",")[1]; // número de ciclos
+		this.currentCycle = Integer.parseInt(linea);
+		linea = br.readLine().trim();
+		linea = linea.split(",")[1]; // level 
+		if(linea.equalsIgnoreCase("easy")) this.level = Level.EASY;
+		else if(linea.equalsIgnoreCase("hard")) this.level = Level.HARD;
+		else if(linea.equalsIgnoreCase("insane")) this.level = Level.INSANE;
+		//por acabar rellenar los bjetos y habria que añadir un reset que ponga
+	 // el estado de juego vacio
+		loading = false;
+		linea = br.readLine().trim();
+		while( linea != null && !linea.isEmpty() ) {
+		GameObject gameObject = GameObjectGenerator.parse(linea, this, verifier);
+		if (gameObject == null)
+		throw new FileContentsException("invalid file, unknown line prefix");
+		board.add(gameObject);
+		linea = br.readLine().trim();
+		}
 	}
 	
 }

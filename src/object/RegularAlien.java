@@ -23,6 +23,10 @@ public  class RegularAlien extends AlienShip{
 
 	//--------------ABSTRACT METHODS------------
 	
+	public RegularAlien() {
+		// TODO Auto-generated constructor stub
+	}
+
 	public void computerAction() {
 		// TODO Auto-generated method stub
 		super.computerAction();	

@@ -32,6 +32,11 @@ public class UCMShip extends Ship{
 	
 	//--------------GETTER AND SETTER-----------
 	
+	public UCMShip() {
+		// TODO Auto-generated constructor stub
+	}
+
+
 	public boolean getMissile() { return this.missile; }
 	public void setMissile(boolean missile) {this.missile = missile;}
 	public int getNumSuperMissiles() {return numSuperMissiles;}

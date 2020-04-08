@@ -18,6 +18,10 @@ public class ExplodeShip extends AlienShip {
 	
 	//--------------METHODS IMPLEMENTS IAttack-----------
 	
+	public ExplodeShip() {
+		// TODO Auto-generated constructor stub
+	}
+
 	public boolean receiveMissileAttack(int damage) {
 		boolean hit = false;
 		if(this.isAlive()) {

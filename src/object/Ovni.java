@@ -31,6 +31,10 @@ public class Ovni  extends EnemyShip  {
 	
 	//--------------METHODS IMPLEMENTS IAttack-----------
 	
+	public Ovni() {
+		// TODO Auto-generated constructor stub
+	}
+
 	@Override
 	public boolean receiveMissileAttack(int damage) {
 		boolean hit = false;
@@ -114,7 +118,7 @@ public class Ovni  extends EnemyShip  {
 
 	@Override
 	public String stringifed() {
-		return "Ovni: "+ "O" + this.posX+","+this.posY + ";" + this.live + "\n";
+		return "Ovni: "+ "O;" + this.posX+","+this.posY + ";" + this.live + "\n";
 
 	}
 	

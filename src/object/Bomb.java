@@ -19,6 +19,10 @@ public class Bomb extends Weapon{
 	
 	//--------------METHODS IMPLEMENTS IAttack-----------
 	
+	public Bomb() {
+		// TODO Auto-generated constructor stub
+	}
+
 	public boolean performAttack(GameObject other) {
 
 		boolean performAttack = false;

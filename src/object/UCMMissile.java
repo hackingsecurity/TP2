@@ -22,6 +22,10 @@ public class UCMMissile extends Weapon{
 
 	//--------------METHODS IMPLEMENTS IAttack-----------
 		
+	public UCMMissile() {
+		// TODO Auto-generated constructor stub
+	}
+
 	/**
 	 * Dado un objecto vemos si podemos hacerle daño o no.
 	 * 

@@ -17,7 +17,7 @@ public class Stringifier extends GamePrinter {
 	@Override
 	public String toString() {
 		
-		String string = "Space Invaders v2.0 \n";
+		String string = "--- Space Invaders v2.0 ---\n";
 		string += "\n";
 		string += "G;" + game.getCurrentCycle() + "\n";
 		string += "L;" + game.getLevel().name() + "\n";

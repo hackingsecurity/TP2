@@ -20,6 +20,10 @@ public class ShockWave extends Weapon{
 	//--------------METHODS IMPLEMENTS IAttack-----------
 	
 
+	public ShockWave() {
+		// TODO Auto-generated constructor stub
+	}
+
 	public boolean performAttack(GameObject other) {
 		
 		boolean hit = false;

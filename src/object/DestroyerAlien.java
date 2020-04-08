@@ -22,6 +22,10 @@ public class DestroyerAlien extends AlienShip{
 		this.bomb = false;
 	}
 
+	public DestroyerAlien() {
+		// TODO Auto-generated constructor stub
+	}
+
 	//--------------GETTER AND SETTER-----------
 	public boolean getBomb() { return this.bomb; }
 	public void setBomb(boolean bomb) {this.bomb = bomb;}

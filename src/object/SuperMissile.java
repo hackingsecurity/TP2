@@ -18,6 +18,11 @@ public class SuperMissile extends Weapon {
 
 	//--------------METHODS IMPLEMENTS IAttack-----------
 	
+	public SuperMissile() {
+		// TODO Auto-generated constructor stub
+		
+	}
+
 	public boolean performAttack(GameObject other) {
 		
 		boolean performAttack = false;
