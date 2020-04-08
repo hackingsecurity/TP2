@@ -17,13 +17,17 @@ public class MoveCommand extends Command{
 		
 	}
 	
-	public MoveCommand(String direccion, int i) {
+	public MoveCommand(String direccion, int numCasillas) {
 		super("move", "m", "move<left|right><1|2>", "Moves UCM-Ship to the indicated direction");
-		this.numCasillas = i;
+		this.numCasillas = numCasillas;
 		this.direccion = direccion;
 	}
 
-	/*
+	/*public String listPrinterCommand() {
+		return PrinterTypes.printerHelp(this);
+	}
+
+	
 	 * COMPROBAMOS SI ESTAMOS EN FUERA DEL TABLERO AL MOVER
 	 * 
 	 */
@@ -32,26 +36,19 @@ public class MoveCommand extends Command{
 		boolean move = false;
 		
 		if(this.direccion.equals("left")) {
-			if(game.move(this.numCasillas * -1)) {
-				game.move(direccion, numCasillas);
+			if(game.move((this.numCasillas * -1))) {
 				move = true;
+				game.update();
 			}
-			else {
-				
-			}
-		}
-		else{
-			if(game.move(this.numCasillas )) {
-				game.move(direccion, numCasillas);
-				move = true;
-			}
-		}
-		
-		game.update();
-		if (move == false) {
 			
-			throw new CommandExecuteException("too near to the border");
 		}
+		else if (this.direccion.equals("right")){
+			if(game.move(this.numCasillas)) {
+				move = true;
+				game.update();
+			}
+		}
+		else throw new CommandExecuteException("too near to the border");  
 		
 		return move;
 	}

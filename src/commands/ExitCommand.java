@@ -10,7 +10,6 @@ public class ExitCommand extends Command{
 	}
 
 	public boolean execute(Game game) {
-		
 		game.exit();
 		return true;
 	}

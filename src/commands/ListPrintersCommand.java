@@ -14,7 +14,7 @@ public class ListPrintersCommand extends Command {
 	}
 
 	public boolean execute(Game game) throws CommandExecuteException {
-		System.out.println(PrinterTypes.printerHelp(game));
+		System.out.println(game.listPrinterCommand());
 		return false;
 	}
 	

@@ -1,6 +1,7 @@
 package board;
 
 import logic.Game;
+import object.AlienShip;
 import utils.MyStringUtils;
 
 public class BoardPrinter extends GamePrinter {	
@@ -15,8 +16,8 @@ public class BoardPrinter extends GamePrinter {
 	public BoardPrinter (Game game){
 		
 		super(game);
-		this.numRows = Game.DIM_Y;
-		this.numCols = Game.DIM_X;
+		this.numRows = Game.DIM_X;
+		this.numCols = Game.DIM_Y;
 		
 	}
 	
@@ -29,7 +30,7 @@ public class BoardPrinter extends GamePrinter {
 			for(int i = 0; i < this.numRows; i++) {
 				for(int j = 0; j < this.numCols; j++) {
 					
-					cad = game.positionToString(i, j);
+					cad = game.toString(i, j);
 					if( cad != null) {
 						boardPrinter[i][j] = cad;
 					}
@@ -73,10 +74,23 @@ public class BoardPrinter extends GamePrinter {
 				else str.append(lineEdge);	
 		}
 		
-		return game.infoToString() + str.toString();
+		return infoToString(game) + str.toString();
 		}
 	
 	
+	
+	
+	//CABECERA DEL JUEGO
+	private String infoToString(Game game) {
+		
+
+		return "Life: " + game.getUCMShip().getLive() +
+				"\nNumber of cycles: " + game.getCurrentCycle() +
+				"\nPoint: " + game.getPoints() +
+				"\nRemaining aliens: " + AlienShip.getContadorAlien() +
+				"\nSuperMissiles: " + game.getUCMShip().getNumSuperMissiles() +
+				"\nShockWave: " + game.getUCMShip().getShockWave() + "\n";
+	}
 	
 	/*public GamePrinter parseBoard(String typeBoard){
 			

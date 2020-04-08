@@ -13,10 +13,8 @@ public class HelpCommand extends Command{
 	}
 
 	public boolean execute(Game game) {
-		
-		String helpText = CommandGenerator.commandHelp(); 
-		System.out.println(helpText);
-		return true;
+		System.out.println(game.helpText());
+		return false; //No ejecutamos otra pantalla
 	}
 	
 	public Command parse(String[] commandWords) throws CommandParseException

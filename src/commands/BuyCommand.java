@@ -14,12 +14,9 @@ public class BuyCommand extends Command{
 
 		boolean buy = false;
 		
-		if(game.getPoints() >= 20) {
-			game.buyMisil();
-			buy =  true;
-		}
+		if(game.buySuperMissile()) buy =  true;
 		else throw new CommandExecuteException("No tienes puntos suficientes, no puedes comprar super misil");
-
+		
 		return buy;
 	}
 

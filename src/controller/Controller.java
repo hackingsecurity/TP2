@@ -1,8 +1,8 @@
 package controller;
 import board.BoardPrinter;
 import logic.Game;
-import logic.Level;
 import utils.CommandGenerator;
+import utils.Level;
 
 import java.util.Random;
 import java.util.Scanner;
@@ -59,6 +59,7 @@ public class Controller {
 				Command command = CommandGenerator.parseCommand(words);
 
 				
+			
 				if (command != null) {
 					
 					if (command.execute(game)) {

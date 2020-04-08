@@ -2,23 +2,67 @@ package interfaces;
 
 import object.GameObject;
 
-/*
- * Por defecto performAttack devuelve false lo que quiere decir que el objeto de juego no
-	hace daño (sólo hacen daño el misil, las bombas y el shockwave). Los destroyers no hace
-	daño, lo que hacen es lanzar bombas que son las que realmente hacen daño. Si un objeto
-	de juego puede atacar, tendrá que sobreescribir el método e implementar la lógica de su
-	ataque.
-	
-	De igual manera todos los objetos pueden recibir daño de otro objeto. Por defecto no lo
-	reciben. Pero, por ejemplo, los aliens y las bombas sí reciben daño del misil, o el UCMShip
-	y el misil sí reciben ataques de la bomba.
+/**
+ * Todos los objetos del juego tienes la posibilidad de atacar o ser atacados
+ * 
+ *
  */
-
 public interface IAttack {
 	
+	/**
+	 * Si el objeto hace daño debe implementar este método
+	 *  ¿Qúe objetos?
+	 *  	-bomba
+	 *  	-misil
+	 *  	-shockwave
+	 * @param other
+	 * @return
+	 */
 	default boolean performAttack(GameObject other) {return false;};
-	default boolean receiveMissileAttack(int damage) {return false;};
-	default boolean receiveBombAttack(int damage) {return false;};
-	default boolean receiveShockWaveAttack(int damage) {return false;};
-	default boolean receiveSuperMissileAttack(int damage) {return false;}
+	
+	
+	
+	/**
+	 * Recibe ataque de un SuperMissileAttack
+	 * 
+	 * @param damage
+	 * @return
+	 */
+	default boolean receiveSuperMissileAttack(int damage) {return false;};
+	
+	
+	/**
+	 * Recibe daño del misil
+	 * 	-Bombas
+	 * 	-Aliens (destroyer, regular y ovni)
+	 * @param damage
+	 * @return
+	 */
+	default boolean receiveMissileAttack(int damage) {return false;};	
+	
+	/**
+	 * Recibe daño del bomba
+	 * 	-UCMship
+	 * @param damage
+	 * @return
+	 */
+	default boolean receiveBombAttack(int damage) {return false;};	
+	
+	
+	/**
+	 * Recibe daño del super ataque que es shockWave y que quita un
+	 * punto de daño a todos los AlienShip
+	 * 
+	 * 	 -OJO el Ovni no recibe daño
+	 * @param damage
+	 * @return
+	 */
+	default boolean receiveShockWaveAttack(int damage) {return false;};	
+	
+	/**
+	 * Implementar
+	 * @param damage
+	 * @return
+	 */
+	default boolean receiveExplosionAttack(int damage) {return false;};
 }

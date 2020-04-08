@@ -14,11 +14,9 @@ public class ShockwaveCommand extends Command{
 		boolean  ex = false;
 		
 		if(game.shockWave()){
-			game.enableShockWave();
 			game.update();
 			ex = true;
-	
-			
+
 		}else throw new CommandExecuteException("There isn't ShockWave");
 		
 		return ex;

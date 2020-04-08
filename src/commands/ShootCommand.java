@@ -19,6 +19,7 @@ public class ShootCommand extends Command{
 	
 	public ShootCommand() {
 		super("shoot", "s", "shoot", "UCM-Ship releases a misil or supermisil");
+		this.supermissile = false;
 	}
 	public ShootCommand(Boolean sm) {
 		super("shoot", "s", "shoot", "UCM-Ship releases a missil or supermissile");
@@ -26,38 +27,31 @@ public class ShootCommand extends Command{
 	}
 	
 	
-
+	/**
+	 * Si no he disparado, disparo.
+	 */
 	public boolean execute(Game game) throws CommandExecuteException {
 		
 		boolean ex = false;
 		
 		try {
-			
-			
-			if(!game.shootMissile()){
-				
-				if(this.supermissile == false) 
-				{
-						game.enableMissile();
-						game.update();
-						ex = true;
+			if(this.supermissile) {
+				if(game.shootSuperMissile()){
+					game.enableSuperMissile();
+					game.update();
+					ex = true;
 				
 				}
-				else if(this.supermissile == true) { 
-					if(game.getSuperMisil() > 0) {
-						game.enableSuperMissile();
-						game.gastarSuperMissile();
-						game.update();
-					}
-					else {
-						throw new SuperMissileException();
-					}
+				else throw new SuperMissileException();
+			}
+			else if(!game.shootMissile()) {
+				game.enableMissile();
+				game.update();
 				ex = true;
 				
-			}else throw new ShootException ();
-			
-		
 			}
+			else throw new ShootException ();
+				
 		}
 		catch(ShootException | SuperMissileException e) {
 			throw new CommandExecuteException(e.getMessage());
@@ -79,7 +73,7 @@ public class ShootCommand extends Command{
 				command = new ShootCommand(false);
 				
 			}
-		
+			
 			else if(commandWords.length == 2 ) {
 				if ( (commandWords[1].equals("s")||(commandWords[1].equals("supermisil")))) {
 					command = new ShootCommand(true);

@@ -1,27 +1,38 @@
-package board;
+package logic;
 
-import logic.Game;
-import logic.GameObjectBoard;
-import logic.Level;
+import object.AlienShip;
 import object.DestroyerAlien;
 import object.Ovni;
 import object.RegularAlien;
+import utils.Level;
 
+
+/**
+ * Inicializa todos los objetos del juego 
+ *  
+ */
 public class BoardInitializer {
 
+	
+	//-----------------VARIABLES----------------
+	
 	private Level level ;
 	private GameObjectBoard board;
 	private Game game;
+	
+	//-----------------CONTRUCTOR---------------
 	
 	public BoardInitializer() {
 		
 	}
 	
+	//--------------GETTER AND SETTER-----------
+	
 	public GameObjectBoard initialize(Game game, Level level) {
 	this.level = level;
 	this.game = game;
 	board = new GameObjectBoard(Game.DIM_X, Game.DIM_Y);
-	
+
 	initializeOvni () ;
 	initializeRegularAliens () ;
 	initializeDestroyerAliens () ;
@@ -29,16 +40,18 @@ public class BoardInitializer {
 	}
 	
 	
-	/*
-	 * INICIALIZAMOS EL OVNI
+	//---------------OWNER METHODS--------------
+	
+	/**
+	 * Inicialiamos el el tablero con visibilidad nula
 	 */
 	private void initializeOvni () {
 		board.add(new Ovni(this.game));
 	}
 	
-	 
-	
-
+	/**
+	 * Inicializamos los regularAliens en el tablero
+	 */
 	private void initializeRegularAliens () {
 		
 		//regularAliens 
@@ -66,6 +79,10 @@ public class BoardInitializer {
 		}
 	}
 	
+	
+	/**
+	 * Inicializamos los Destroyers en el tablero
+	 */
 	private void initializeDestroyerAliens () {
 		if(this.level.equals(Level.EASY)) {
 			for(int fila = 2; fila < 3 ; fila++) {

@@ -3,269 +3,261 @@ import object.AlienShip;
 import object.GameObject;
 
 
-/*
- * -GESTIONA A LISTA DE ELEMENTOS GAMEOBJECTS.
- * 	-OVNI, MISILES, BOMBAS, SHOCKWAVE, NAVES ENEMIGAS
+/**
+ * -Gestiona nuestro array de objectos (todos mezclados)
+ * 	-Missile
+ *  -Bomb
+ *  -ShockWave
+ *  -Aliens
  * 
- * -ENCAPSULAN EL COMPORATAMIENTO DE LA LISTA DE OBJETOS DEL JUEGO
- * 	-POCO LOGICA
- * 		-SE DELEGA TODA LA FUNCIONALIDAD A LOS OBJETOS
+ * -Encapsulan el comportamiento de la lista de objectos
+ * 	-Poca lógica
+ * 		-Se delega toda la funcionalidad a los objetos
  */
 public class GameObjectBoard {
-	
+
+	//-----------------VARIABLES----------------
+
 	private GameObject[] objects;
-	private int currentObjects;
+	private int currentObjects;  //objectos actuales
+	
+	//-----------------CONTRUCTOR---------------
 	
 	public GameObjectBoard (int width, int height) {
 		
+		objects = new GameObject[width * height];
 		this.currentObjects = 0;
 		
-		//PREGUNTAR A SIMON EL TAMAÑO DEL ARRAY OBJECTS
-		objects = new GameObject[width * height];
-		
 	}
+
+	//--------------GETTER AND SETTER-----------
 	
-	//CONTADOR DE NUESTRA LISTA GAMEOBJECTS
-	private int getCurrentObjects () {
-		return this.currentObjects;
-	}
+	private int getCurrentObjects () { return this.currentObjects;}
+	private void setCurrentObjects(int currentObject) {this.currentObjects += 1;}
 	
-	//INCREMENTO EL CONTADOR DE LA LISTA DE OBJETOS
-	private void setCurrentObjects(int currentObject) {
-		this.currentObjects += 1;
-	}
+	//---------------OWNER METHODS--------------
 	
-	//AÑADIMOS UN NUEVO OBJETO A NUESTRA LISTA 
-	// E INCREMENTAMOS EL CONTADOR
+	/**
+	 * Añadimos un nuevo objecto
+	 * @param object
+	 */
 	public void add (GameObject object) {
 	  this.objects[getCurrentObjects()] = object;
 	  setCurrentObjects(this.currentObjects);
 	}
 	
-
-	//DEVUELVO UN OBJETO DADO UNAS COORDENADAS
+	/**
+	 * Devuelvo un objeto dada un posición
+	 * 
+	 *  -Hacemos una busqueda en nuestro array de objetos
+	 * 
+	 *  @param posX
+	 *  @param posY
+	 *  @return Object
+	 */
 	private GameObject getObjectInPosition ( int posX, int posY ) {
+	
+		int index = getIndex(posX, posY);
 		
-		/*
-		 *	1) Hacemos una busqueda en nuestro array de objetos
-		 *	2) Mientras no hayamos encontrado nuestro objecto
-		 *		-encontrado = falso
-		 *	3) Mientras nuestro contador no llegue a ser igual
-		 *		al contador de nuestro array seguimos buscando
-		 *	4) Para cada objeto comparamos las coordenadas paradas
-		 *
-		 */
+		if (index == -1) {
+			return null;
+		}
+		return this.objects[index];
+	}
+	
+	/**
+	 * Devuelve el indice que corresponde a las coordenadas dadas
+	 * 
+	 * @param posX
+	 * @param posY
+	 * @return devuelve un entero
+	 */
+	private int getIndex(int posX, int posY) {
 		boolean find = false;
-		GameObject obj = null;
-		
 		int cont = 0;
-		while(( cont < getCurrentObjects()) || !find) {
-			
-			if(posX == (this.objects[cont].getPosX()) &&
-				posY == this.objects[cont].getPosY()) {
 		
-					obj = this.objects[cont];
-					find = true;
-			}
-			else {
-				cont++;
+		while( cont < this.currentObjects && !find) {
+			if(this.objects[cont].isOnPosition(posX, posY)) find = true;
+			else cont++;
+		}
+		
+		if(cont == this.currentObjects) {
+			cont = -1;
+		}
+		
+		return cont ; 
+	}
+	
+	/**
+	 * Dado un objecto buscamos con sus coordenadas
+	 * el indice que correponde en el object
+	 * 
+	 * @param object
+	 */
+	private void remove (int index) {
+		
+		for(int i = index ; i < this.currentObjects ; i++){
+			if((i + 1) < this.currentObjects){
+				this.objects[i] = this.objects[i+1];				
+			}else {
+				this.objects[i] = null;
 			}
 		}	
-		return obj ;
+		currentObjects--;
 	}
 	
-	private int getIndex(int x, int y) {
-		int index = 0;
-		boolean encontrado = false;
-		while(index < this.currentObjects && !encontrado){
-			if(objects[index].getPosX()==x && objects[index].getPosY() == y ){
-				encontrado = true;
-			}
-			else {
-				index++;
-			}
-		}
-		return index;
-	}
 	
-	private void remove (GameObject object) {
-
-		int x = object.getPosX();
-		int y = object.getPosY();
-		int index = getIndex(x,y);
-		for(int i = index; i <this.currentObjects-1; i++){
-			this.objects[i] = this.objects[i+1];
-		}
-		this.objects[this.currentObjects-1]= null;
-		this.currentObjects--;
-	}
+	/**
+	 * Recorremo todos los objetos
+	 * 	-los movemos 
+	 * 	-comprobamos si nuestro objecto ataca
+	 */
 	public void update() {
-	// TODO implement
+		
+		for(int i = this.currentObjects - 1 ; i >= 0 ; i--){
+			this.objects[i].move();
+			checkAttacks(this.objects[i]);	
+		}
+		
+		if(AlienShip.getBajar()) {	
+			AlienShip.setBajarShips(false);
+		}
 		
 		removeDead();
-		for(int i = 0; i < this.currentObjects; i++){
-			this.objects[i].move();
-			
-		}
-		
-		AlienShip.setBajar(false);
 	}
 	
 	
+	
+	/**
+	 * Logica:
+	 * 	1) dado un objeto
+	 * 		-cogemos sus coordenadas y recorremos nuestro array de objectos
+	 * 
+	 * 	2) Debemos comprobar si existe un objecto que al mover
+	 * 	en el update, coincida con las coordenadas de este objecto
+	 * 	
+	 *  3) Si es así llamamos al performAttack
+	 * 
+	 */
+	
+	
+	private void checkAttacks(GameObject object) {
+		
+		for(int i = this.currentObjects - 1 ; i >= 0 ; i--) {
+			object.performAttack(objects[i]);
+			
+			
+		}
+	}
 	
 	/*
-	 * Logica:
-	 * 	-> dado un objeto
-	 * 		->llamamos al metodo para ver si hayun objeto en la posicion siguiente (arriba, y abajo)
-	 * 		->
-	 */									//misile
-	private void checkAttacks(GameObject object) {
+	private void checkAttacks(GameObject object, int index) {
+		
+		int aux = currentObjects;
+		
+		for(int i = index + 1; i <= aux; i++) {	
+			
+			if(i + 1 >= currentObjects) {
+				i = 0;
+				if(currentObjects - 1 == index) {
+					aux = index - 2;
+				}
+				aux = index - 1;
+			}
+			
+			if(objects[i].isOnPosition(object.getPosX(), object.getPosY())) {
+
+				object.performAttack(objects[i]);
+			}	
+		}
+			
+	}
+	*/
 	
-		for(int i = 0; i < this.currentObjects; i++) {
-			                        //ovni
-			if(object.performAttack(objects[i])) {
-				if(objects[i].receiveBombAttack(object.getDamage())) {
-					
-				}
-				else if(objects[i].receiveMissileAttack(object.getDamage())) {
-					
-				}
-				else if(objects[i].receiveShockWaveAttack(object.getDamage())) {
-					
-				}
-				else if(objects[i].receiveSuperMissileAttack(object.getDamage())) {
-					
+	/*	//Con esto no nos atacamos a nosotros mismo.
+			if(! (object.equals(objects[cont]))) {
+				if(this.objects[cont].isOnPosition(object.getPosX(), object.getPosY())){
+					object.performAttack(objects[cont]);
+					find = true;
 				}
 			}
-		}
+		*/	
 	
-	}
-	
+	/**
+	 * 
+	 */
 	public void computerAction() {
-		
-		for(int i = 0 ; i < this.currentObjects; i++){
+		for(int i = this.currentObjects - 1 ; i >= 0 ; i--){
 			this.objects[i].computerAction();
-			checkAttacks(objects[i]);
-			
+			checkAttacks(objects[i]);		
 		}
+		
+		removeDead();
 	}
 	
+	
+	/**
+	 * 
+	 */
 	private void removeDead() {
-	// TODO implement
 		for(int i = 0; i < this.currentObjects; i++) {
 			if(!objects[i].isAlive()) {
 				objects[i].onDelete();
-				remove(objects[i]);
+				remove(i);
 				i--;
 			}
 		}
 	}
 	
-	public String stringObjectInPos(int posX, int posY) {
-		
-		String stringObject = null;
-		boolean encontrado = false;
-		int cont = 0;
-		while (cont < this.currentObjects && !encontrado) {
-			
-			if(this.objects[cont].getPosX() == posX) {
-				if(this.objects[cont].getPosY() == posY) {
-					encontrado = true;
-					stringObject = this.objects[cont].toString();
-					
-				}
-			}
-			
-			cont++;
-		}
-		
-		return stringObject;
-	}
-	//comprobamos si cambian el sentido y tambien si 
-
-	public boolean existOnBoard(int posX, int posY) {
-		int cont = 0;
-		boolean encontrado = false;
-		
-		while (cont < this.currentObjects && !encontrado) {
-			
-			if(this.objects[cont].getPosX() == posX && 
-			this.objects[cont].getPosY() == posY){
-					encontrado = true;
-					
-				}
-			cont++;
-			
-		}
-		return encontrado;
-	}
-	
-	
-	/*
-	 * VEMOS SI EXISTE UN OBJECTO SHOOKWAVE
+	/**
+	 * Lo usa UCMShip para hacer daño a los objectos
+	 * 
 	 */
-
-
-	public void disableBomba(int id) {
-		// TODO Auto-generated method stub
-		for(int i = 0; i < this.currentObjects; i++) {
-			
-			if(objects[i].getId() == id) {
-				objects[i].setLanzado(false);
-			}
-			
+	public void shootSchockWate() {
+		for(int i = 0; i < this.getCurrentObjects(); i++) {
+			this.objects[i].receiveShockWaveAttack(1);
 		}
-		
+		removeDead();
 	}
-
-	public boolean changeRegularToExplode(int posX, int posY) {
-		// TODO Auto-generated method stub
-		boolean can = false;
-				
-				if(existOnBoard(posX,posY)) {
-					remove(objects[getIndex(posX,posY)]);
-					can = true;
+	
+	/**
+	 * 
+	 * PENSANDO COMO HACERLO CHUNGO CHUNGO
+	 * 
+	 * Comprobamos si existe un objecto en el board
+	 * @param posX
+	 * @param posY
+	 * @return
+	 */
+	public void explode(int posX, int posY) {
+		for(int a = 0; a <= 2; a++) {
+			for(int b = 0; b <= 2; b++){
+				if(this.getObjectInPosition((posX - 1 + a), (posY - 1 + b)) != null) {
+					getObjectInPosition((posX - 1 + a), (posY - 1 + b)).receiveMissileAttack(1);
 				}
-			
-		
-		return can;
+			}
+		}
 	}
-
-	public void explode(int posX, int posY, int damage) {
-		// TODO Auto-generated method stub
-		//comprobar en la  horizontal, vertical y diagonal
-		//horizontal derecha
-		if(existOnBoard(posX,posY + 1)) {
-			objects[getIndex(posX,posY + 1)].hit(damage);
+	
+	//--------------OBJECT FORMAT OUTPUT-----------
+	
+	/**
+	 * Dado unas coordenadas obtenemos el objecto que
+	 * está en ellas. sino existe (el indice es -1)  
+	 * 
+	 * @param posX
+	 * @param posY
+	 * @return
+	 */
+	public String toString(int posX, int posY) {
+		
+		int index = getIndex(posX, posY);
+		
+		if(index == -1) {
+			return null;
 		}
-		//horizontal izquierda
-		if(existOnBoard(posX,posY - 1)) {
-			objects[getIndex(posX,posY - 1)].hit(damage);
-		}
-		//vertical arriba
-		if(existOnBoard(posX-1,posY)) {
-			objects[getIndex(posX-1,posY)].hit(damage);
-		}
-		//vertical abajo
-		if(existOnBoard(posX+1,posY)) {
-			objects[getIndex(posX+1,posY)].hit(damage);
-		}
-		// diagonal arriba izquierda
-		if(existOnBoard(posX-1,posY- 1)) {
-			objects[getIndex(posX-1,posY - 1)].hit(damage);
-		}
-		//diagonal arriba derecha
-		if(existOnBoard(posX-1, posY + 1)) {
-			objects[getIndex(posX-1,posY + 1)].hit(damage);
-		}
-		// diagonal abajo izquierda
-		if(existOnBoard(posX + 1 , posY - 1)) {
-			objects[getIndex(posX+1,posY - 1)].hit(damage);
-		}
-		// diagonal abajo derecha
-		if(existOnBoard(posX + 1 , posY + 1)) {
-			objects[getIndex(posX+1,posY + 1)].hit(damage);
-		}
+		
+		return objects[index].toString();
 	}
 
 	public String stringifier() {
@@ -278,6 +270,5 @@ public class GameObjectBoard {
 	}
 
 	
-		
-	}
+}
 	

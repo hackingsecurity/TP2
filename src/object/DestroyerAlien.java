@@ -1,29 +1,47 @@
-//PAQUETE QUE LO CONTIENE
 package object;
 
 import interfaces.IExecuteRandomActions;
 import logic.Game;
 
-public class DestroyerAlien extends AlienShip implements IExecuteRandomActions {
-
-	public DestroyerAlien(Game game, int posX, int posY, int id) {
-		super(game, posX, posY, 1);
-		this.lanzado = false;
-		this.id = id;
-	}
-
-
+/**
+ * Crear los DestroyerAlien 
+ * 
+ *
+ */
+public class DestroyerAlien extends AlienShip{
 
 	
+	//-----------------VARIABLES----------------
+	
+	private boolean bomb;
+	
+	//-----------------CONTRUCTOR---------------
+	
+	public DestroyerAlien(Game game, int posX, int posY, int id) {
+		super(game, posX, posY, 1, 10);
+		this.bomb = false;
+	}
+
+	//--------------GETTER AND SETTER-----------
+	public boolean getBomb() { return this.bomb; }
+	public void setBomb(boolean bomb) {this.bomb = bomb;}
+	
+
+
+	//--------------ABSTRACT METHODS------------
+	
+	
+	@Override
 	public void computerAction() {
 		// TODO Auto-generated method stub
 		super.computerAction();	
 		
 	
 		if(IExecuteRandomActions.canGenerateRandomBomb(game)) {
-			if(this.lanzado == false) {
-				game.activarBomba(this.posX, this.posY, this.id);
-				this.lanzado = true;
+			if(this.bomb == false) {
+
+				game.addNewObject(new Bomb(this.game, this.posX, this.posY, this));
+				this.bomb = true;
 			}
 		}
 	}
@@ -31,18 +49,24 @@ public class DestroyerAlien extends AlienShip implements IExecuteRandomActions {
 	
 	@Override
 	public void onDelete() {
-		// TODO Auto-generated method stub
-		game.receivePoints(10);
-		AlienShip.setContador();
-	}
-
-	public String stringifed() {
-		return "Destroyer: "+ "D" + ";" + this.posX+","+this.posY + ";" 
-				+ this.live + ";" + game.stringSent(AlienShip.getSentido()) + "\n";   
+		
+		if(!this.isAlive()) {
+			game.receivePoints(10);
+			AlienShip.contadorAlien--;
+		}
 	}
 
 	
+		//--------------OBJECT FORMAT OUTPUT-----------
+	
+	@Override
 	public String toString(){
 		 return "D[" + this.getLive()+ "]" ;
+	}
+	
+	@Override
+	public String stringifed() {
+		return "Destroyer: "+ "D" + ";" + this.posX+","+this.posY + ";" 
+				+ this.live + ";" + game.stringSent(AlienShip.sentido) + "\n";   
 	}
 }

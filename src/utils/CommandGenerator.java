@@ -45,9 +45,9 @@ public class CommandGenerator {
 			if((command != null)) 
 				return command;
 		}
-		if(command == null) throw new CommandParseException("Incorrect Command");
+		//if(command == null) throw new CommandParseException("Incorrect Command");
 		
-		return null;
+		return command;
 	}
 	
 	/*

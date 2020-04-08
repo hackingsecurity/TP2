@@ -1,32 +1,69 @@
 //PAQUETE QUE LO CONTIENE
 package object;
 
+import interfaces.IExecuteRandomActions;
 import logic.Game;
 
+/**
+ * 
+ * Creamos un EnemyShip
+ * 
+ * -Aqui debemos gestionar el movimiento de las naves
+ * 		Incluimos el ovni
+ * 
+ * -[Además de los puntos que se obtienen al ser destruidos]
+ * 	
+ *
+ */
+public abstract class EnemyShip extends Ship implements IExecuteRandomActions{
 
-public abstract class EnemyShip extends Ship {
-
+	//-----------------VARIABLES----------------
+	protected int points;
 	
-	public EnemyShip(Game game, int posX, int posY, int live) {
+	//-----------------CONTRUCTOR---------------
+	
+	public EnemyShip(Game game, int posX, int posY, int live, int points) {
 		super(game, posX, posY, live);
+		this.points = points;
 	}
 
+	
+	//--------------GETTER AND SETTER-----------
+	public int getPtos() { return this.points; }
+	
+	
+	//--------------METHODS IMPLEMENTS IAttack-----------
+	
+	//hay que implementar en las clases que corresponda
 	
 	public boolean receiveMissileAttack(int damage) {
 		boolean hit = false;
 		if(this.isAlive()) {
-			this.live -= damage;
+			this.receiveDamageFromOtherObject(damage);
 			hit = true;
 		}
 			return hit;
-		};
-	public boolean receiveShockWaveAttack(int damage) {
+	};
+		
+	
+	@Override
+	public boolean receiveSuperMissileAttack(int damage) {
 		boolean hit = false;
 		if(this.isAlive()) {
-			this.live -= damage;
+			this.receiveDamageFromOtherObject(damage);
 			hit = true;
 			}
 		return hit;
-	};
+	}
+	
+	
+	
+	//--------------ABSTRACT METHODS------------
+	
+	public abstract void computerAction();
+	public abstract void onDelete();
+	public abstract void move();
+	public abstract String toString();
+	public abstract String stringifed();
 
 }

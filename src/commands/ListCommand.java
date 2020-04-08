@@ -10,12 +10,9 @@ public class ListCommand extends Command {
 		super("List", "l", "list", "Prints the list of available ships");
 	}
 
-	/*
-	 * MOSTRAMOS SOLO LA LISTA PERO NO EJECUTAMOS UNA NUEVA PANTALLA.
-	 */
 	public boolean execute(Game game) {
-		game.list();
-		return false;
+		System.out.print(game.list());
+		return false; //No mostramos un nueva pantalla
 	}
 	
 	

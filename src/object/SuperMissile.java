@@ -2,51 +2,67 @@ package object;
 
 import logic.Game;
 
+
+/**
+ * Creamos un SuperMissile
+ *
+ */
 public class SuperMissile extends Weapon {
-	public SuperMissile(Game game, int posX, int posY, int live) {
-		super(game, posX, posY, live,2);
-		// TODO Auto-generated constructor stub
+	
+
+	//-----------------CONTRUCTOR---------------
+	
+	public SuperMissile(Game game, int posX, int posY) {
+		super(game, posX, posY, 1,2);
 	}
 
-
-	@Override
-	public void computerAction() {
-		// TODO Auto-generated method stub
-		if(this.posX == 0) {
-			game.disableMissile();
-		}
-	}
-
-	@Override
-	public void onDelete() {
-		// TODO Auto-generated method stub
-		
-	}								//destroyer 1
+	//--------------METHODS IMPLEMENTS IAttack-----------
+	
 	public boolean performAttack(GameObject other) {
-		boolean attack = false;
 		
-		if((posX - 1 == other.getPosX() && posY == other.getPosY()) ) {
-			attack = true;
-			this.live -= 1;
-			game.gastarSuperMissile();
-			game.disableMissile();
+		boolean performAttack = false;
+		
+		if(other.receiveSuperMissileAttack(damage)) {
+			this.live = 0;
+			performAttack = true;
 		}
 		
-		return attack;
+		return performAttack;
 	}
+	
+	public boolean receiveBombAttack(int damage) {
+		boolean hit = false;
+		
+		if(this.isAlive()) {
+			this.receiveDamageFromOtherObject(damage);
+			hit = true;
+		}
+		
+		return hit;
+	}
+	
+	//--------------ABSTRACT METHODS------------
+
+	@Override
+	public void computerAction() {}
+	public void onDelete() {}
 	
 	public void move() {
-		posX -= 1; 
+		posX -= 1;
+		if(this.isOut()) {
+			this.live = 0;
+		}
 	}
 	
-	public String stringifed() {
-		if(this.lanzado) return "Supermissile: " + "X" + ";" + this.posX +","+ this.posY + "\n";
-		else return "";
-	}
-	
+		//--------------OBJECT FORMAT OUTPUT-----------
+
 	@Override
 	public String toString() {
 		return "ss";
+	}
+	
+	public String stringifed() {
+		return "Supermissile: " + "X" + ";" + this.posX +","+ this.posY + "\n";
 	}
 }
 

@@ -2,9 +2,24 @@ package main;
 import java.util.Scanner;
 import controller.Controller;
 import logic.*;
+import utils.Level;
+
 import java.util.Random;
 
-
+/**
+ *	Inicio de nuestro juego
+ *
+ * 	-Nos quedamos en la pagina 8
+ * 
+ * 
+ * 	//No debe estar aqui
+	public void getDamage (int damage) {
+		this.live = (damage >= this.live) ? 0 : (this.live - damage);
+	}
+	
+ *
+ *
+ */
 public class Main {
 
 	//esto es nuevo
