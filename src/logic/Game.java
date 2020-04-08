@@ -2,8 +2,10 @@ package logic;
 import interfaces.IPlayerController;
 import object.AlienShip;
 import object.Bomb;
+import object.DestroyerAlien;
 import object.ExplodeShip;
 import object.GameObject;
+import object.GameObjectGenerator;
 import object.ShockWave;
 import object.SuperMissile;
 import object.UCMMissile;
@@ -16,6 +18,7 @@ import java.io.IOException;
 import java.util.Random;
 
 import board.PrinterTypes;
+import exceptions.FileContentsException;
 
 /**
  * Delega responsabilidad a GameObjectBoard 
@@ -34,7 +37,8 @@ public class Game implements IPlayerController{
 	private boolean doExit;
 
 	//-----------------VARIABLES----------------
-	
+	private boolean stringifying = false;
+	private boolean loading;
 	private BoardInitializer initializer ;
 	private Level level ;
 	private GameObjectBoard board;  //Todos los objectos
@@ -50,6 +54,7 @@ public class Game implements IPlayerController{
 		this.level = level;
 		initializer = new BoardInitializer();
 		initGame();
+		loading = true;
 	}
 	
 	//--------------GETTER AND SETTER-----------
@@ -310,7 +315,11 @@ public class Game implements IPlayerController{
 	
 	public String toString(int posX, int posY) {return this.board.toString(posX, posY);}
 	
-	public String stringifier() { return board.stringifier();}
+	public String stringifier() { 
+		stringifying = false;
+		return board.stringifier();
+		
+	}
 
 
 	
@@ -339,8 +348,49 @@ public class Game implements IPlayerController{
 		else return "->";
 		
 	}
+	
+	
+	
+	public  void load(BufferedReader br) throws IOException, FileContentsException {
+		FileContentsVerifier  verifier = new FileContentsVerifier();
+		String linea = br.readLine();
+		String[] words;
+		
+		if (verifier.verifyCycleString(linea)) {
+			words = linea.split(";");
+			this.currentCycle = Integer.parseInt(words[1]);
+		}
+		else {
+			throw new FileContentsException("invalid file, unknown line prefix");
+		}
+		
+		linea = br.readLine();
+		if(verifier.verifyLevelString(linea)) {
+			words = linea.split(";");
+			if(linea.equalsIgnoreCase("easy")) this.level = Level.EASY;
+			else if(linea.equalsIgnoreCase("hard")) this.level = Level.HARD;
+			else if(linea.equalsIgnoreCase("insane")) this.level = Level.INSANE;
+		}else {
+			throw new FileContentsException("invalid file, unknown line prefix");
+		}
 
+		this.loading = false;
+		
+		linea = br.readLine().trim();
+		
+		while( linea != null && !linea.isEmpty() ) {
+			GameObject gameObject = GameObjectGenerator.parse(linea, this, verifier);
+				if (gameObject == null)
+					throw new FileContentsException("invalid file, unknown line prefix");
+			board.add(gameObject);
+			linea = br.readLine().trim();
+		}
+	}
+
+	/*
+	
 	public  void load(BufferedReader br) throws IOException {
+		
 		String linea = br.readLine().trim();
 		linea = linea.split(",")[1]; // número de ciclos
 		this.currentCycle = Integer.parseInt(linea);
@@ -351,15 +401,32 @@ public class Game implements IPlayerController{
 		else if(linea.equalsIgnoreCase("insane")) this.level = Level.INSANE;
 		//por acabar rellenar los bjetos y habria que añadir un reset que ponga
 	 // el estado de juego vacio
-		loading = false;
+		this.loading = false;
 		linea = br.readLine().trim();
 		while( linea != null && !linea.isEmpty() ) {
-		GameObject gameObject = GameObjectGenerator.parse(linea, this, verifier);
-		if (gameObject == null)
-		throw new FileContentsException("invalid file, unknown line prefix");
-		board.add(gameObject);
-		linea = br.readLine().trim();
+			GameObject gameObject = GameObjectGenerator.parse(linea, this, verifier);
+				if (gameObject == null)
+						throw new FileContentsException("invalid file, unknown line prefix");
+			board.add(gameObject);
+			linea = br.readLine().trim();
 		}
+	}
+	*/
+
+	/*Cateamos  DestroyerAlien*/
+	public DestroyerAlien getBombOwner(int ownerRef) {
+		
+		return (DestroyerAlien) this.board.getLabelOwnwer(ownerRef);
+	}
+
+	public boolean isStringifying() {
+		
+		return this.stringifying;
+	}
+
+	public void setStringifying() {
+		stringifying = true;
+		
 	}
 	
 }

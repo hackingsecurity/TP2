@@ -21,7 +21,7 @@ public abstract class EnemyShip extends Ship implements IExecuteRandomActions{
 	protected int points;
 	
 	//-----------------CONTRUCTOR---------------
-	
+	public EnemyShip() {super();}
 	public EnemyShip(Game game, int posX, int posY, int live, int points) {
 		super(game, posX, posY, live);
 		this.points = points;

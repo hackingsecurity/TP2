@@ -269,6 +269,15 @@ public class GameObjectBoard {
 		return stringfier;
 	}
 
+	public GameObject getLabelOwnwer(int ownerRef) {
+		
+		for (int i =0; i<currentObjects; i++) {
+			if (objects[i].isOwner(ownerRef))
+				return objects[i];
+		}
+		return null;
+	}
+
 	
 }
 	

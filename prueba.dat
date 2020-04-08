@@ -1,0 +1,14 @@
+Space Invaders v2.0 
+
+G;6
+L;EASY
+Ovni: O ;0,3;1
+Regular: R;1,2;2;<-
+Regular: R;1,4;2;<-
+Destroyer: D;2,3;1;<-
+Destroyer: D;2,4;1;<-
+UCMShip: P;7,2;3;0;false;0
+Bomb: B;7,4
+Explosive: E;1,5;2;<-
+Explosive: E;1,3;2;<-
+

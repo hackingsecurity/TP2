@@ -1,6 +1,7 @@
 package object;
 
 import interfaces.IExecuteRandomActions;
+import logic.FileContentsVerifier;
 import logic.Game;
 
 /**
@@ -12,15 +13,21 @@ public class DestroyerAlien extends AlienShip{
 
 	
 	//-----------------VARIABLES----------------
+	private static int currentSerialNumber;
 	
 	private boolean bomb;
 	
 	//-----------------CONTRUCTOR---------------
 	
-	public DestroyerAlien(Game game, int posX, int posY, int id) {
+	public DestroyerAlien(Game game, int posX, int posY) {
 		super(game, posX, posY, 1, 10);
 		this.bomb = false;
 	}
+	public DestroyerAlien(Game game, int posX, int posY,int life) {
+		super(game, posX, posY, life, 10);
+		this.bomb = false;
+	}
+
 
 	public DestroyerAlien() {
 		// TODO Auto-generated constructor stub
@@ -59,6 +66,11 @@ public class DestroyerAlien extends AlienShip{
 			AlienShip.contadorAlien--;
 		}
 	}
+	public boolean isOwner(int ref) {
+		boolean itsMe = super.isOwner(ref);
+		if(itsMe) this.bomb = false;
+		return itsMe;
+	}
 
 	
 		//--------------OBJECT FORMAT OUTPUT-----------
@@ -68,9 +80,36 @@ public class DestroyerAlien extends AlienShip{
 		 return "D[" + this.getLive()+ "]" ;
 	}
 	
-	@Override
-	public String stringifed() {
-		return "Destroyer: "+ "D" + ";" + this.posX+","+this.posY + ";" 
-				+ this.live + ";" + game.stringSent(AlienShip.sentido) + "\n";   
+	
+	protected GameObject parse(String stringFromFile, Game game2, FileContentsVerifier verifier) {
+		if(stringFromFile.split(";")[0].equalsIgnoreCase("D")) {
+			int armour  =Integer.parseInt(stringFromFile.split(";")[2]);
+			if(!verifier.verifyAlienShipString(stringFromFile, game,armour)) return null;
+
+			String coordenadas = stringFromFile.split(";")[1]; // recoge las coordenadas
+			
+			return new DestroyerAlien(game,Integer.parseInt(coordenadas.split(",")[0]),
+					Integer.parseInt(coordenadas.split(",")[1]),armour);
+		}
+		
+		return null;
 	}
+	private void initialiseLabelling() {
+		currentSerialNumber = 1;
+	}
+	private String generateStringifyLabel() {
+		label = currentSerialNumber;
+		currentSerialNumber++;
+		return labelRefSeparator + label;
+	}
+	public String stringifed() {
+		if(!game.isStringifying()) {
+			game.setStringifying();
+			initialiseLabelling();
+		}
+		
+		return "Destroyer: "+ "D" + ";" + this.posX+","+this.posY + ";" 
+		+ this.live + ";" + game.stringSent(AlienShip.sentido) + "\n" + generateStringifyLabel();
+	}
+	
 }

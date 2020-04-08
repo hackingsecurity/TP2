@@ -1,6 +1,7 @@
 //PAQUETE QUE LO CONTIENE
 package object;
 
+import logic.FileContentsVerifier;
 import logic.Game;
 
 
@@ -84,6 +85,19 @@ public class UCMMissile extends Weapon{
 	
 	@Override
 	public String stringifed() {
-		return "Missile: "+"M" + ";" + this.posX+","+this.posY + "\n";  
+		return "M" + ";" + this.posX+","+this.posY + "\n";  
+	}
+
+	@Override
+	protected GameObject parse(String stringFromFile, Game game2, FileContentsVerifier verifier) {
+		if(stringFromFile.split(";")[0].equalsIgnoreCase("M")) {
+			if(!verifier.verifyWeaponString(stringFromFile, game)) return null;
+
+			String coordenadas = stringFromFile.split(";")[1]; // recoge las coordenadas
+			
+			return new UCMMissile(game,Integer.parseInt(coordenadas.split(",")[0]),
+					Integer.parseInt(coordenadas.split(",")[1]));
+		}
+		return null;
 	}
 }

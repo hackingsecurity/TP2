@@ -25,8 +25,7 @@ public  abstract class AlienShip extends EnemyShip {
 	protected static boolean haveLanded = false;
 	
 	
-	
-	
+	public AlienShip() {super();}
 	public AlienShip(Game game, int posX, int posY, int live, int points) {
 		super(game, posX, posY, live, points);
 		//Se incrementa al añadir un nuevo AlienShip

@@ -1,5 +1,6 @@
 package object;
 import interfaces.IAttack;
+import logic.FileContentsVerifier;
 import logic.Game;
 
 
@@ -20,6 +21,10 @@ import logic.Game;
 
 public abstract class GameObject implements IAttack {
 	
+	public static final String labelRefSeparator= " - ";
+	protected int label = 0;
+	
+	
 	/*-----------------VARIABLES----------------
 				ALL object need to use this
 	*/
@@ -28,7 +33,9 @@ public abstract class GameObject implements IAttack {
 	protected Game game;
 	
 	//-----------------CONTRUCTOR---------------
-	
+	public GameObject() {
+		
+	}
 	public GameObject( Game game, int posX , int posY, int live) {
 		this.posX = posX; this.posY = posY; this.game = game; this.live = live;
 	}
@@ -88,8 +95,13 @@ public abstract class GameObject implements IAttack {
 	 */
 	public abstract void move();
 	
+	public boolean isOwner(int ref) {
+		return label == ref;
+	}
+	public int getLabel() {return label;}
 		//--------------OBJECT FORMAT OUTPUT-----------
 	
 	public abstract String toString();
 	public abstract String stringifed();
+	protected abstract GameObject parse(String stringFromFile, Game game2, FileContentsVerifier verifier);
 }

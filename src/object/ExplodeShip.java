@@ -1,4 +1,5 @@
 package object;
+import logic.FileContentsVerifier;
 import logic.Game;
 
 
@@ -20,6 +21,7 @@ public class ExplodeShip extends AlienShip {
 	
 	public ExplodeShip() {
 		// TODO Auto-generated constructor stub
+		super();
 	}
 
 	public boolean receiveMissileAttack(int damage) {
@@ -58,7 +60,21 @@ public class ExplodeShip extends AlienShip {
 	}
 	
 	public String stringifed() {
-		return "Explosive: "+"E" + ";" + this.posX+","+this.posY + ";" 
+		return "E" + ";" + this.posX+","+this.posY + ";" 
 				+ this.live + ";" + game.stringSent(AlienShip.sentido) + "\n";   
+	}
+
+	@Override
+	protected GameObject parse(String stringFromFile, Game game2, FileContentsVerifier verifier) {
+		if(stringFromFile.split(";")[0].equalsIgnoreCase("E")) {
+			int armour  =Integer.parseInt(stringFromFile.split(";")[2]);
+			if(!verifier.verifyAlienShipString(stringFromFile, game,armour)) return null;
+
+			String coordenadas = stringFromFile.split(";")[1]; // recoge las coordenadas
+			
+			return new ExplodeShip(game,Integer.parseInt(coordenadas.split(",")[0]),
+					Integer.parseInt(coordenadas.split(",")[1]),armour);
+		}
+		return null;
 	}
 }

@@ -1,6 +1,7 @@
 //PAQUETE QUE LO CONTIENE
 package object;
 
+import logic.FileContentsVerifier;
 import logic.Game;
 
 /**
@@ -44,6 +45,20 @@ public class ShockWave extends Weapon{
 	
 	@Override
 	public String toString() {return null;}
-	public String stringifed() {return null;}
+	public String stringifed() {return "SW" + ";" + this.posX+","+this.posY + ";" 
+			+ this.live + ";";}
+
+	@Override
+	protected GameObject parse(String stringFromFile, Game game2, FileContentsVerifier verifier) {
+		if(stringFromFile.split(";")[1].equalsIgnoreCase("sw")) {
+			if(!verifier.verifyWeaponString(stringFromFile, game)) return null;
+
+			String coordenadas = stringFromFile.split(";")[1]; // recoge las coordenadas
+			
+			return new ShockWave(game,Integer.parseInt(coordenadas.split(",")[0]),
+					Integer.parseInt(coordenadas.split(",")[1]),1);
+		}
+		return null;
+	}
 
 }

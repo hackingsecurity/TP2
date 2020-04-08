@@ -1,27 +1,31 @@
 package object;
 
+
+import logic.FileContentsVerifier;
 import logic.Game;
 
 public class Bomb extends Weapon{
 	
 	//-----------------VARIABLES----------------
-	
+	private int ownerRef;
 	private DestroyerAlien destroyer;
 	
 	
 	//-----------------CONTRUCTOR---------------
 	
-	public Bomb(Game game, int posX, int posY, DestroyerAlien destroyer) {
+	public Bomb(Game game, int posX, int posY, DestroyerAlien bombOwner) {
 		super(game, posX, posY, 1,1);
 		
-		this.destroyer = destroyer;
+		this.destroyer =bombOwner;
 	}
 	
 	//--------------METHODS IMPLEMENTS IAttack-----------
 	
 	public Bomb() {
-		// TODO Auto-generated constructor stub
+		super();
 	}
+
+
 
 	public boolean performAttack(GameObject other) {
 
@@ -88,6 +92,29 @@ public class Bomb extends Weapon{
 	
 	@Override
 	public String stringifed() {
-		return "Bomb: "+  "B" + ";" + this.posX +"," +this.posY+"\n";  
+		return  "B" + ";" + this.posX +"," +this.posY + ";" + (this.isAlive() ? 
+				generateSerialRef(): "") + "\n";  //añadir el destroyer
 	}
+
+	
+	
+
+	@Override
+	protected GameObject parse(String stringFromFile, Game game, FileContentsVerifier verifier) {
+		ownerRef  =  Integer.parseInt( stringFromFile.split(";")[2]);
+		//game.getBombOwner(ownerRef)
+		if(stringFromFile.split(";")[0].equalsIgnoreCase("B")) {
+			if(!verifier.verifyWeaponString(stringFromFile, game)) return null;
+
+			String coordenadas = stringFromFile.split(";")[1]; // recoge las coordenadas
+			
+			return new Bomb(game,Integer.parseInt(coordenadas.split(",")[0]),
+					Integer.parseInt(coordenadas.split(",")[1]),game.getBombOwner(ownerRef));
+		}
+		return null;
+	}
+	public String generateSerialRef() {
+		return labelRefSeparator + this.getLabel();
+	}
+	
 }

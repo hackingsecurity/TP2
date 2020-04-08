@@ -4,7 +4,7 @@ import logic.Game;
 public abstract class Ship extends GameObject{
 	
 	//-----------------CONTRUCTOR---------------
-	
+	public Ship() {super();};
 	public Ship(Game game, int posX, int posY, int live ){super(game, posX, posY, live);}
 
 	//--------------ABSTRACT METHODS------------

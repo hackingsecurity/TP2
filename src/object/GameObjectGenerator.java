@@ -1,5 +1,10 @@
 package object;
 
+
+import logic.FileContentsVerifier;
+import logic.Game;
+import exceptions.FileContentsException;
+
 public class GameObjectGenerator {
 	private static GameObject[] availableGameObjects = {
 			new UCMShip(),
@@ -15,10 +20,10 @@ public class GameObjectGenerator {
 			public static GameObject parse(String stringFromFile, Game game, FileContentsVerifier
 			verifier)
 			throws FileContentsException {
-			GameObject gameObject = null;
-			for (GameObject go: availableGameObjects) {
-			gameObject = go.parse(stringFromFile, game, verifier);
-			if (gameObject != null) break;
+				GameObject gameObject = null;
+				for (GameObject go: availableGameObjects) {
+				gameObject = go.parse(stringFromFile, game, verifier);
+				if (gameObject != null) break;
 			}
 			return gameObject;
 			}

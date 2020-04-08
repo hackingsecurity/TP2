@@ -1,6 +1,7 @@
 package object;
 
 import interfaces.IExecuteRandomActions;
+import logic.FileContentsVerifier;
 import logic.Game;
 
 
@@ -25,7 +26,10 @@ public class Ovni  extends EnemyShip  {
 		this.visibilidadOvni = false;
 		
 	}
-	
+	public Ovni(Game game, int x, int y) {
+		super(game,x,y,1,25);
+		this.visibilidadOvni = true;
+	}
 	//---------------OWNER METHODS--------------
 	
 	
@@ -33,6 +37,7 @@ public class Ovni  extends EnemyShip  {
 	
 	public Ovni() {
 		// TODO Auto-generated constructor stub
+		super();
 	}
 
 	@Override
@@ -118,8 +123,22 @@ public class Ovni  extends EnemyShip  {
 
 	@Override
 	public String stringifed() {
-		return "Ovni: "+ "O;" + this.posX+","+this.posY + ";" + this.live + "\n";
+		return  "O;" + this.posX+","+this.posY + ";" + this.live + "\n";
 
+	}
+
+	@Override
+	protected GameObject parse(String stringFromFile, Game game2, FileContentsVerifier verifier) {
+		
+		if(stringFromFile.split(";")[1].equalsIgnoreCase("o")) {
+			if(!verifier.verifyOvniString(stringFromFile, game, 1)) return null;
+
+			String coordenadas = stringFromFile.split(";")[1]; // recoge las coordenadas
+			
+			return new Ovni(game,Integer.parseInt(coordenadas.split(",")[0]),Integer.parseInt(coordenadas.split(",")[1]));
+		}
+		
+		return null;
 	}
 	
 }

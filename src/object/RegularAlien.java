@@ -1,6 +1,7 @@
 //PAQUETE QUE LO CONTIENE
 package object;
 import interfaces.IExecuteRandomActions;
+import logic.FileContentsVerifier;
 import logic.Game;
 
 
@@ -14,6 +15,11 @@ public  class RegularAlien extends AlienShip{
 	
 	public RegularAlien(Game game, int posX, int posY) {
 		super(game, posX, posY, 2, 5);
+		this.changeToExplode = false;
+		// TODO Auto-generated constructor stub
+	}
+	public RegularAlien(Game game, int posX, int posY, int live) {
+		super(game, posX, posY, live, 5);
 		this.changeToExplode = false;
 		// TODO Auto-generated constructor stub
 	}
@@ -60,8 +66,22 @@ public  class RegularAlien extends AlienShip{
 	
 	@Override
 	public String stringifed() {
-		return "Regular:"+" " +"R" + ";" + this.posX +","+ this.posY + ";" 
+		return  "R" + ";" + this.posX +","+ this.posY + ";" 
 				+ this.live + ";" + game.stringSent(AlienShip.sentido)+ "\n" ;   
+	}
+
+	@Override
+	protected GameObject parse(String stringFromFile, Game game2, FileContentsVerifier verifier) {
+		if(stringFromFile.split(";")[0].equalsIgnoreCase("R")) {
+			int armour  =Integer.parseInt(stringFromFile.split(";")[2]);
+			if(!verifier.verifyAlienShipString(stringFromFile, game,armour)) return null;
+
+			String coordenadas = stringFromFile.split(";")[1]; // recoge las coordenadas
+			
+			return new RegularAlien(game,Integer.parseInt(coordenadas.split(",")[0]),
+					Integer.parseInt(coordenadas.split(",")[1]),armour);
+		}
+		return null;
 	}
 
 }

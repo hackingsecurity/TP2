@@ -1,5 +1,6 @@
 package object;
 
+import logic.FileContentsVerifier;
 import logic.Game;
 
 
@@ -67,7 +68,20 @@ public class SuperMissile extends Weapon {
 	}
 	
 	public String stringifed() {
-		return "Supermissile: " + "X" + ";" + this.posX +","+ this.posY + "\n";
+		return "X" + ";" + this.posX +","+ this.posY + "\n";
+	}
+
+	@Override
+	protected GameObject parse(String stringFromFile, Game game2, FileContentsVerifier verifier) {
+		if(stringFromFile.split(";")[0].equalsIgnoreCase("X")) {
+			if(!verifier.verifyWeaponString(stringFromFile, game)) return null;
+
+			String coordenadas = stringFromFile.split(";")[1]; // recoge las coordenadas
+			
+			return new SuperMissile(game,Integer.parseInt(coordenadas.split(",")[0]),
+					Integer.parseInt(coordenadas.split(",")[1]));
+		}
+		return null;
 	}
 }
 

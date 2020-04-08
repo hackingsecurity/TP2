@@ -16,7 +16,7 @@ public abstract class Weapon extends GameObject{
 	protected int damage;
 	
 	//-----------------CONTRUCTOR---------------
-	
+	public Weapon() {super();}
 	public Weapon(Game game, int posX, int posY, int live,int damage) {
 		super(game, posX, posY, live);
 		this.damage = damage;

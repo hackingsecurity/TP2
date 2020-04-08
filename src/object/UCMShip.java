@@ -1,4 +1,5 @@
 package object;
+import logic.FileContentsVerifier;
 import logic.Game;
 
 /**
@@ -111,9 +112,24 @@ public class UCMShip extends Ship{
 	}
 	
 	public String stringifed() {
-		return "UCMShip: "+"P" + ";" + this.posX+","+this.posY + ";" 
+		return "P" + ";" + this.posX+","+this.posY + ";" 
 				+ this.live + ";" + this.game.getPoints() +
 				";" + this.shockWave + ";" +
 				this.numSuperMissiles + "\n";
+	}
+
+
+	@Override
+	protected GameObject parse(String stringFromFile, Game game2, FileContentsVerifier verifier) {
+
+		if(stringFromFile.split(";")[1].equalsIgnoreCase("p")) {
+			if(!verifier.verifyPlayerString(stringFromFile, game, 1)) return null;
+
+			String coordenadas = stringFromFile.split(";")[1]; // recoge las coordenadas
+			
+			return new UCMShip(game,Integer.parseInt(coordenadas.split(",")[0]),Integer.parseInt(coordenadas.split(",")[1]));
+		}
+		
+		return null;
 	}
 }
