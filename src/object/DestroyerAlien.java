@@ -53,7 +53,7 @@ public class DestroyerAlien extends AlienShip{
 		if(IExecuteRandomActions.canGenerateRandomBomb(game)) {
 			if(this.bomb == false) {
 
-				game.addNewObject(new Bomb(this.game, this.posX, this.posY, this));
+				game.addNewObject(new Bomb(this.game, this.posX, this.posY, this, this.label));
 				this.bomb = true;
 			}
 		}
@@ -83,15 +83,15 @@ public class DestroyerAlien extends AlienShip{
 	}
 	
 	
-	protected GameObject parse(String stringFromFile, Game game2, FileContentsVerifier verifier) {
+	protected GameObject parse(String stringFromFile, Game game, FileContentsVerifier verifier) {
 		if(stringFromFile.split(";")[0].equalsIgnoreCase("D")) {
 			int armour  =Integer.parseInt(stringFromFile.split(";")[2]);
-			if(!verifier.verifyAlienShipString(stringFromFile, game2,armour)) return null;
+			if(!verifier.verifyAlienShipString(stringFromFile, game,armour)) return null;
 
 			String coordenadas = stringFromFile.split(";")[1]; // recoge las coordenadas
 			
 			return new DestroyerAlien(game,Integer.parseInt(coordenadas.split(",")[0]),
-					Integer.parseInt(coordenadas.split(",")[1]),armour,stringFromFile.split(";")[4]);
+					Integer.parseInt(coordenadas.split(",")[1]),armour,stringFromFile.split(";")[3]);
 		}
 		
 		return null;
@@ -111,7 +111,7 @@ public class DestroyerAlien extends AlienShip{
 		}
 		
 		return "D" + ";" + this.posX+","+this.posY + ";" 
-		+ this.live + ";" + game.stringSent(AlienShip.sentido) + ";" + generateStringifyLabel() + "\n";
+		+ this.live + ";"  + game.stringSent(AlienShip.sentido) +  generateStringifyLabel() + "\n";
 	}
 	
 }

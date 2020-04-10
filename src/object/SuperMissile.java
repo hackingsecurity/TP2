@@ -72,9 +72,9 @@ public class SuperMissile extends Weapon {
 	}
 
 	@Override
-	protected GameObject parse(String stringFromFile, Game game2, FileContentsVerifier verifier) {
+	protected GameObject parse(String stringFromFile, Game game, FileContentsVerifier verifier) {
 		if(stringFromFile.split(";")[0].equalsIgnoreCase("X")) {
-			if(!verifier.verifyWeaponString(stringFromFile, game2)) return null;
+			if(!verifier.verifyWeaponString(stringFromFile, game)) return null;
 
 			String coordenadas = stringFromFile.split(";")[1]; // recoge las coordenadas
 			

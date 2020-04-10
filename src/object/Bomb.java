@@ -20,7 +20,15 @@ public class Bomb extends Weapon{
 	}
 	
 	//--------------METHODS IMPLEMENTS IAttack-----------
+	public Bomb(Game game, int posX, int posY, DestroyerAlien bombOwner, int label) {
+		super(game, posX, posY, 1,1);
+		this.destroyer =bombOwner;
+		this.label = label;
+	}
 	
+	public Bomb(Game game, int posX, int posY) {
+		super(game, posX, posY, 1,1);
+	}
 	public Bomb() {
 		super();
 	}
@@ -70,7 +78,9 @@ public class Bomb extends Weapon{
 	
 	public void onDelete() {
 		if(!this.isAlive()) {
-			this.destroyer.setBomb(false);
+			if(!(this.destroyer == null)) {
+				this.destroyer.setBomb(false);
+			}
 		}
 	}
 	
@@ -92,7 +102,7 @@ public class Bomb extends Weapon{
 	
 	@Override
 	public String stringifed() {
-		return  "B" + ";" + this.posX +"," +this.posY + ";" + (this.isAlive() ? 
+		return  "B" + ";" + this.posX +"," +this.posY  + (destroyer.isAlive() ? 
 				generateSerialRef(): "") + "\n";  //añadir el destroyer
 	}
 
@@ -101,20 +111,27 @@ public class Bomb extends Weapon{
 
 	@Override
 	protected GameObject parse(String stringFromFile, Game game, FileContentsVerifier verifier) {
-		ownerRef  =  Integer.parseInt( stringFromFile.split(";")[2]);
+		
 		//game.getBombOwner(ownerRef)
+		String[] own = stringFromFile.split(labelRefSeparator);
+		
+		String s = stringFromFile.split(labelRefSeparator)[0];
 		if(stringFromFile.split(";")[0].equalsIgnoreCase("B")) {
-			if(!verifier.verifyWeaponString(stringFromFile, game)) return null;
-
+			if(!verifier.verifyWeaponString(s, game)) return null;
+				if(own.length == 2) {
+					if( ! verifier.verifyRefString(stringFromFile)) return null;
+				}
 			String coordenadas = stringFromFile.split(";")[1]; // recoge las coordenadas
-			
-			return new Bomb(game,Integer.parseInt(coordenadas.split(",")[0]),
-					Integer.parseInt(coordenadas.split(",")[1]),game.getBombOwner(ownerRef));
+			if(own.length == 1)  return new Bomb(game,Integer.parseInt(coordenadas.split(",")[0]),
+					Integer.parseInt(coordenadas.split(",")[1]));
+			 coordenadas = s.split(";")[1];
+			return new Bomb(game, Integer.parseInt(coordenadas.split(",")[0]),
+					Integer.parseInt(coordenadas.split(",")[1]), game.getBombOwner(Integer.parseInt(own[1])));
 		}
 		return null;
 	}
 	public String generateSerialRef() {
-		return labelRefSeparator + this.getLabel();
+		return labelRefSeparator + this.destroyer.getLabel();
 	}
 	
 }

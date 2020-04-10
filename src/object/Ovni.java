@@ -136,7 +136,7 @@ public class Ovni  extends EnemyShip  {
 
 			String coordenadas = stringFromFile.split(";")[1]; // recoge las coordenadas
 			
-			return new Ovni(game,Integer.parseInt(coordenadas.split(",")[0]),Integer.parseInt(coordenadas.split(",")[1]));
+			return new Ovni(game2,Integer.parseInt(coordenadas.split(",")[0]),Integer.parseInt(coordenadas.split(",")[1]));
 		}
 		
 		return null;

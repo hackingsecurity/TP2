@@ -49,8 +49,8 @@ public class ShockWave extends Weapon{
 			+ this.live + ";";}
 
 	@Override
-	protected GameObject parse(String stringFromFile, Game game2, FileContentsVerifier verifier) {
-		if(stringFromFile.split(";")[1].equalsIgnoreCase("sw")) {
+	protected GameObject parse(String stringFromFile, Game game, FileContentsVerifier verifier) {
+		if(stringFromFile.split(";")[0].equalsIgnoreCase("sw")) {
 			if(!verifier.verifyWeaponString(stringFromFile, game)) return null;
 
 			String coordenadas = stringFromFile.split(";")[1]; // recoge las coordenadas

@@ -1,6 +1,7 @@
 package commands;
 
 import java.io.BufferedReader;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.Scanner;
@@ -18,14 +19,17 @@ public class LoadCommand extends Command {
 	}
 
 	@Override
-	public boolean execute(Game game) throws CommandExecuteException {
+	public boolean execute(Game game) throws CommandExecuteException{
 		Scanner ent = new Scanner(System.in);
 		System.out.println("Type file name you want to load ");
 		String file = ent.nextLine();
 		String header = null;
 		file = file+".dat";
 		
+		
+		
 		try {
+			game.save(game.FILETMP);
 			FileReader fr = new FileReader(file);
 			BufferedReader br = new BufferedReader(fr);
 			header = br.readLine();
@@ -37,9 +41,11 @@ public class LoadCommand extends Command {
 			
 			
 		}catch (IOException e) {
+			loadOld(game);
 			e.getMessage();
 		} catch (FileContentsException e) {
-			// TODO Auto-generated catch block
+		// TODO Auto-generated catch block
+			loadOld(game);
 			e.printStackTrace();
 		}
 		
@@ -61,6 +67,17 @@ public class LoadCommand extends Command {
 		}
 		
 		return command;
+	}
+	
+	private void loadOld(Game game) {
+		
+		try {
+			FileReader r = new FileReader(game.FILETMP);
+			game.load(new BufferedReader(r));
+		} catch (IOException | FileContentsException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 }

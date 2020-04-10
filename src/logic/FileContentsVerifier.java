@@ -5,7 +5,7 @@ import utils.Level;
 public class FileContentsVerifier {
 	public static final String separator1 = ";";
 	public static final String separator2 = ",";
-	public static final String labelRefSeparator = " - ";
+	public static final String labelRefSeparator = " _ ";
 	private String foundInFileString = "";
 	
 	private void appendToFoundInFileString(String linePrefix) {
@@ -56,13 +56,13 @@ public class FileContentsVerifier {
 	public boolean verifyAlienShipString(String lineFromFile, Game game, int armour) {
 		String[] words = lineFromFile.split(separator1);
 		appendToFoundInFileString(words[0]);
-		if (words.length != 5) return false;
+		if (words.length != 4) return false;
 		String[] coords = words[1].split (separator2);
 		if ( ! verifyCoords(Integer. parseInt(coords[0]) , Integer. parseInt(coords[1]) , game)
 				|| ! verifyLives (Integer. parseInt(words[2]), armour)
-				|| ! verifyCycleToNextAlienMove(Integer.parseInt(words[3]), game.getLevel())
+				//|| ! verifyCycleToNextAlienMove(Integer.parseInt(words[3]), game.getLevel())
 	// supposes that Direction is an enum with a parse method (similar to that of the Level enum)
-				|| ! verifyDir ((words[4]))) {
+				|| ! verifyDir ((words[3]))) {
 			return false;
 		}
 		return true;
@@ -73,7 +73,7 @@ public class FileContentsVerifier {
 		if (words.length != 2) return false;
 		appendToFoundInFileString(words[0]);
 		String[] coords = words[1].split (separator2);
-		if ( ! verifyCoords(Integer. parseInt(coords[0]) , Integer. parseInt(coords[1]) , game) )
+		if ( !verifyCoords(Integer.parseInt(coords[0]) , Integer.parseInt(coords[1]) , game) )
 			return false;
 		return true;
 	}
@@ -96,33 +96,37 @@ public class FileContentsVerifier {
 	}
 	// supposes that Direction is an enum, esto lo he cmbiado 
 	public static boolean verifyDir(String dir) {
-		if(dir.equals("<-")|| dir.equals("->")) return true;
+		String s = dir.split(labelRefSeparator)[0];
+		boolean a =s.equals("<-");
+		boolean b =s.equals("->");
+		if(a||b) return true;
 		return false;
 	}
 	public static boolean verifyLives(int live, int armour) {
 		return 0 < live && live <= armour;
-		}
-		public static boolean verifyPoints(int points) {
+	}
+	public static boolean verifyPoints(int points) {
 		return points >= 0;
-		}
-		public static boolean verifyCycleToNextAlienMove(int cycle, Level level) {
+	}
+		// yo creo que no hace falta
+	public static boolean verifyCycleToNextAlienMove(int cycle, Level level) {
 		return 0 <= cycle && cycle <= level.getNumCyclesToMoveOneCell();
-		}
+	}
 		// parseBoolean converts any string different from "true" to false.
-		public static boolean verifyBool(String boolString) {
+	public static boolean verifyBool(String boolString) {
 		return boolString.equals("true") || boolString.equals("false");
-		}
-		public boolean isMissileOnLoadedBoard() {
+	}
+	public boolean isMissileOnLoadedBoard() {
 		return foundInFileString.toUpperCase().contains("M");
-		}
+	}
 		// Use a regular expression to verify the string of concatenated prefixes found
-		public boolean verifyLines() {
+	public boolean verifyLines() {
 		// TO DO: compare foundInFileString with a regular expression
 		return true;
-		}
+	}
 		// text explaining allowed concatenated prefixes
-		public String toString() {
+	public String toString() {
 		// TO DO
 		return "";
-		}
+	}
 }

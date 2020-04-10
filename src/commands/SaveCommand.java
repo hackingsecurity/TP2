@@ -19,28 +19,32 @@ public class SaveCommand extends Command {
 		// TODO Auto-generated constructor stub
 	}
 
-	@Override
+	
 	public boolean execute(Game game) throws CommandExecuteException {
-		// TODO Auto-generated method stub
-		GamePrinter printer = new Stringifier(game);
-		String board = printer.toString();
+		
+		boolean exe = false;
+		
 		Scanner in = new Scanner(System.in);
 		System.out.println("File name : \n");
 		String file = in.nextLine();
-		file = file+".dat";
 		try {
-			FileWriter save = new FileWriter(file);
-			for(int i=0; i < board.length(); i++) {
-				save.write(board.charAt(i));
+			
+			
+			if (game.save(file)) {
+				exe = false;
 			}
-			save.close();
-		} catch (IOException e) {
-			e.getMessage();
 		}
-		
+		catch (IOException e) {
+				e.getMessage();
+				exe = true;
+			}
+			
 		System.out.println("Game successfully save in file <" + file + ">"
 				+ "Use the load command to reload it");
-		return false;
+		
+	
+		
+		return exe;
 	}
 
 	@Override

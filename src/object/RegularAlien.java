@@ -73,15 +73,15 @@ public  class RegularAlien extends AlienShip{
 	}
 
 	@Override
-	protected GameObject parse(String stringFromFile, Game game2, FileContentsVerifier verifier) {
+	protected GameObject parse(String stringFromFile, Game game, FileContentsVerifier verifier) {
 		if(stringFromFile.split(";")[0].equalsIgnoreCase("R")) {
-			int armour  =Integer.parseInt(stringFromFile.split(";")[2]);
-			if(!verifier.verifyAlienShipString(stringFromFile, game2,armour)) return null;
+			int live  =Integer.parseInt(stringFromFile.split(";")[2]);
+			if(!verifier.verifyAlienShipString(stringFromFile, game,2)) return null;
 
 			String coordenadas = stringFromFile.split(";")[1]; // recoge las coordenadas
 			
 			return new RegularAlien(game,Integer.parseInt(coordenadas.split(",")[0]),
-					Integer.parseInt(coordenadas.split(",")[1]),armour,stringFromFile.split(";")[4]);
+					Integer.parseInt(coordenadas.split(",")[1]),live,stringFromFile.split(";")[3]);
 		}
 		return null;
 	}

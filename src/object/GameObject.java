@@ -21,7 +21,7 @@ import logic.Game;
 
 public abstract class GameObject implements IAttack {
 	
-	public static final String labelRefSeparator= " - ";
+	public static final String labelRefSeparator= " _ ";
 	protected int label = 0;
 	
 	
@@ -103,5 +103,5 @@ public abstract class GameObject implements IAttack {
 	
 	public abstract String toString();
 	public abstract String stringifed();
-	protected abstract GameObject parse(String stringFromFile, Game game2, FileContentsVerifier verifier);
+	protected abstract GameObject parse(String stringFromFile, Game game, FileContentsVerifier verifier);
 }

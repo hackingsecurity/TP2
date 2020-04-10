@@ -14,10 +14,14 @@ import utils.CommandGenerator;
 import utils.Level;
 
 import java.io.BufferedReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Random;
+import java.util.Scanner;
 
+import board.GamePrinter;
 import board.PrinterTypes;
+import board.Stringifier;
 import exceptions.FileContentsException;
 
 /**
@@ -32,6 +36,7 @@ public class Game implements IPlayerController{
 	//-----------------CONSTANTES----------------
 	public final static int DIM_X = 8; //filas
 	public final static int DIM_Y = 9; //columnas
+	public final static String FILETMP = "tmp";
 	
 	private  int currentCycle;
 	private boolean doExit;
@@ -64,7 +69,7 @@ public class Game implements IPlayerController{
 		public Level getLevel() {return level;}
 		public int getPoints() {return this.points;}
 		public UCMShip getUCMShip() {return this.player;}
-	
+		public void setPlayer(UCMShip ship) {this.player = ship;}
 
 	
 	//---------------OWNER METHODS--------------
@@ -357,9 +362,10 @@ public class Game implements IPlayerController{
 		String[] words;
 		// hay que guardar el tablero que llevemos antes de guardar por si la nueva partida que queremos cargar
 		// no coge los datos correctamente
-		/*GameObjectBoard board2 = new GameObjectBoard(DIM_X,DIM_Y);
-		board2 = board;
-		board.cleanBoard();*/
+		GameObjectBoard board2 = new GameObjectBoard(DIM_X,DIM_Y);
+		
+		board.cleanBoard();
+		board.cleanBoard();
 		if (verifier.verifyCycleString(linea)) {
 			words = linea.split(";");
 			this.currentCycle = Integer.parseInt(words[1]);
@@ -437,6 +443,42 @@ public class Game implements IPlayerController{
 		
 	}
 
+	public boolean save(String file) throws IOException {
+		
+		GamePrinter printer = new Stringifier(this);
+		String board = printer.toString();
+		String fileSaveTmp = file + ".dat";
+		
+		try {
+			FileWriter save = new FileWriter(fileSaveTmp);
+			for(int i=0; i < board.length(); i++) {
+				save.write(board.charAt(i));
+			}
+			save.close();
+		} catch (IOException e) {
+			e.getMessage();
+		}
+		return false;
+	}
+
+	
+	/*
+	 * GamePrinter printer = new Stringifier(this);
+		String board = printer.toString();
+		
+		String file = in.nextLine();
+		file = file+".dat";
+		try {
+			FileWriter save = new FileWriter(file);
+			for(int i=0; i < board.length(); i++) {
+				save.write(board.charAt(i));
+			}
+			save.close();
+		} catch (IOException e) {
+			e.getMessage();
+		}
+		
+	 */
 	
 	
 }
