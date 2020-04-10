@@ -41,62 +41,63 @@ public class FileContentsVerifier {
 	}
 	// Don’t catch NumberFormatException.
 	public boolean verifyPlayerString(String lineFromFile, Game game, int armour) {
-	String[] words = lineFromFile.split(separator1);
-	appendToFoundInFileString(words[0]);
-	if (words.length != 5) return false;
-	String[] coords = words[1].split (separator2);
-	if ( ! verifyCoords(Integer. parseInt(coords[0]) , Integer. parseInt(coords[1]) , game)
-	|| ! verifyLives (Integer. parseInt(words[2]), armour)
-	|| ! verifyPoints (Integer. parseInt(words[3]))
-	|| ! verifyBool(words[4]) )
-	return false;
-	return true;
+		String[] words = lineFromFile.split(separator1);
+		appendToFoundInFileString(words[0]);
+		if (words.length != 5) return false;
+			String[] coords = words[1].split (separator2);
+		if ( ! verifyCoords(Integer. parseInt(coords[0]) , Integer. parseInt(coords[1]) , game)
+				|| ! verifyLives (Integer. parseInt(words[2]), armour)
+					|| ! verifyPoints (Integer. parseInt(words[3]))
+						|| ! verifyBool(words[4]) )
+			return false;
+		return true;
 	}
 	// Don’t catch NumberFormatException.
 	public boolean verifyAlienShipString(String lineFromFile, Game game, int armour) {
-	String[] words = lineFromFile.split(separator1);
-	appendToFoundInFileString(words[0]);
-	if (words.length != 5) return false;
-	String[] coords = words[1].split (separator2);
-	if ( ! verifyCoords(Integer. parseInt(coords[0]) , Integer. parseInt(coords[1]) , game)
-	|| ! verifyLives (Integer. parseInt(words[2]), armour)
-	|| ! verifyCycleToNextAlienMove(Integer.parseInt(words[3]), game.getLevel())
+		String[] words = lineFromFile.split(separator1);
+		appendToFoundInFileString(words[0]);
+		if (words.length != 5) return false;
+		String[] coords = words[1].split (separator2);
+		if ( ! verifyCoords(Integer. parseInt(coords[0]) , Integer. parseInt(coords[1]) , game)
+				|| ! verifyLives (Integer. parseInt(words[2]), armour)
+				|| ! verifyCycleToNextAlienMove(Integer.parseInt(words[3]), game.getLevel())
 	// supposes that Direction is an enum with a parse method (similar to that of the Level enum)
-	|| ! verifyDir (Direction. parse(words[4])) ) {
-	return false;
-	}
-	return true;
+				|| ! verifyDir ((words[4]))) {
+			return false;
+		}
+		return true;
 	}
 	// Don’t catch NumberFormatException.
 	public boolean verifyWeaponString(String lineFromFile, Game game) {
-	String[] words = lineFromFile.split(separator1);
-	if (words.length != 2) return false;
-	appendToFoundInFileString(words[0]);
-	String[] coords = words[1].split (separator2);
-	if ( ! verifyCoords(Integer. parseInt(coords[0]) , Integer. parseInt(coords[1]) , game) )
-	return false;
-	return true;
+		String[] words = lineFromFile.split(separator1);
+		if (words.length != 2) return false;
+		appendToFoundInFileString(words[0]);
+		String[] coords = words[1].split (separator2);
+		if ( ! verifyCoords(Integer. parseInt(coords[0]) , Integer. parseInt(coords[1]) , game) )
+			return false;
+		return true;
 	}
 	public boolean verifyRefString(String lineFromFile) {
-	String[] words = lineFromFile.split(labelRefSeparator);
-	if (words.length != 2 || ! verifyLabel(words[1])) return false;
-	return true;
+		String[] words = lineFromFile.split(labelRefSeparator);
+		if (words.length != 2 || ! verifyLabel(words[1])) return false;
+		return true;
 	}
 	public static boolean verifyLabel(String label) {
-	return Integer.parseInt(label) > 0;
+		return Integer.parseInt(label) > 0;
 	}
 	public static boolean verifyCoords(int x, int y, Game game) {
-	return game.isOnBoard(x, y);
-	}
+		return game.isOnBoard(x, y);
+		}
 	public static boolean verifyCurrentCycle(int currentCycle) {
-	return currentCycle >= 0;
+		return currentCycle >= 0;
 	}
 	public static boolean verifyLevel(Level level) {
-	return level != null;
+		return level != null;
 	}
-	// supposes that Direction is an enum
-	public static boolean verifyDir(Direction dir) {
-	return dir != null;
+	// supposes that Direction is an enum, esto lo he cmbiado 
+	public static boolean verifyDir(String dir) {
+		if(dir.equals("<-")|| dir.equals("->")) return true;
+		return false;
 	}
 	public static boolean verifyLives(int live, int armour) {
 		return 0 < live && live <= armour;

@@ -23,9 +23,11 @@ public class DestroyerAlien extends AlienShip{
 		super(game, posX, posY, 1, 10);
 		this.bomb = false;
 	}
-	public DestroyerAlien(Game game, int posX, int posY,int life) {
+	public DestroyerAlien(Game game, int posX, int posY,int life,String sentido) {
 		super(game, posX, posY, life, 10);
 		this.bomb = false;
+		if(sentido.equals("<-")) AlienShip.sentido = -1;
+		else if(sentido.equals("->")) AlienShip.sentido = 1;
 	}
 
 
@@ -84,12 +86,12 @@ public class DestroyerAlien extends AlienShip{
 	protected GameObject parse(String stringFromFile, Game game2, FileContentsVerifier verifier) {
 		if(stringFromFile.split(";")[0].equalsIgnoreCase("D")) {
 			int armour  =Integer.parseInt(stringFromFile.split(";")[2]);
-			if(!verifier.verifyAlienShipString(stringFromFile, game,armour)) return null;
+			if(!verifier.verifyAlienShipString(stringFromFile, game2,armour)) return null;
 
 			String coordenadas = stringFromFile.split(";")[1]; // recoge las coordenadas
 			
 			return new DestroyerAlien(game,Integer.parseInt(coordenadas.split(",")[0]),
-					Integer.parseInt(coordenadas.split(",")[1]),armour);
+					Integer.parseInt(coordenadas.split(",")[1]),armour,stringFromFile.split(";")[4]);
 		}
 		
 		return null;
@@ -108,8 +110,8 @@ public class DestroyerAlien extends AlienShip{
 			initialiseLabelling();
 		}
 		
-		return "Destroyer: "+ "D" + ";" + this.posX+","+this.posY + ";" 
-		+ this.live + ";" + game.stringSent(AlienShip.sentido) + "\n" + generateStringifyLabel();
+		return "D" + ";" + this.posX+","+this.posY + ";" 
+		+ this.live + ";" + game.stringSent(AlienShip.sentido) + ";" + generateStringifyLabel() + "\n";
 	}
 	
 }

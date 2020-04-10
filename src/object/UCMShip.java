@@ -123,7 +123,7 @@ public class UCMShip extends Ship{
 	protected GameObject parse(String stringFromFile, Game game2, FileContentsVerifier verifier) {
 
 		if(stringFromFile.split(";")[1].equalsIgnoreCase("p")) {
-			if(!verifier.verifyPlayerString(stringFromFile, game, 1)) return null;
+			if(!verifier.verifyPlayerString(stringFromFile, game2, 1)) return null;
 
 			String coordenadas = stringFromFile.split(";")[1]; // recoge las coordenadas
 			

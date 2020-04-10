@@ -33,7 +33,7 @@ public class Game implements IPlayerController{
 	public final static int DIM_X = 8; //filas
 	public final static int DIM_Y = 9; //columnas
 	
-	private int currentCycle;
+	private  int currentCycle;
 	private boolean doExit;
 
 	//-----------------VARIABLES----------------
@@ -147,7 +147,7 @@ public class Game implements IPlayerController{
 	 */
 	
 	public boolean isOnBoard(int posX, int posY) {
-		//  X son las filas e Y son las columnas
+		
 		return ((posX >= 0 && posX < DIM_X ) && ( posY >= 0 && posY < DIM_Y));
 	}
 	
@@ -311,7 +311,7 @@ public class Game implements IPlayerController{
 	
 	public void changeRegularToExplode(int posX, int posY, int live) {
 		this.board.add(new ExplodeShip(this, posX, posY, live));
-	}
+	} 
 	
 	public String toString(int posX, int posY) {return this.board.toString(posX, posY);}
 	
@@ -351,17 +351,23 @@ public class Game implements IPlayerController{
 	
 	
 	
-	public  void load(BufferedReader br) throws IOException, FileContentsException {
+	public void load(BufferedReader br) throws IOException, FileContentsException {
 		FileContentsVerifier  verifier = new FileContentsVerifier();
 		String linea = br.readLine();
 		String[] words;
-		
+		// hay que guardar el tablero que llevemos antes de guardar por si la nueva partida que queremos cargar
+		// no coge los datos correctamente
+		/*GameObjectBoard board2 = new GameObjectBoard(DIM_X,DIM_Y);
+		board2 = board;
+		board.cleanBoard();*/
 		if (verifier.verifyCycleString(linea)) {
 			words = linea.split(";");
 			this.currentCycle = Integer.parseInt(words[1]);
 		}
 		else {
+			
 			throw new FileContentsException("invalid file, unknown line prefix");
+			
 		}
 		
 		linea = br.readLine();
@@ -371,6 +377,7 @@ public class Game implements IPlayerController{
 			else if(linea.equalsIgnoreCase("hard")) this.level = Level.HARD;
 			else if(linea.equalsIgnoreCase("insane")) this.level = Level.INSANE;
 		}else {
+			
 			throw new FileContentsException("invalid file, unknown line prefix");
 		}
 
@@ -380,8 +387,9 @@ public class Game implements IPlayerController{
 		
 		while( linea != null && !linea.isEmpty() ) {
 			GameObject gameObject = GameObjectGenerator.parse(linea, this, verifier);
-				if (gameObject == null)
-					throw new FileContentsException("invalid file, unknown line prefix");
+				if (gameObject == null) {
+					
+					throw new FileContentsException("invalid file, unknown line prefix");}
 			board.add(gameObject);
 			linea = br.readLine().trim();
 		}
@@ -428,5 +436,7 @@ public class Game implements IPlayerController{
 		stringifying = true;
 		
 	}
+
+	
 	
 }

@@ -123,15 +123,16 @@ public class Ovni  extends EnemyShip  {
 
 	@Override
 	public String stringifed() {
-		return  "O;" + this.posX+","+this.posY + ";" + this.live + "\n";
-
+		if(this.visibilidadOvni)
+			return  "O;" + this.posX+","+this.posY + ";" + this.live + "\n";
+		else return "";
 	}
 
 	@Override
 	protected GameObject parse(String stringFromFile, Game game2, FileContentsVerifier verifier) {
 		
-		if(stringFromFile.split(";")[1].equalsIgnoreCase("o")) {
-			if(!verifier.verifyOvniString(stringFromFile, game, 1)) return null;
+		if(stringFromFile.split(";")[0].equalsIgnoreCase("o")) {
+			if(!verifier.verifyOvniString(stringFromFile, game2, 1)) return null;
 
 			String coordenadas = stringFromFile.split(";")[1]; // recoge las coordenadas
 			

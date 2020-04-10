@@ -18,9 +18,11 @@ public  class RegularAlien extends AlienShip{
 		this.changeToExplode = false;
 		// TODO Auto-generated constructor stub
 	}
-	public RegularAlien(Game game, int posX, int posY, int live) {
+	public RegularAlien(Game game, int posX, int posY, int live,String sentido) {
 		super(game, posX, posY, live, 5);
 		this.changeToExplode = false;
+		if(sentido.equals("<-")) AlienShip.sentido = -1;
+		else if(sentido.equals("->")) AlienShip.sentido = 1;
 		// TODO Auto-generated constructor stub
 	}
 	
@@ -74,12 +76,12 @@ public  class RegularAlien extends AlienShip{
 	protected GameObject parse(String stringFromFile, Game game2, FileContentsVerifier verifier) {
 		if(stringFromFile.split(";")[0].equalsIgnoreCase("R")) {
 			int armour  =Integer.parseInt(stringFromFile.split(";")[2]);
-			if(!verifier.verifyAlienShipString(stringFromFile, game,armour)) return null;
+			if(!verifier.verifyAlienShipString(stringFromFile, game2,armour)) return null;
 
 			String coordenadas = stringFromFile.split(";")[1]; // recoge las coordenadas
 			
 			return new RegularAlien(game,Integer.parseInt(coordenadas.split(",")[0]),
-					Integer.parseInt(coordenadas.split(",")[1]),armour);
+					Integer.parseInt(coordenadas.split(",")[1]),armour,stringFromFile.split(";")[4]);
 		}
 		return null;
 	}

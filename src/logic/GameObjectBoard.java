@@ -277,6 +277,14 @@ public class GameObjectBoard {
 		}
 		return null;
 	}
+//limpiar tablero para cuando haces el load
+	public void cleanBoard() {
+		for (int i = 0; i < currentObjects; i++) {
+			remove(i);
+			i--;
+		}
+		
+	}
 
 	
 }

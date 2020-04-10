@@ -13,12 +13,16 @@ public class ExplodeShip extends AlienShip {
 
 	//-----------------CONTRUCTOR---------------
 	
+	public  ExplodeShip(Game game,int posX,int posY, int vida, String sentido){
+		super(game, posX,  posY, vida, 5);
+		if(sentido.equals("<-")) AlienShip.sentido = -1;
+		else if(sentido.equals("->")) AlienShip.sentido = 1;
+	}
 	public  ExplodeShip(Game game,int posX,int posY, int vida){
 		super(game, posX,  posY, vida, 5);
-	}
-	
+		
 	//--------------METHODS IMPLEMENTS IAttack-----------
-	
+	}
 	public ExplodeShip() {
 		// TODO Auto-generated constructor stub
 		super();
@@ -68,12 +72,12 @@ public class ExplodeShip extends AlienShip {
 	protected GameObject parse(String stringFromFile, Game game2, FileContentsVerifier verifier) {
 		if(stringFromFile.split(";")[0].equalsIgnoreCase("E")) {
 			int armour  =Integer.parseInt(stringFromFile.split(";")[2]);
-			if(!verifier.verifyAlienShipString(stringFromFile, game,armour)) return null;
+			if(!verifier.verifyAlienShipString(stringFromFile, game2,armour)) return null;
 
 			String coordenadas = stringFromFile.split(";")[1]; // recoge las coordenadas
 			
 			return new ExplodeShip(game,Integer.parseInt(coordenadas.split(",")[0]),
-					Integer.parseInt(coordenadas.split(",")[1]),armour);
+					Integer.parseInt(coordenadas.split(",")[1]),armour,stringFromFile.split(";")[4]);
 		}
 		return null;
 	}
