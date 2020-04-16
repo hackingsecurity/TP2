@@ -364,7 +364,7 @@ public class Game implements IPlayerController{
 		// no coge los datos correctamente
 		GameObjectBoard board2 = new GameObjectBoard(DIM_X,DIM_Y);
 		
-		board.cleanBoard();
+		
 		board.cleanBoard();
 		if (verifier.verifyCycleString(linea)) {
 			words = linea.split(";");

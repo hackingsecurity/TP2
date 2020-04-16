@@ -1,6 +1,7 @@
 package commands;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
@@ -20,38 +21,55 @@ public class LoadCommand extends Command {
 
 	@Override
 	public boolean execute(Game game) throws CommandExecuteException{
+		
+		
 		Scanner ent = new Scanner(System.in);
 		System.out.println("Type file name you want to load ");
 		String file = ent.nextLine();
 		String header = null;
+		
+		//añadimos el .dat al archivo que queremos cargar
 		file = file+".dat";
+		File fichero = new File(file);
 		
 		
 		
 		try {
-			game.save(game.FILETMP);
-			FileReader fr = new FileReader(file);
-			BufferedReader br = new BufferedReader(fr);
-			header = br.readLine();
-			// esto se utilizaría para quitar todas los object que existan.
-			if(header.equals("--- Space Invaders v2.0 ---")) {
+			//guardamos nuestra partida actual.
+			game.save(Game.FILETMP);
+			
+			if (fichero.exists()) {
+
+				FileReader fr = new FileReader(file);
+				BufferedReader br = new BufferedReader(fr);
 				header = br.readLine();
-				game.load(br);
+				// esto se utilizaría para quitar todas los object que existan.
+				if(header.equals("--- Space Invaders v2.0 ---")) {
+					header = br.readLine();
+					game.load(br);
+				}
+			//carga
+				System.out.println("Game loaded succesfully from file <"+file+">");
 			}
+			else {
+				loadOld(game);
+				System.out.println(file + "doesn't exist");
+			}
+			//debemos saber si existe el arhivo.
 			
 			
 		}catch (IOException e) {
-			loadOld(game);
+			
 			e.getMessage();
 		} catch (FileContentsException e) {
 		// TODO Auto-generated catch block
-			loadOld(game);
+			
 			e.printStackTrace();
 		}
 		
-		System.out.println("Game loaded succesfully from file <"+file+">");
 		
-		return false;
+		
+		return true;
 		
 	}
 
@@ -72,8 +90,16 @@ public class LoadCommand extends Command {
 	private void loadOld(Game game) {
 		
 		try {
-			FileReader r = new FileReader(game.FILETMP);
-			game.load(new BufferedReader(r));
+			
+			String file = Game.FILETMP + ".dat";
+			FileReader r = new FileReader(file);
+			BufferedReader br = new BufferedReader(r);
+			String header = br.readLine();
+			// esto se utilizaría para quitar todas los object que existan.
+			if(header.equals("--- Space Invaders v2.0 ---")) {
+				header = br.readLine();
+				game.load(br);
+			}
 		} catch (IOException | FileContentsException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
