@@ -53,7 +53,7 @@ public class LoadCommand extends Command {
 			}
 			else {
 				loadOld(game);
-				System.out.println(file + "doesn't exist");
+				System.err.println( " " + file + "doesn't exist");
 			}
 			//debemos saber si existe el arhivo.
 			

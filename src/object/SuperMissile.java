@@ -14,7 +14,7 @@ public class SuperMissile extends Weapon {
 	//-----------------CONTRUCTOR---------------
 	
 	public SuperMissile(Game game, int posX, int posY) {
-		super(game, posX, posY, 1,2);
+		super(game, posX, posY, 1,2,"X");
 	}
 
 	//--------------METHODS IMPLEMENTS IAttack-----------
@@ -67,9 +67,7 @@ public class SuperMissile extends Weapon {
 		return "ss";
 	}
 	
-	public String stringifed() {
-		return "X" + ";" + this.posX +","+ this.posY + "\n";
-	}
+	
 
 	@Override
 	protected GameObject parse(String stringFromFile, Game game, FileContentsVerifier verifier) {

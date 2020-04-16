@@ -20,11 +20,11 @@ public class DestroyerAlien extends AlienShip{
 	//-----------------CONTRUCTOR---------------
 	
 	public DestroyerAlien(Game game, int posX, int posY) {
-		super(game, posX, posY, 1, 10);
+		super(game, posX, posY, 1, 10,"D");
 		this.bomb = false;
 	}
 	public DestroyerAlien(Game game, int posX, int posY,int life,String sentido) {
-		super(game, posX, posY, life, 10);
+		super(game, posX, posY, life, 10,"D");
 		this.bomb = false;
 		if(sentido.equals("<-")) AlienShip.sentido = -1;
 		else if(sentido.equals("->")) AlienShip.sentido = 1;
@@ -110,8 +110,7 @@ public class DestroyerAlien extends AlienShip{
 			initialiseLabelling();
 		}
 		
-		return "D" + ";" + this.posX+","+this.posY + ";" 
-		+ this.live + ";"  + game.stringSent(AlienShip.sentido) +  generateStringifyLabel() + "\n";
+		return super.stringifed() +  generateStringifyLabel();
 	}
 	
 }

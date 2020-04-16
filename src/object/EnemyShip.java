@@ -22,8 +22,8 @@ public abstract class EnemyShip extends Ship implements IExecuteRandomActions{
 	
 	//-----------------CONTRUCTOR---------------
 	public EnemyShip() {super();}
-	public EnemyShip(Game game, int posX, int posY, int live, int points) {
-		super(game, posX, posY, live);
+	public EnemyShip(Game game, int posX, int posY, int live, int points, String st) {
+		super(game, posX, posY, live,st);
 		this.points = points;
 	}
 
@@ -64,6 +64,8 @@ public abstract class EnemyShip extends Ship implements IExecuteRandomActions{
 	public abstract void onDelete();
 	public abstract void move();
 	public abstract String toString();
-	public abstract String stringifed();
+	public  String stringifed() {
+		return super.stringifed();
+	};
 
 }

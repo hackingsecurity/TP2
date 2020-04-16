@@ -15,7 +15,7 @@ public class ShockWave extends Weapon{
 	//-----------------CONTRUCTOR---------------
 	
 	public ShockWave(Game game, int posX, int posY, int live) {
-		super(game, posX, posY, live,1);
+		super(game, posX, posY, live,1,"SW");
 	}
 	
 	//--------------METHODS IMPLEMENTS IAttack-----------
@@ -45,8 +45,7 @@ public class ShockWave extends Weapon{
 	
 	@Override
 	public String toString() {return null;}
-	public String stringifed() {return "SW" + ";" + this.posX+","+this.posY + ";" 
-			+ this.live + ";";}
+
 
 	@Override
 	protected GameObject parse(String stringFromFile, Game game, FileContentsVerifier verifier) {

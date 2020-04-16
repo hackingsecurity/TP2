@@ -25,10 +25,16 @@ public class StringifyCommand extends Command{
 		
 		Command command = null;
 		
-		if (matchCommandName(commandWords[0])) {
-			
-			if(commandWords.length == 1) command = new StringifyCommand();
-			else throw new CommandParseException(incorrectNumArgsMsg);
+		try {
+	
+			if (matchCommandName(commandWords[0])) {
+				
+				if(commandWords.length == 1) command = new StringifyCommand();
+				else throw new CommandParseException(incorrectNumArgsMsg);
+			}
+		}
+		catch(CommandParseException e) {
+			throw new CommandParseException(e.getMessage());
 		}
 		
 		return command;

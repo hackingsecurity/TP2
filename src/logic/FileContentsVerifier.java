@@ -43,7 +43,7 @@ public class FileContentsVerifier {
 	public boolean verifyPlayerString(String lineFromFile, Game game, int armour) {
 		String[] words = lineFromFile.split(separator1);
 		appendToFoundInFileString(words[0]);
-		if (words.length != 5) return false;
+		if (words.length != 6) return false;
 			String[] coords = words[1].split (separator2);
 		if ( ! verifyCoords(Integer. parseInt(coords[0]) , Integer. parseInt(coords[1]) , game)
 				|| ! verifyLives (Integer. parseInt(words[2]), armour)

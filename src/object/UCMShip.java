@@ -24,12 +24,17 @@ public class UCMShip extends Ship{
 	
 	public UCMShip(Game game, int posX, int posY) {
 							//LIVE
-		super(game,posX, posY, 3);
+		super(game,posX, posY, 3,"P");
 		this.missile = false;
 		this.numSuperMissiles = 0;
 		this.shockWave = false;
 	}
-	
+	public UCMShip(Game game, int posX, int posY, int numSM) {
+		super(game,posX, posY, 3,"P");
+		this.missile = false;
+		this.numSuperMissiles = numSM;
+		this.shockWave = false;
+	}
 	
 	//--------------GETTER AND SETTER-----------
 	
@@ -112,9 +117,8 @@ public class UCMShip extends Ship{
 	}
 	
 	public String stringifed() {
-		return "P" + ";" + this.posX+","+this.posY + ";" 
-				+ this.live + ";" + this.game.getPoints() +
-				";" + this.shockWave + "\n"; /* +
+		return super.stringifed() + ";" + this.game.getPoints() +
+				";" + this.shockWave + ";" + this.numSuperMissiles;  /* +
 				this.numSuperMissiles + "\n";*/
 	}
 
@@ -125,8 +129,9 @@ public class UCMShip extends Ship{
 		if(stringFromFile.split(";")[0].equalsIgnoreCase("p")) {
 			if(!verifier.verifyPlayerString(stringFromFile, game, 3)) return null;
 
-			String coordenadas = stringFromFile.split(";")[1]; // recoge las coordenadas
-			UCMShip ship = new UCMShip(game,Integer.parseInt(coordenadas.split(",")[0]),Integer.parseInt(coordenadas.split(",")[1])); 
+			String coordenadas = stringFromFile.split(";")[1];// recoge las coordenadas
+			UCMShip ship = new UCMShip(game,Integer.parseInt(coordenadas.split(",")[0]),Integer.parseInt(coordenadas.split(",")[1]),
+					Integer.parseInt(stringFromFile.split(";")[5])); 
 			game.setPlayer(ship);
 			return ship;
 		}

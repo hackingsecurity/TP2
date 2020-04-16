@@ -448,6 +448,7 @@ public class Game implements IPlayerController{
 		GamePrinter printer = new Stringifier(this);
 		String board = printer.toString();
 		String fileSaveTmp = file + ".dat";
+		boolean canSave = false;
 		
 		try {
 			FileWriter save = new FileWriter(fileSaveTmp);
@@ -455,10 +456,11 @@ public class Game implements IPlayerController{
 				save.write(board.charAt(i));
 			}
 			save.close();
+			canSave = true;
 		} catch (IOException e) {
 			e.getMessage();
 		}
-		return false;
+		return canSave;
 	}
 
 	

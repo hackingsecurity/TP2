@@ -14,12 +14,12 @@ public  class RegularAlien extends AlienShip{
 	private boolean changeToExplode; 
 	
 	public RegularAlien(Game game, int posX, int posY) {
-		super(game, posX, posY, 2, 5);
+		super(game, posX, posY, 2, 5,"R");
 		this.changeToExplode = false;
 		// TODO Auto-generated constructor stub
 	}
 	public RegularAlien(Game game, int posX, int posY, int live,String sentido) {
-		super(game, posX, posY, live, 5);
+		super(game, posX, posY, live, 5,"R");
 		this.changeToExplode = false;
 		if(sentido.equals("<-")) AlienShip.sentido = -1;
 		else if(sentido.equals("->")) AlienShip.sentido = 1;
@@ -66,11 +66,7 @@ public  class RegularAlien extends AlienShip{
 		return "R[" + this.live + "]";
 	}
 	
-	@Override
-	public String stringifed() {
-		return  "R" + ";" + this.posX +","+ this.posY + ";" 
-				+ this.live + ";" + game.stringSent(AlienShip.sentido)+ "\n" ;   
-	}
+
 
 	@Override
 	protected GameObject parse(String stringFromFile, Game game, FileContentsVerifier verifier) {

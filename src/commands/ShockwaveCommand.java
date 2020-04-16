@@ -13,11 +13,16 @@ public class ShockwaveCommand extends Command{
 	
 		boolean  ex = false;
 		
-		if(game.shockWave()){
-			game.update();
-			ex = true;
-
-		}else throw new CommandExecuteException("There isn't ShockWave");
+		try {
+			if(game.shockWave()){
+				game.update();
+				ex = true;
+	
+			}else throw new NoShockwaveException();
+		}
+		catch(NoShockwaveException e) {
+			throw new CommandExecuteException(e.getMessage());
+		}
 		
 		return ex;
 	}
@@ -26,11 +31,16 @@ public class ShockwaveCommand extends Command{
 	{
 		Command command = null;
 		
+		try {
 			if (matchCommandName(commandWords[0])) {
 				
 				if (commandWords.length == 1) command = new ShockwaveCommand();
 				else throw new CommandParseException (incorrectNumArgsMsg);
 			}
+		}
+		catch(CommandParseException e) {
+			throw new CommandParseException(e.getMessage());
+		}
 	
 		return command;
 	}

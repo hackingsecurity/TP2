@@ -2,6 +2,7 @@ package commands;
 
 
 
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
@@ -34,16 +35,13 @@ public class SaveCommand extends Command {
 			if (game.save(file)) {
 				exe = false;
 			}
+			System.out.println("Game successfully save in file <" + file + ">"
+					+ "Use the load command to reload it");
 		}
 		catch (IOException e) {
-				e.getMessage();
-				exe = true;
-			}
-			
-		System.out.println("Game successfully save in file <" + file + ">"
-				+ "Use the load command to reload it");
-		
-	
+				throw new CommandExecuteException("save error");
+				
+		}
 		
 		return exe;
 	}

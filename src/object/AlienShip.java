@@ -26,8 +26,8 @@ public  abstract class AlienShip extends EnemyShip {
 	
 	
 	public AlienShip() {super();}
-	public AlienShip(Game game, int posX, int posY, int live, int points) {
-		super(game, posX, posY, live, points);
+	public AlienShip(Game game, int posX, int posY, int live, int points,String st) {
+		super(game, posX, posY, live, points,st);
 		//Se incrementa al añadir un nuevo AlienShip
 		contadorAlien += 1;
 	}
@@ -142,7 +142,9 @@ public  abstract class AlienShip extends EnemyShip {
 	
 	public abstract void onDelete();
 	public abstract String toString();
-	public abstract String stringifed();
+	public  String stringifed() {
+		return super.stringifed() +  ";" + game.stringSent(AlienShip.sentido);
+	};
 
 
 	

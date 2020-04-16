@@ -50,10 +50,10 @@ public class ShootCommand extends Command{
 				ex = true;
 				
 			}
-			else throw new ShootException ();
+			else throw new MissileInFlightException ();
 				
 		}
-		catch(ShootException | SuperMissileException e) {
+		catch(MissileInFlightException | SuperMissileException e) {
 			throw new CommandExecuteException(e.getMessage());
 		}
 		
@@ -66,26 +66,30 @@ public class ShootCommand extends Command{
 		Command command = null;
 
 		
-		
-		if (matchCommandName(commandWords[0])) {
+		try {
 			
-			if(commandWords.length == 1) {
-				command = new ShootCommand(false);
+			if (matchCommandName(commandWords[0])) {
 				
-			}
-			
-			else if(commandWords.length == 2 ) {
-				if ( (commandWords[1].equals("s")||(commandWords[1].equals("supermisil")))) {
-					command = new ShootCommand(true);
+				if(commandWords.length == 1) {
+					command = new ShootCommand(false);
+					
 				}
-				else throw new CommandParseException ("Incorrect type of misil");
 				
-			}else throw new CommandParseException (incorrectNumArgsMsg);
-				
+				else if(commandWords.length == 2 ) {
+					if ( (commandWords[1].equals("s")||(commandWords[1].equals("supermisil")))) {
+						command = new ShootCommand(true);
+					}
+					else throw new CommandParseException ("Incorrect type of misil");
+					
+				}else throw new CommandParseException (incorrectNumArgsMsg);
+					
+			}
 		}
-			return command;
-	}
-	
-
+		catch (CommandParseException e) {
+			throw new CommandParseException(e.getMessage());
+		}
 		
+		return command;
+			
+	}
 }

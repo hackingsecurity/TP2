@@ -264,7 +264,9 @@ public class GameObjectBoard {
 		String stringfier ="";
 		
 		for (int i = 0; i < this.currentObjects; i++) {
-			stringfier += this.objects[i].stringifed() ; 
+			String st = this.objects[i].stringifed();
+			if(!st.equals(""))
+				stringfier += this.objects[i].stringifed() + "\n"  ; 
 		}	
 		return stringfier;
 	}

@@ -23,7 +23,7 @@ public abstract class GameObject implements IAttack {
 	
 	public static final String labelRefSeparator= " _ ";
 	protected int label = 0;
-	
+	protected String st;
 	
 	/*-----------------VARIABLES----------------
 				ALL object need to use this
@@ -33,11 +33,12 @@ public abstract class GameObject implements IAttack {
 	protected Game game;
 	
 	//-----------------CONTRUCTOR---------------
-	public GameObject() {
+	public GameObject( ) {
 		
 	}
-	public GameObject( Game game, int posX , int posY, int live) {
+	public GameObject( Game game, int posX , int posY, int live, String st) {
 		this.posX = posX; this.posY = posY; this.game = game; this.live = live;
+		this.st = st;
 	}
 	
 	//--------------GETTER AND SETTER-----------
@@ -102,6 +103,9 @@ public abstract class GameObject implements IAttack {
 		//--------------OBJECT FORMAT OUTPUT-----------
 	
 	public abstract String toString();
-	public abstract String stringifed();
+	public String stringifed() {
+		return this.st + ";" + this.posX + "," + this.posY;
+	}
 	protected abstract GameObject parse(String stringFromFile, Game game, FileContentsVerifier verifier);
+	
 }

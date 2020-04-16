@@ -14,20 +14,20 @@ public class Bomb extends Weapon{
 	//-----------------CONTRUCTOR---------------
 	
 	public Bomb(Game game, int posX, int posY, DestroyerAlien bombOwner) {
-		super(game, posX, posY, 1,1);
+		super(game, posX, posY, 1,1,"B");
 		
 		this.destroyer =bombOwner;
 	}
 	
 	//--------------METHODS IMPLEMENTS IAttack-----------
 	public Bomb(Game game, int posX, int posY, DestroyerAlien bombOwner, int label) {
-		super(game, posX, posY, 1,1);
+		super(game, posX, posY, 1,1,"B");
 		this.destroyer =bombOwner;
 		this.label = label;
 	}
 	
 	public Bomb(Game game, int posX, int posY) {
-		super(game, posX, posY, 1,1);
+		super(game, posX, posY, 1,1,"B");
 	}
 	public Bomb() {
 		super();
@@ -102,8 +102,8 @@ public class Bomb extends Weapon{
 	
 	@Override
 	public String stringifed() {
-		return  "B" + ";" + this.posX +"," +this.posY  + (destroyer.isAlive() ? 
-				generateSerialRef(): "") + "\n";  //añadir el destroyer
+		return  super.stringifed() + (destroyer.isAlive() ? 
+				generateSerialRef(): "");  //añadir el destroyer
 	}
 
 	

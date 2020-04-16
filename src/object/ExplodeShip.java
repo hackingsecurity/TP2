@@ -14,12 +14,12 @@ public class ExplodeShip extends AlienShip {
 	//-----------------CONTRUCTOR---------------
 	
 	public  ExplodeShip(Game game,int posX,int posY, int vida, String sentido){
-		super(game, posX,  posY, vida, 5);
+		super(game, posX,  posY, vida, 5, "E");
 		if(sentido.equals("<-")) AlienShip.sentido = -1;
 		else if(sentido.equals("->")) AlienShip.sentido = 1;
 	}
 	public  ExplodeShip(Game game,int posX,int posY, int vida){
-		super(game, posX,  posY, vida, 5);
+		super(game, posX,  posY, vida, 5,"E");
 		
 	//--------------METHODS IMPLEMENTS IAttack-----------
 	}
@@ -63,10 +63,7 @@ public class ExplodeShip extends AlienShip {
 		 return "E[" + this.getLive()+ "]" ;
 	}
 	
-	public String stringifed() {
-		return "E" + ";" + this.posX+","+this.posY + ";" 
-				+ this.live + ";" + game.stringSent(AlienShip.sentido) + "\n";   
-	}
+
 
 	@Override
 	protected GameObject parse(String stringFromFile, Game game, FileContentsVerifier verifier) {

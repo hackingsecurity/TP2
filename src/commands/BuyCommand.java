@@ -14,8 +14,13 @@ public class BuyCommand extends Command{
 
 		boolean buy = false;
 		
-		if(game.buySuperMissile()) buy =  true;
-		else throw new CommandExecuteException("No tienes puntos suficientes, no puedes comprar super misil");
+		try {
+			if(game.buySuperMissile()) buy =  true;
+			else throw new CommandExecuteException("No tienes puntos suficientes, no puedes comprar super misil");
+		}
+		catch(CommandExecuteException e) {
+			 throw new CommandExecuteException(e.getMessage());
+		}
 		
 		return buy;
 	}
@@ -24,11 +29,15 @@ public class BuyCommand extends Command{
 	public Command parse(String[] commandWords) throws CommandParseException {
 		Command command = null;
 		
-		
-		if (matchCommandName(commandWords[0])) {
-			if (commandWords.length == 1) command = new BuyCommand();
-			else throw new CommandParseException (incorrectNumArgsMsg);
+		try {
 			
+			if (matchCommandName(commandWords[0])) {
+				if (commandWords.length == 1) command = new BuyCommand();
+				else throw new CommandParseException (incorrectNumArgsMsg);	
+			}
+		}
+		catch (CommandParseException e) {
+			throw new CommandParseException(e.getMessage());
 		}
 		
 		return command;

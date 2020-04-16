@@ -22,12 +22,12 @@ public class Ovni  extends EnemyShip  {
 	
 	public Ovni(Game game) {
 		//Game, posX, posY, live, puntos
-		super(game, 0 ,9, 1, 25 );
+		super(game, 0 ,9, 1, 25,"O" );
 		this.visibilidadOvni = false;
 		
 	}
 	public Ovni(Game game, int x, int y) {
-		super(game,x,y,1,25);
+		super(game,x,y,1,25,"O");
 		this.visibilidadOvni = true;
 	}
 	//---------------OWNER METHODS--------------
@@ -110,7 +110,10 @@ public class Ovni  extends EnemyShip  {
 	}
 	
 		//--------------OBJECT FORMAT OUTPUT-----------
-	
+	public String stringifed() {
+		if(this.visibilidadOvni) return super.stringifed()+"\n";
+		else return "";
+	}
 	@Override
 	public String toString() {
 		
@@ -121,12 +124,6 @@ public class Ovni  extends EnemyShip  {
 		return null;
 	}
 
-	@Override
-	public String stringifed() {
-		if(this.visibilidadOvni)
-			return  "O;" + this.posX+","+this.posY + ";" + this.live + "\n";
-		else return "";
-	}
 
 	@Override
 	protected GameObject parse(String stringFromFile, Game game2, FileContentsVerifier verifier) {

@@ -18,7 +18,7 @@ public class UCMMissile extends Weapon{
 	//-----------------CONTRUCTOR---------------
 	
 	public UCMMissile(Game game, int posX, int posY) {
-		super(game, posX, posY, 1,1);
+		super(game, posX, posY, 1,1,"M");
 	}
 
 	//--------------METHODS IMPLEMENTS IAttack-----------
@@ -82,12 +82,8 @@ public class UCMMissile extends Weapon{
 	public String toString() {
 		return "oo";
 	}
+		
 	
-	@Override
-	public String stringifed() {
-		return "M" + ";" + this.posX+","+this.posY + "\n";  
-	}
-
 	@Override
 	protected GameObject parse(String stringFromFile, Game game, FileContentsVerifier verifier) {
 		if(stringFromFile.split(";")[0].equalsIgnoreCase("M")) {
