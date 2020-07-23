@@ -6,7 +6,7 @@ import logic.Game;
 public class ShockwaveCommand extends Command{
 	
 	public ShockwaveCommand() {
-		super("shockwave", "w", "shockWave", "UCM-Ship releases a shock wave");
+		super("shockwave", "w", "shock[W]ave", "UCM-Ship releases a shock wave");
 	}
 
 	public boolean execute(Game game) throws CommandExecuteException {

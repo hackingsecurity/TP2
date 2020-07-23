@@ -9,7 +9,7 @@ public class ListPrintersCommand extends Command {
 	
 
 	public ListPrintersCommand() {
-		super("Printers", "p", "Printers List", "Show Shows a list of printers");
+		super("Printers", "p", "[p]rinters", "Show Shows a list of printers");
 		
 	}
 

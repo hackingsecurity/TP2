@@ -7,7 +7,7 @@ public class ListCommand extends Command {
 
 
 	public ListCommand() {
-		super("List", "l", "list", "Prints the list of available ships");
+		super("List", "l", "[l]ist", "Prints the list of available ships");
 	}
 
 	public boolean execute(Game game) {

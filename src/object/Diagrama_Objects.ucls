@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<class-diagram version="1.2.3" icons="true" automaticImage="PNG" always-add-relationships="true" generalizations="true" 
+<class-diagram version="1.2.4" icons="true" automaticImage="PNG" always-add-relationships="true" generalizations="true" 
   realizations="true" associations="true" dependencies="true" nesting-relationships="true" router="FAN">  
-  <class id="1" language="java" name="object.EnemyShip" project="TP2" file="/TP2/object/EnemyShip.java" binary="false" 
-    corner="BOTTOM_RIGHT">    
+  <class id="1" language="java" name="object.EnemyShip" project="TP2" file="/TP2/src/object/EnemyShip.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="402" y="229"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -10,7 +10,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="2" language="java" name="object.Ship" project="TP2" file="/TP2/object/Ship.java" binary="false" 
+  <class id="2" language="java" name="object.Ship" project="TP2" file="/TP2/src/object/Ship.java" binary="false" 
     corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="333" y="93"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -19,16 +19,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="3" language="java" name="object.Shockwave" project="TP2" file="/TP2/object/Shockwave.java" binary="false" 
-    corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="776" y="473"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="4" language="java" name="object.Weapon" project="TP2" file="/TP2/object/Weapon.java" binary="false" 
+  <class id="3" language="java" name="object.Weapon" project="TP2" file="/TP2/src/object/Weapon.java" binary="false" 
     corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="581" y="320"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -37,8 +28,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="5" language="java" name="object.GameObject" project="TP2" file="/TP2/object/GameObject.java" binary="false" 
-    corner="BOTTOM_RIGHT">    
+  <class id="4" language="java" name="object.GameObject" project="TP2" file="/TP2/src/object/GameObject.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
     <position height="265" width="226" x="493" y="-8"/>    
     <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -46,8 +37,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="6" language="java" name="object.UCMMissile" project="TP2" file="/TP2/object/UCMMissile.java" binary="false" 
-    corner="BOTTOM_RIGHT">    
+  <class id="5" language="java" name="object.UCMMissile" project="TP2" file="/TP2/src/object/UCMMissile.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="588" y="476"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -55,8 +46,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="7" language="java" name="object.AlienShip" project="TP2" file="/TP2/object/AlienShip.java" binary="false" 
-    corner="BOTTOM_RIGHT">    
+  <class id="6" language="java" name="object.AlienShip" project="TP2" file="/TP2/src/object/AlienShip.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="392" y="336"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -64,7 +55,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="8" language="java" name="object.Bomb" project="TP2" file="/TP2/object/Bomb.java" binary="false" 
+  <class id="7" language="java" name="object.Bomb" project="TP2" file="/TP2/src/object/Bomb.java" binary="false" 
     corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="798" y="300"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -73,7 +64,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="9" language="java" name="object.DestroyerAlien" project="TP2" file="/TP2/object/DestroyerAlien.java" 
+  <class id="8" language="java" name="object.DestroyerAlien" project="TP2" file="/TP2/src/object/DestroyerAlien.java" 
     binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="229" y="482"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -82,7 +73,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="10" language="java" name="object.UCMShip" project="TP2" file="/TP2/object/UCMShip.java" binary="false" 
+  <class id="9" language="java" name="object.UCMShip" project="TP2" file="/TP2/src/object/UCMShip.java" binary="false" 
     corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="235" y="283"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -91,7 +82,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="11" language="java" name="object.RegularAlien" project="TP2" file="/TP2/object/RegularAlien.java" 
+  <class id="10" language="java" name="object.RegularAlien" project="TP2" file="/TP2/src/object/RegularAlien.java" 
     binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="404" y="485"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -100,57 +91,65 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
+  <dependency id="11">    
+    <end type="SOURCE" refId="9"/>    
+    <end type="TARGET" refId="4"/>  
+  </dependency>  
   <generalization id="12">    
-    <end type="SOURCE" refId="4"/>    
-    <end type="TARGET" refId="5"/>  
+    <end type="SOURCE" refId="8"/>    
+    <end type="TARGET" refId="6"/>  
   </generalization>  
-  <generalization id="13">    
-    <end type="SOURCE" refId="11"/>    
-    <end type="TARGET" refId="7"/>  
-  </generalization>  
-  <generalization id="14">    
+  <dependency id="13">    
+    <end type="SOURCE" refId="8"/>    
+    <end type="TARGET" refId="4"/>  
+  </dependency>  
+  <dependency id="14">    
     <end type="SOURCE" refId="7"/>    
-    <end type="TARGET" refId="1"/>  
-  </generalization>  
+    <end type="TARGET" refId="4"/>  
+  </dependency>  
   <generalization id="15">    
-    <end type="SOURCE" refId="3"/>    
+    <end type="SOURCE" refId="2"/>    
     <end type="TARGET" refId="4"/>  
   </generalization>  
   <generalization id="16">    
-    <end type="SOURCE" refId="6"/>    
+    <end type="SOURCE" refId="3"/>    
     <end type="TARGET" refId="4"/>  
   </generalization>  
   <generalization id="17">    
-    <end type="SOURCE" refId="8"/>    
-    <end type="TARGET" refId="4"/>  
+    <end type="SOURCE" refId="7"/>    
+    <end type="TARGET" refId="3"/>  
   </generalization>  
-  <dependency id="18">    
-    <end type="SOURCE" refId="3"/>    
-    <end type="TARGET" refId="5"/>  
+  <association id="18">    
+    <end type="SOURCE" refId="7" navigable="false">      
+      <attribute id="19" name="destroyer"/>      
+      <multiplicity id="20" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="8" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="21">    
+    <end type="SOURCE" refId="10"/>    
+    <end type="TARGET" refId="4"/>  
   </dependency>  
-  <generalization id="19">    
+  <generalization id="22">    
     <end type="SOURCE" refId="1"/>    
     <end type="TARGET" refId="2"/>  
   </generalization>  
-  <generalization id="20">    
-    <end type="SOURCE" refId="2"/>    
-    <end type="TARGET" refId="5"/>  
-  </generalization>  
-  <generalization id="21">    
+  <generalization id="23">    
     <end type="SOURCE" refId="10"/>    
+    <end type="TARGET" refId="6"/>  
+  </generalization>  
+  <generalization id="24">    
+    <end type="SOURCE" refId="5"/>    
+    <end type="TARGET" refId="3"/>  
+  </generalization>  
+  <generalization id="25">    
+    <end type="SOURCE" refId="9"/>    
     <end type="TARGET" refId="2"/>  
   </generalization>  
-  <dependency id="22">    
-    <end type="SOURCE" refId="8"/>    
-    <end type="TARGET" refId="5"/>  
-  </dependency>  
-  <dependency id="23">    
+  <generalization id="26">    
     <end type="SOURCE" refId="6"/>    
-    <end type="TARGET" refId="5"/>  
-  </dependency>  
-  <generalization id="24">    
-    <end type="SOURCE" refId="9"/>    
-    <end type="TARGET" refId="7"/>  
+    <end type="TARGET" refId="1"/>  
   </generalization>  
   <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
     sort-features="false" accessors="true" visibility="true">    

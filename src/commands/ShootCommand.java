@@ -18,7 +18,7 @@ public class ShootCommand extends Command{
 	
 	
 	public ShootCommand() {
-		super("shoot", "s", "shoot", "UCM-Ship releases a misil or supermisil");
+		super("shoot", "s", "[s]hoot", "UCM-Ship releases a misil or supermisil");
 		this.supermissile = false;
 	}
 	public ShootCommand(Boolean sm) {

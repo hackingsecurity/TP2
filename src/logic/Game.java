@@ -357,6 +357,7 @@ public class Game implements IPlayerController{
 	
 	
 	public void load(BufferedReader br) throws IOException, FileContentsException {
+		
 		FileContentsVerifier  verifier = new FileContentsVerifier();
 		String linea = br.readLine();
 		String[] words;

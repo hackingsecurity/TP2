@@ -16,7 +16,7 @@ import logic.Game;
 public class SaveCommand extends Command {
 
 	public SaveCommand() {
-		super("save", "s", "save", "save the actual game in a file");
+		super("save", "v", "sa[v]e", "save the actual game in a file");
 		// TODO Auto-generated constructor stub
 	}
 

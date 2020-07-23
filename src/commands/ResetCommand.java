@@ -5,7 +5,7 @@ import logic.Game;
 public class ResetCommand extends Command {
 	
 	public ResetCommand() {
-		super("reset", "r", "reset", "Starts a new game");
+		super("reset", "r", "[r]eset", "Starts a new game");
 	}
 
 	public boolean execute(Game game) throws CommandExecuteException {

@@ -12,7 +12,7 @@ public class MoveCommand extends Command{
 	private String direccion;
 	
 	public MoveCommand() {
-		super("move", "m", "move<left|right><1|2>", "Moves UCM-Ship to the indicated direction");
+		super("move", "m", "[m]ove <left|right><1|2>", "Moves UCM-Ship to the indicated direction");
 		
 	}
 	

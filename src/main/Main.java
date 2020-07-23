@@ -9,40 +9,43 @@ import java.util.Random;
 /**
  *	Inicio de nuestro juego
  *
- * 	-Nos quedamos en la pagina 8
- * 
- * 
- * 	//No debe estar aqui
-	public void getDamage (int damage) {
-		this.live = (damage >= this.live) ? 0 : (this.live - damage);
-	}
-	
  *
  *
  */
 public class Main {
 
-	//esto es nuevo
 	
 	public static void main(String[] args) {
 		
-		//Llamamos al método estático de Level ->Default EASY
+		//Inicializamos nuestra semilla por defecto.
 		long seed = 0l;
 		
+		/**
+		 * Si nuestros argumento son igual a 0 es decir no tenemos argumento o tenemos mas de dos argumentos.
+		 * 
+		 * try - catch 
+		 */
 		if(!(args.length == 0 || args.length > 2)) {
+			
 			if(!(args[0].equalsIgnoreCase("easy")||args[0].equalsIgnoreCase("hard")||args[0].equalsIgnoreCase("insane"))) {
 				
 				System.err.println("Usage: Main <EASY|HARD|INSANE> [seed]: level must be one of: EASY, HARD, INSANE");
 			}
-			Level level = Level.parse(args[0].toUpperCase());
-			//Inicializamos con un número como segundo argumento -> Default tiempo en milisegundos
-		try {
-			 seed =  (args.length >1) ? Long.parseLong(args[1]): System.currentTimeMillis();		}
-		catch(NumberFormatException e) {
-			System.err.println("Usage: Main <EASY|HARD|INSANE> [seed]: the seed must be a number");
 			
-		}
-			//Inicializamos nuestra semilla ->Defaul Seudoaleatorio
+			Level level = Level.parse(args[0].toUpperCase());
+				
+			try {
+				//Si solo metemos el nivel del juego, debemos inicializar nuestra semilla.
+				//Inicializamos con un número como segundo argumento -> Default tiempo en milisegundos
+				 seed =  (args.length >1) ? Long.parseLong(args[1]): System.currentTimeMillis();
+				 
+			}catch(NumberFormatException e) {
+				
+				System.err.println("Usage: Main <EASY|HARD|INSANE> [seed]: the seed must be a number");
+				
+			}
+			
+			//Instanciamos nuestra variable rand con la semilla que hemos definidio anteriormente.
 			Random rand = new Random(seed);
 			
 			//Inicializamos nuestro game
@@ -55,13 +58,10 @@ public class Main {
 			Controller controller = new Controller(game, new Scanner(System.in), level);
 			controller.run();
 			
-		
-		
-			
-		}
-		else {
-			System.err.println(" Usage: Main <EASY|HARD|INSANE> [seed] ");
-		}
+	}
+	else {
+		System.err.println(" Usage: Main <EASY|HARD|INSANE> [seed] ");
+	}
 		
 
 	}

@@ -103,6 +103,7 @@ public abstract class GameObject implements IAttack {
 		//--------------OBJECT FORMAT OUTPUT-----------
 	
 	public abstract String toString();
+	
 	public String stringifed() {
 		return this.st + ";" + this.posX + "," + this.posY;
 	}

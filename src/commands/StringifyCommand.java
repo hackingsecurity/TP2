@@ -10,7 +10,7 @@ public class StringifyCommand extends Command{
 	
 	
 	public StringifyCommand() {
-		super("stringify", "st", "boardprinter", "prints the game formatted as a board of dimension");
+		super("stringify", "st", "[st]ringify", "prints the game formatted as a board of dimension");
 
 	}
 

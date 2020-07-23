@@ -15,7 +15,7 @@ import logic.Game;
 public class LoadCommand extends Command {
 
 	public LoadCommand() {
-		super("load", "l", "load", "load a previous game");
+		super("load", "d", "loa[d]", "load a previous game");
 		// TODO Auto-generated constructor stub
 	}
 

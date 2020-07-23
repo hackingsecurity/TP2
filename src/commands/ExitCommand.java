@@ -6,7 +6,7 @@ import logic.Game;
 public class ExitCommand extends Command{
 
 	public ExitCommand() {
-		super("exit", "e", "exit", "Terminates the program");
+		super("exit", "e", "[e]xit", "Terminates the program");
 	}
 
 	public boolean execute(Game game) {

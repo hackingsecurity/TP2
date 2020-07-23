@@ -9,7 +9,7 @@ public class HelpCommand extends Command{
 
 	
 	public HelpCommand() {
-		super("help", "h", "help", "Prints help message");
+		super("help", "h", "[h]elp", "Prints help message");
 	}
 
 	public boolean execute(Game game) {
