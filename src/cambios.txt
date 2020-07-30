@@ -1,0 +1,18 @@
+APTO CONDICIONAL
+
+  
+  * método load de Game: un error de formato del fichero no debería dejar el juego en un estado incoherente
+    + ¿qué pasa si ocurre el error después de haber leído medio tablero y queremos volver al estado del
+      juego antes del intento de load?
+    + se puede usar el patrón siguiente:
+        guardar-estado-juego; try { leer_fichero } catch (Exception ex) { restaurar-estado-juego; throw ex }
+      si se usa clone (copia superficial) para salvar el estado del juego, hace falta crear nuevos objetos
+      para cargar valores de atributos de tipo referencia
+      
+      
+      
+      
+    falta exepcion de load2
+    falta exepcion de save
+    
+    Ojo con el showvey delos cojones

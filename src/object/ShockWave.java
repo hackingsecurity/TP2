@@ -11,7 +11,7 @@ import logic.Game;
  */
 public class ShockWave extends Weapon{
 	
-
+	
 	//-----------------CONTRUCTOR---------------
 	
 	public ShockWave(Game game, int posX, int posY, int live) {
@@ -27,18 +27,34 @@ public class ShockWave extends Weapon{
 
 	public boolean performAttack(GameObject other) {
 		
-		boolean hit = false;
+		boolean performAttack = false;
 		
-		if(other.receiveShockWaveAttack(damage)) { hit = true;}
+		/*
+		if(other.receiveShockWaveAttack(damage)) { 
+			this.live = 0;
+			performAttack = true;
+		}
+		*/
+		if (this.game.getShockWave()) {
+			if(other.receiveShockWaveAttack(damage)) {
+				performAttack = true;
+			}
+		}
+		
 
-		return hit;
+		return performAttack;
 	}
 	
 	//--------------ABSTRACT METHODS------------
 
 	@Override
 	public void computerAction() {}
-	public void onDelete() {}
+	public void onDelete() {
+		if(game.getShockWave()) {
+			game.setShowkWave(false);
+			this.live = 0;
+		}
+	}
 	public void move() {}
 
 		//--------------OBJECT FORMAT OUTPUT-----------

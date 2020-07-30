@@ -33,7 +33,8 @@ public enum Level {
 	private int numCyclesToMoveOneCell;
 	private double ovniFrequency;
 	private int numRowsOfRegularAliens;
-	private double  turnExplodeFrequency = 0.10; // actualmente no depende del nivel
+	/* * turnExplodeFrequency == 0.05*/
+	private double  turnExplodeFrequency = 0.05; // actualmente no depende del nivel
 		
 	//-----------------CONTRUCTOR---------------
 	
@@ -82,8 +83,12 @@ public enum Level {
 		for (Level level : Level.values())
 			if (level.name().equalsIgnoreCase(cadenaEntrada)) return level;
 			
-		//Retorno por defecto el nivel fácil	
-		return EASY;
+		//Retorno por defecto el nivel fácil
+		/*- command-line arguments
+		  * en vez de "if(!(args[0].equalsIgnoreCase("easy")||..."
+		    + más sencillo: comprueba si el método parse de la clase Level devuelve null
+		 */
+		return null;
 		
 	}
 	

@@ -14,33 +14,49 @@ import logic.Game;
 
 public class LoadCommand extends Command {
 
+	private String nameFile;
+	
 	public LoadCommand() {
 		super("load", "d", "loa[d]", "load a previous game");
 		// TODO Auto-generated constructor stub
+	}
+	
+	/*
+	 * Contructora para llamar por promnt
+	 */
+	public LoadCommand(String nameFile) {
+		super("load", "d", "loa[d]", "load a previous game");
+		this.nameFile = nameFile;
 	}
 
 	@Override
 	public boolean execute(Game game) throws CommandExecuteException{
 		
+	
+		/*
+		* load command no debería añadir ".dat" (el usuario lo tiene que teclear explícitamente)
 		
-		Scanner ent = new Scanner(System.in);
-		System.out.println("Type file name you want to load ");
-		String file = ent.nextLine();
+		*/
+		
 		String header = null;
+		File fichero = new File(nameFile);
 		
-		//añadimos el .dat al archivo que queremos cargar
-		file = file+".dat";
-		File fichero = new File(file);
-		
-		
-		
+		/*
+		 * loadOLd
+		 */
+					
 		try {
 			//guardamos nuestra partida actual.
 			game.save(Game.FILETMP);
 			
 			if (fichero.exists()) {
 
-				FileReader fr = new FileReader(file);
+				/*
+				 * 1) Creamos nuestro fichero
+				 * 2) Buffer para la tranferencia de datos
+				 * 3) carga de datos en una variable String
+				 */
+				FileReader fr = new FileReader(nameFile);
 				BufferedReader br = new BufferedReader(fr);
 				header = br.readLine();
 				// esto se utilizaría para quitar todas los object que existan.
@@ -49,23 +65,28 @@ public class LoadCommand extends Command {
 					game.load(br);
 				}
 			//carga
-				System.out.println("Game loaded succesfully from file <"+file+">");
+				System.out.println("Game loaded succesfully from file <"+nameFile+">");
 			}
 			else {
 				loadOld(game);
-				System.err.println( " " + file + "doesn't exist");
+				System.err.println( " " + nameFile + "doesn't exist");
 			}
 			//debemos saber si existe el arhivo.
 			
 			
 		}catch (IOException e) {
-			
 			e.getMessage();
 		} catch (FileContentsException e) {
 		// TODO Auto-generated catch block
-			
 			e.printStackTrace();
+		}finally {
+			if(!game.getLoading()) {
+				loadOld(game);
+			}
 		}
+		
+		
+		
 		
 		
 		
@@ -75,13 +96,29 @@ public class LoadCommand extends Command {
 
 	@Override
 	public Command parse(String[] commandWords) throws CommandParseException {
-			Command command = null;
 		
+		Command command = null;
 		
-		if (matchCommandName(commandWords[0])) {
-			if (commandWords.length == 1) command = new LoadCommand();
-			else throw new CommandParseException (incorrectNumArgsMsg);
+		/*
+		 * Este va tener dos parametros
+		 * 
+		 * [0] va ser nuestro comando load or d
+		 * [1] va ser el archivo
+		 * 
+		 * * * método load de Game: game no debería terminar si el formato del fichero es incorrecto
+    		+ ¿qué pasa si un error de formato del fichero provoca otro tipo de excepción? 
+		 */
 			
+		if (matchCommandName(commandWords[0])) {
+			if (commandWords.length == 2) {
+				String aux = commandWords[1];
+				
+				if(aux.split("\\.")[1].equalsIgnoreCase("dat")) {
+					command = new LoadCommand(aux);
+				}else throw new CommandParseException("Format file error, you don't use .dat!"); 
+				
+			}else throw new CommandParseException (incorrectNumArgsMsg);
+				
 		}
 		
 		return command;
@@ -91,7 +128,7 @@ public class LoadCommand extends Command {
 		
 		try {
 			
-			String file = Game.FILETMP + ".dat";
+			String file = Game.FILETMP;
 			FileReader r = new FileReader(file);
 			BufferedReader br = new BufferedReader(r);
 			String header = br.readLine();

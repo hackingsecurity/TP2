@@ -1,4 +1,6 @@
 package object;
+import exceptions.CommandExecuteException;
+import exceptions.OffWorldException;
 import logic.FileContentsVerifier;
 import logic.Game;
 
@@ -17,6 +19,7 @@ public class UCMShip extends Ship{
 	//-----------------VARIABLES----------------
 	private boolean missile;
 	private int numSuperMissiles;
+	//OJO activamos el shockWave
 	private boolean shockWave;
 	private final int CostSM = 20; 
 	
@@ -27,7 +30,7 @@ public class UCMShip extends Ship{
 		super(game,posX, posY, 3,"P");
 		this.missile = false;
 		this.numSuperMissiles = 0;
-		this.shockWave = false;
+		this.shockWave = true;
 	}
 	public UCMShip(Game game, int posX, int posY, int numSM) {
 		super(game,posX, posY, 3,"P");
@@ -70,8 +73,9 @@ public class UCMShip extends Ship{
 	 * 
 	 * @param numCells
 	 * @return
+	 * @throws OffWorldException 
 	 */
-	public boolean move(int numCells) {
+	public boolean move(int numCells) throws CommandExecuteException {
 
 		boolean move = false;
 		int aux = this.posY;
@@ -80,7 +84,14 @@ public class UCMShip extends Ship{
 		if(!(this.isOut())) {
 			move = true;
 		}
-		else this.posY = aux;
+		else {
+			
+			/*
+			 * 
+			 */
+			this.posY = aux;
+			throw new  CommandExecuteException("Cannot perform move: ship too near border!");
+		}
 		
 		return move;
 	}

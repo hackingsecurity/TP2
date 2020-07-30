@@ -20,7 +20,12 @@ public class ListCommand extends Command {
 		Command command = null;
 		
 		if (matchCommandName(commandWords[0])) {
-			if (commandWords.length == 1) command = new ListCommand();
+			/*
+			 * - Command Pattern
+				  * parse de comandos sin parámetros puede devolver "this" en vez de "new XXCommand"
+				  + es lo que permite subir el método parse a una superclase "NoParamsCommand"
+			 */
+			if (commandWords.length == 1) command = this;
 			else throw new CommandParseException (incorrectNumArgsMsg);
 		}
 		

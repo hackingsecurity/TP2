@@ -14,9 +14,25 @@ public class BuyCommand extends Command{
 
 		boolean buy = false;
 		
+		/*
+		 * 1 pedir a game que nos diga los puntos del jugador
+		 * 2 si no hay punto suficientes lanzo excepción
+		 * 3 si puedo pues compro un misil pero lo haga game
+		 */
+		/*
+		  + e.g. función boleana buySuperMissile de Game llamada por execute de BuyCommand
+		  * cuando se envuelve una excepción en otra se debe usar el constructor de Excepción de 2 parámetros
+		    + en el primer parámetro se pasa un NUEVO mensaje (más alto nivel)
+		    + en el segundo parámetro se pasa la excepción de bajo nivel (entera, no su mensaje)
+		*/
+		
 		try {
-			if(game.buySuperMissile()) buy =  true;
-			else throw new CommandExecuteException("No tienes puntos suficientes, no puedes comprar super misil");
+			//if(game.buySuperMissile()) buy =  true;
+			if(game.getPoints() >= game.getUCMShip().getCostSM()) {
+				game.buySuperMissile();
+				buy = true;
+			}
+			else throw new CommandExecuteException("You don't have enough points, so you can't buy a supermsil");
 		}
 		catch(CommandExecuteException e) {
 			 throw new CommandExecuteException(e.getMessage());
@@ -32,7 +48,12 @@ public class BuyCommand extends Command{
 		try {
 			
 			if (matchCommandName(commandWords[0])) {
-				if (commandWords.length == 1) command = new BuyCommand();
+				/*
+				 * - Command Pattern
+					  * parse de comandos sin parámetros puede devolver "this" en vez de "new XXCommand"
+					  + es lo que permite subir el método parse a una superclase "NoParamsCommand"
+				 */
+				if (commandWords.length == 1) command = this;
 				else throw new CommandParseException (incorrectNumArgsMsg);	
 			}
 		}

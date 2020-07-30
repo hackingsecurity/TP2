@@ -1,7 +1,7 @@
 package commands;
 
 import board.GamePrinter;
-import board.Stringifier;
+import board.PrinterTypes;
 import exceptions.CommandExecuteException;
 import exceptions.CommandParseException;
 import logic.Game;
@@ -16,7 +16,10 @@ public class StringifyCommand extends Command{
 
 	public boolean execute(Game game) throws CommandExecuteException {
 		
-		GamePrinter printer = new Stringifier(game);
+		/* no has usado PrinterTypes para crear impresoras
+		   + printer = PrinterTypes.STRINGIFIER.getObject(game)
+		 */
+		GamePrinter printer = PrinterTypes.STRINGIFIER.getObject(game);
 		System.out.println(printer);
 		return false;
 	}
@@ -28,8 +31,12 @@ public class StringifyCommand extends Command{
 		try {
 	
 			if (matchCommandName(commandWords[0])) {
-				
-				if(commandWords.length == 1) command = new StringifyCommand();
+				/*
+				 * - Command Pattern
+					  * parse de comandos sin parámetros puede devolver "this" en vez de "new XXCommand"
+					  + es lo que permite subir el método parse a una superclase "NoParamsCommand"
+				 */
+				if(commandWords.length == 1) command = this;
 				else throw new CommandParseException(incorrectNumArgsMsg);
 			}
 		}

@@ -16,6 +16,8 @@ public class ShockwaveCommand extends Command{
 		try {
 			if(game.shockWave()){
 				game.update();
+				//
+				game.setShowkWave(false);
 				ex = true;
 	
 			}else throw new NoShockwaveException();
@@ -34,7 +36,12 @@ public class ShockwaveCommand extends Command{
 		try {
 			if (matchCommandName(commandWords[0])) {
 				
-				if (commandWords.length == 1) command = new ShockwaveCommand();
+				/*
+				 * - Command Pattern
+					  * parse de comandos sin parámetros puede devolver "this" en vez de "new XXCommand"
+					  + es lo que permite subir el método parse a una superclase "NoParamsCommand"
+				 */
+				if (commandWords.length == 1) command = this;
 				else throw new CommandParseException (incorrectNumArgsMsg);
 			}
 		}

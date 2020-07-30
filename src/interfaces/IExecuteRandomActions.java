@@ -10,13 +10,19 @@ import logic.Game;
 
 public interface IExecuteRandomActions {
 	
+	
+	/*
+	 * * IExecuteRandomActions: mejor multiplicar frecuencias por 100 y usar randInt 
+    	+ trabajar con números flotantes se debería evitar cuando sea posible
+	 */
+	
 	/**
 	 * Generamos un ovni 
 	 * @param game
 	 * @return true si creamos el ovni o false si no
 	 */
 	static boolean canGenerateRandomOvni(Game game){
-		return game.getRandom().nextDouble() < game.getLevel().getOvniFrequency();
+		return game.getRandom().nextInt(100)  < game.getLevel().getOvniFrequency() * 100;
 	}
 	
 	/**
@@ -25,7 +31,7 @@ public interface IExecuteRandomActions {
 	 * @return true si creamos una bomba o false si no
 	 */
 	static boolean canGenerateRandomBomb(Game game){
-		return game.getRandom().nextDouble() < game.getLevel().getShootFrequency();
+		return game.getRandom().nextInt(100)  < game.getLevel().getShootFrequency() * 100;
 	}
 	
 	/**
@@ -34,7 +40,7 @@ public interface IExecuteRandomActions {
 	 * @return true si creamos una bomba o false si no
 	 */
 	static boolean canGenerateExplodeShip(Game game) {
-		return game.getRandom().nextDouble() < game.getLevel().getTurnExplodeFrequency();
+		return game.getRandom().nextInt(100)  < game.getLevel().getTurnExplodeFrequency() * 100;
 	}
 
 }

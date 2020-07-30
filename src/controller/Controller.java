@@ -36,8 +36,12 @@ public class Controller {
 		
 		//PINTAMOS EL TABLERO EN EL ESTADO ACTUAL
 		
-		//drawSerializable();
-		printer = new BoardPrinter(game);
+		/*drawSerializable();
+		* no has usado PrinterTypes para crear impresoras
+	    + printer = PrinterTypes.BOARDPRINTER.getObject(game)
+	    */
+		
+		printer = PrinterTypes.BOARDPRINTER.getObject(this.game);
 		System.out.println(printer);
 		
 		
@@ -66,7 +70,11 @@ public class Controller {
 						
 						
 							//drawSerializable();
-						printer = new BoardPrinter(game);
+						/*drawSerializable();
+						* no has usado PrinterTypes para crear impresoras
+					    + printer = PrinterTypes.BOARDPRINTER.getObject(game)	
+					    */
+						printer = PrinterTypes.BOARDPRINTER.getObject(this.game);
 						System.out.println(printer);
 						
 							
@@ -75,7 +83,7 @@ public class Controller {
 				}else System.err.println("Unknown Command");
 				
 				
-			}catch (CommandParseException | CommandExecuteException ex) {
+			}catch (CommandParseException | CommandExecuteException | NumberFormatException ex) {
 				System.err.println(ex.getMessage());
 			}
 		

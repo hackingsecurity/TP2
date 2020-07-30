@@ -22,7 +22,9 @@ import java.util.Scanner;
 import board.GamePrinter;
 import board.PrinterTypes;
 import board.Stringifier;
+import exceptions.CommandExecuteException;
 import exceptions.FileContentsException;
+import exceptions.OffWorldException;
 
 /**
  * Delega responsabilidad a GameObjectBoard 
@@ -36,7 +38,7 @@ public class Game implements IPlayerController{
 	//-----------------CONSTANTES----------------
 	public final static int DIM_X = 8; //filas
 	public final static int DIM_Y = 9; //columnas
-	public final static String FILETMP = "tmp";
+	public final static String FILETMP = "tmp.dat";
 	
 	private  int currentCycle;
 	private boolean doExit;
@@ -163,16 +165,9 @@ public class Game implements IPlayerController{
 	 * 
 	 * @return
 	 */
-	public boolean buySuperMissile() {
-		
-		boolean canBuy = false;
-		if(this.points >= this.player.getCostSM()) {
-			this.player.setNumSuperMissiles(1);
-			this.points -= this.player.getCostSM();
-			canBuy = true;
-		}
-		
-		return canBuy;
+	public void buySuperMissile() {
+		this.points -= this.player.getCostSM();
+		this.player.setNumSuperMissiles(1);	
 	}
 	
 	/**
@@ -236,7 +231,7 @@ public class Game implements IPlayerController{
 				//Player actions
 	
 	@Override
-	public boolean move (int numCells) {
+	public boolean move (int numCells) throws CommandExecuteException {
 		return player.move(numCells);
 	}
 	
@@ -265,7 +260,8 @@ public class Game implements IPlayerController{
 	public boolean shockWave() {
 		boolean shock = false;
 		if(this.player.getShockWave()) {
-			this.player.setShockWave(false);
+			//this.player.setShockWave(false);
+			board.add(new ShockWave(this,0,10,0));
 			shock = true;
 		}
 		return shock;
@@ -278,7 +274,7 @@ public class Game implements IPlayerController{
 	
 	@Override
 	public void enableShockWave() {
-		board.add(new ShockWave(this,0,10,1));
+		//board.add(new ShockWave(this,0,10,1));
 		this.player.setShockWave(true);
 	}
 	
@@ -321,8 +317,12 @@ public class Game implements IPlayerController{
 	public String toString(int posX, int posY) {return this.board.toString(posX, posY);}
 	
 	public String stringifier() { 
-		stringifying = false;
-		return board.stringifier();
+		String string = "--- Space Invaders v2.0 ---\n";
+		string += "\n";
+		string += "G;" + this.currentCycle + "\n";
+		string += "L;" + this.level.name() + "\n";
+		string += board.stringifier();
+		return string + "\n";
 		
 	}
 
@@ -363,7 +363,7 @@ public class Game implements IPlayerController{
 		String[] words;
 		// hay que guardar el tablero que llevemos antes de guardar por si la nueva partida que queremos cargar
 		// no coge los datos correctamente
-		GameObjectBoard board2 = new GameObjectBoard(DIM_X,DIM_Y);
+		//GameObjectBoard board2 = new GameObjectBoard(DIM_X,DIM_Y);
 		
 		
 		board.cleanBoard();
@@ -391,43 +391,27 @@ public class Game implements IPlayerController{
 		this.loading = false;
 		
 		linea = br.readLine().trim();
+	
+		AlienShip.setContadorAlien(0);
+
 		
 		while( linea != null && !linea.isEmpty() ) {
 			GameObject gameObject = GameObjectGenerator.parse(linea, this, verifier);
-				if (gameObject == null) {
-					
-					throw new FileContentsException("invalid file, unknown line prefix");}
+			
+			if (gameObject == null) {
+				throw new FileContentsException("invalid file, unknown line prefix");
+			}
+			
 			board.add(gameObject);
 			linea = br.readLine().trim();
 		}
+		
+
+		loading = true;
 	}
 
 	/*
-	
-	public  void load(BufferedReader br) throws IOException {
 		
-		String linea = br.readLine().trim();
-		linea = linea.split(",")[1]; // número de ciclos
-		this.currentCycle = Integer.parseInt(linea);
-		linea = br.readLine().trim();
-		linea = linea.split(",")[1]; // level 
-		if(linea.equalsIgnoreCase("easy")) this.level = Level.EASY;
-		else if(linea.equalsIgnoreCase("hard")) this.level = Level.HARD;
-		else if(linea.equalsIgnoreCase("insane")) this.level = Level.INSANE;
-		//por acabar rellenar los bjetos y habria que añadir un reset que ponga
-	 // el estado de juego vacio
-		this.loading = false;
-		linea = br.readLine().trim();
-		while( linea != null && !linea.isEmpty() ) {
-			GameObject gameObject = GameObjectGenerator.parse(linea, this, verifier);
-				if (gameObject == null)
-						throw new FileContentsException("invalid file, unknown line prefix");
-			board.add(gameObject);
-			linea = br.readLine().trim();
-		}
-	}
-	*/
-
 	/*Cateamos  DestroyerAlien*/
 	public DestroyerAlien getBombOwner(int ownerRef) {
 		
@@ -446,42 +430,41 @@ public class Game implements IPlayerController{
 
 	public boolean save(String file) throws IOException {
 		
-		GamePrinter printer = new Stringifier(this);
-		String board = printer.toString();
-		String fileSaveTmp = file + ".dat";
+		/*
+		 * Lo ponemos en modo texto
+		 */
 		boolean canSave = false;
+		GamePrinter printer = PrinterTypes.STRINGIFIER.getObject(this);
 		
-		try {
-			FileWriter save = new FileWriter(fileSaveTmp);
-			for(int i=0; i < board.length(); i++) {
-				save.write(board.charAt(i));
-			}
-			save.close();
-			canSave = true;
-		} catch (IOException e) {
-			e.getMessage();
-		}
-		return canSave;
-	}
-
-	
-	/*
-	 * GamePrinter printer = new Stringifier(this);
 		String board = printer.toString();
+		//System.out.println(board);
 		
-		String file = in.nextLine();
-		file = file+".dat";
 		try {
 			FileWriter save = new FileWriter(file);
 			for(int i=0; i < board.length(); i++) {
 				save.write(board.charAt(i));
 			}
 			save.close();
+			canSave = true;
+			
 		} catch (IOException e) {
 			e.getMessage();
 		}
-		
-	 */
-	
-	
+		return canSave;
+	}
+
+	public boolean getShockWave() {
+		// TODO Auto-generated method stub
+		return this.player.getShockWave();
+	}
+
+	public void setShowkWave(boolean b) {
+		this.player.setShockWave(b);
+	}
+
+	public boolean getLoading() {
+		// TODO Auto-generated method stub
+		return this.loading;
+	}
+
 }

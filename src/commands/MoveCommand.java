@@ -30,52 +30,75 @@ public class MoveCommand extends Command{
 	 * COMPROBAMOS SI ESTAMOS EN FUERA DEL TABLERO AL MOVER
 	 * 
 	 */
-	public boolean execute(Game game) throws CommandExecuteException {
+	public boolean execute(Game game) throws CommandExecuteException{
 		
 		boolean move = false;
-		try {
-			if(this.direccion.equals("left")) {
-				if(game.move((this.numCasillas * -1))) {
-					move = true;
-					game.update();
-				}else throw new OffWorldException(); 
-				
+		
+		/*
+		 *  * las excepciones deberían lanzav-rse en el sitio del código donde ocurre el error
+			  * es incorrecto indicar errores devolviendo un valor booleano para luego lanzar
+			    una excepcion más arriba en la pila de llamadas al recibir el valor "false"
+			    + p.ej. función boleana move de Game llamada por execute de MoveCommand
+			     también es un sin sentido lanzar una excepción en un método y envolverla en otra EN EL MISMO MÉTODO
+		 */
+		if(this.direccion.equals("left")) {
+			if(game.move((this.numCasillas * -1))) {
+				move = true;
+				game.update();
 			}
-			else if (this.direccion.equals("right")){
-				if(game.move(this.numCasillas)) {
-					move = true;
-					game.update();
-				}else throw new OffWorldException(); 
-			}
-			 
-		}catch(OffWorldException e) {
-			throw new CommandExecuteException(e.getMessage());
 		}
+		else if (this.direccion.equals("right")){
+			if(game.move(this.numCasillas)) {
+				move = true;
+				game.update();
+			}
+		}
+		
 		return move;
 	}
 	
 	
 	
-	public Command parse(String[] commandWords) throws CommandParseException
+	public Command parse(String[] commandWords) throws CommandParseException, NumberFormatException
 	{
 		Command command = null;
+		int aux;
 		
-		try {
+		//try {
 			
 			if (matchCommandName(commandWords[0])) {
 				if(commandWords.length == 3) {
 					if ((commandWords[1].equals("left")) || (commandWords[1].equals("right"))) {
-						if((Integer.parseInt(commandWords[2]) == 1) ||  (Integer.parseInt(commandWords[2]) == 2)) {
-							command = new MoveCommand(commandWords[1], Integer.parseInt(commandWords[2]));
+						try {
+							aux  = Integer.parseInt(commandWords[2]);
 							
-						}else throw new CommandParseException("only can move 1 or 2 cells");
+							if((Integer.parseInt(commandWords[2]) == 1) ||  (Integer.parseInt(commandWords[2]) == 2)) {
+								command = new MoveCommand(commandWords[1], Integer.parseInt(commandWords[2]));
+								
+							}else throw new CommandParseException("only can move 1 or 2 cells");
+							
+							
+						/* tratamiento de errores incompleto
+						+ e.g. move left now, no recoge el NumberFormatException
+						*/	
+						}catch(NumberFormatException e ) {
+							throw new  NumberFormatException("Cause of Exception: \n" +
+								"\t NumberFormatException in parameter 2: \n" +
+								"\t Format {move} {left | rigth} { 1 | 2 } ");
+							
+						}
+						
 					}else  throw new CommandParseException("Wrong direcction");
 				}else throw new CommandParseException(incorrectNumArgsMsg);
 			}
-		}
-		catch (CommandParseException e) {
+		/*}
+		
+		catch (CommandParseException  e ) {
+			
 			throw new CommandParseException(e.getMessage());
-		}
+		}catch (NumberFormatException a) {
+			throw new NumberFormatException("Error de parametro");
+		}*/
 		
 		return command;
 	}

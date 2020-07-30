@@ -4,25 +4,29 @@ import logic.Game;
 
 public enum PrinterTypes {
 	
+	/*
+	 *  no has usado PrinterTypes para crear impresoras
+	 *  LO hemos modificado para que podemoas crear impresoras.
+	 */
+	
 	BOARDPRINTER(
 		"boardprinter",
-		"prints the game formatted as a board of dimension: "
-		),
-		
-	
+		"prints the game formatted as a board of dimension: ",
+		new BoardPrinter()),
 	STRINGIFIER(
 		"stringifier",
-		"prints the game as plain text");
+		"prints the game as plain text",
+		new Stringifier());
 		
-	
-	
+	private GamePrinter printerObject;
 	private String printerName;
 	private String helpText;
 	
 	
-	private PrinterTypes(String name, String text) {
-		printerName = name;
-		helpText = text;
+	private PrinterTypes(String name, String text, GamePrinter printerObject) {
+		this.printerName = name;
+		this.helpText = text;
+		this.printerObject = printerObject;
 		
 	}
 
@@ -44,13 +48,14 @@ public enum PrinterTypes {
 		
 		return helpString;
 	}
+
+
 	
-	
-	/*public GamePrinter getObject(Game game) {
+	public GamePrinter getObject(Game game) {
 		
-		printerObject.setGamePrinter(game);
+		printerObject.setGame(game);
 		
 		return printerObject;
 	}
-	*/
+	
 }

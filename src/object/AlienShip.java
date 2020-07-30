@@ -94,7 +94,7 @@ public  abstract class AlienShip extends EnemyShip {
 	//este hay que cambiarlo
 	public boolean receiveShockWaveAttack(int damage) {
 		boolean hit = false;
-		if(this.isAlive()) {
+		if(this.game.getShockWave()) {
 			this.receiveDamageFromOtherObject(damage);
 			hit = true;
 			}

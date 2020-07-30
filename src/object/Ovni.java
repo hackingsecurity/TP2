@@ -111,7 +111,7 @@ public class Ovni  extends EnemyShip  {
 	
 		//--------------OBJECT FORMAT OUTPUT-----------
 	public String stringifed() {
-		if(this.visibilidadOvni) return super.stringifed()+"\n";
+		if(this.visibilidadOvni) return super.stringifed();
 		else return "";
 	}
 	@Override

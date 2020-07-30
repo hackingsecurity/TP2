@@ -24,8 +24,12 @@ public class ListPrintersCommand extends Command {
 		
 		
 		if (matchCommandName(commandWords[0])) {
-			
-			if (commandWords.length == 1) command = new ListPrintersCommand();
+			/*
+			 * - Command Pattern
+				  * parse de comandos sin parámetros puede devolver "this" en vez de "new XXCommand"
+				  + es lo que permite subir el método parse a una superclase "NoParamsCommand"
+			 */
+			if (commandWords.length == 1) command = this;
 			else throw new CommandParseException (incorrectNumArgsMsg);
 		}
 		

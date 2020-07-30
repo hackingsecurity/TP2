@@ -251,10 +251,13 @@ public class GameObjectBoard {
 	 */
 	public String toString(int posX, int posY) {
 		
+		/*
+		 * Retornamos cadena vacia si retorna un index -1 o no hay un objeto en esa posicion
+		 */
 		int index = getIndex(posX, posY);
 		
 		if(index == -1) {
-			return null;
+			return "";
 		}
 		
 		return objects[index].toString();

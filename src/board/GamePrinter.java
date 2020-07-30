@@ -12,10 +12,13 @@ public abstract class GamePrinter  {
 	 * 	->private GameObjectBoard board;
 	 */
 	
-	public GamePrinter(Game game) {
-		this.game = game;
+	public GamePrinter() {
+		
 	}
 	
+	public void setGame(Game game) {
+		this.game = game;
+	}
 	
 	public abstract String toString();
 

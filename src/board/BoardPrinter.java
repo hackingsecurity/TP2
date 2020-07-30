@@ -13,9 +13,9 @@ public class BoardPrinter extends GamePrinter {
 	
 	
 	
-	public BoardPrinter (Game game){
+	public BoardPrinter (){
 		
-		super(game);
+		super();
 		this.numRows = Game.DIM_X;
 		this.numCols = Game.DIM_Y;
 		
@@ -31,7 +31,11 @@ public class BoardPrinter extends GamePrinter {
 				for(int j = 0; j < this.numCols; j++) {
 					
 					cad = game.toString(i, j);
-					if( cad != null) {
+					/*
+					 * * if( cad != null) { ... } else { boardPrinter[i][j] = space; }
+    					+ no hace falta; basta con que cad devuelve cadena vacía en vez de null
+					 */
+					if(!cad.isEmpty()) {
 						boardPrinter[i][j] = cad;
 					}
 					else {
